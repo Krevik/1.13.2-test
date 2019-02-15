@@ -1,0 +1,41 @@
+modLoader="javafml" #mandatory
+loaderVersion="[24,)" #mandatory (24 is current forge version)
+issueTrackerURL="http://my.issue.tracker/" #optional
+displayURL="https://minecraft.curseforge.com/projects/beta-kathairis" #optional
+logoFile="examplemod.png" #optional
+credits="FreeSound.org for their great audio samples; MCVinnyQ and HKDragonBoy for textures and Models; it3b for their amazing musical work; RavenOfTheWastes for his writing and community management; ShadowWalkerEraZ and our Beta testing team for helping ensure the mod is functional and (mostly) bug-free; Special thanks to past members of the development team: Feranogame, Oktet, and Mystical Spire;"
+authors="Krevik"
+
+# A list of mods - how many allowed here is determined by the individual mod loader
+[[mods]] #mandatory
+
+modId="kathairis" #mandatory
+# The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
+version="${version}" #mandatory
+ # A display name for the mod
+displayName="Kathairis" #mandatory
+# A URL to query for updates for this mod. See the JSON update specification <here>
+updateJSONURL="http://myurl.me/" #optional
+# The description text for the mod (multi line!) (#mandatory)
+description='''
+Kathairis is a whole new dimension with a rich back-story, many new mobs, and so much more!
+'''
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.examplemod]] #optional
+    # the modid of the dependency
+    modId="forge" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    mandatory=true #mandatory
+    # The version range of the dependency
+    versionRange="[24,)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    ordering="NONE"
+    # Side this dependency is applied on - BOTH, CLIENT or SERVER
+    side="BOTH"
+# Here's another dependency
+[[dependencies.examplemod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.13.2]"
+    ordering="NONE"
+    side="BOTH"
