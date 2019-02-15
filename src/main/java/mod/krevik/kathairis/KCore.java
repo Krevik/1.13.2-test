@@ -45,6 +45,7 @@ public class KCore {
 
     public KCore() {
         KBlocks.initBlocks();
+        KItems.initItems();
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the doClientStuff method for modloading

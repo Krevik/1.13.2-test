@@ -1,6 +1,11 @@
-package mod.krevik.kathairis;
+package mod.krevik.kathairis.util;
 
 import com.google.common.base.Preconditions;
+import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.KCore;
+import mod.krevik.kathairis.KItems;
+import mod.krevik.kathairis.blocks.BaseBlock;
+import mod.krevik.kathairis.items.BaseItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -12,11 +17,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryHelper {
-
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event){
         final IForgeRegistry<Block> registry = event.getRegistry();
-        for(Block block:KBlocks.blockRegistryList){
+        for(Block block: KBlocks.blockRegistryList){
             registry.register(block);
         }
     }
@@ -25,9 +29,13 @@ public class RegistryHelper {
     public static void registerItems(final RegistryEvent.Register<Item> event){
         final IForgeRegistry<Item> registry = event.getRegistry();
         for(ItemBlock itemBlock:KBlocks.itemBlocksRegistryList){
-            final Block block = itemBlock.getBlock();
+            final BaseBlock block = (BaseBlock) itemBlock.getBlock();
             final ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(), "Block %s has null registry name", block);
-            registry.register(itemBlock.setRegistryName(registryName));
+            ItemBlock itemBlock1 = (ItemBlock) new ItemBlock(block,new Item.Properties().group(block.getItemGroup())).setRegistryName(registryName);
+            registry.register(itemBlock1);
+        }
+        for(BaseItem item: KItems.itemsToRegister){
+         registry.register(item);
         }
     }
 
