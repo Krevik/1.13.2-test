@@ -96,23 +96,6 @@ public class KCore {
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
 
-        @SubscribeEvent
-        public void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            final IForgeRegistry<Block> registry = blockRegistryEvent.getRegistry();
-            for(Block block:KBlocks.blockRegistryList){
-                registry.register(block);
-            }
-        }
-
-        @SubscribeEvent
-        public void onItemRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
-            final IForgeRegistry<Item> registry = itemRegistryEvent.getRegistry();
-            for(ItemBlock itemBlock:KBlocks.itemBlocksRegistryList){
-                final Block block = itemBlock.getBlock();
-                final ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(), "Block %s has null registry name", block);
-                registry.register(itemBlock.setRegistryName(registryName));
-            }
-        }
     }
 
 }
