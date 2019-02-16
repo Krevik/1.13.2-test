@@ -1,11 +1,10 @@
 package mod.krevik.kathairis.items.tools;
 
-import mod.krevik.kathairis.KCore;
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.KItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemTool;
 
 import java.util.Set;
@@ -14,7 +13,7 @@ public class ItemKathairisTool extends ItemTool {
 
     protected ItemKathairisTool(String Name, IItemTier tier, Set<Block> effectiveBlocksIn, Item.Properties properties) {
         super(tier.getAttackDamage(),1,tier,effectiveBlocksIn,properties);
-        setRegistryName(KCore.MODID,Name);
+        setRegistryName(Kathairis.MODID,Name);
     }
 
     public Item addToRegistryList(){

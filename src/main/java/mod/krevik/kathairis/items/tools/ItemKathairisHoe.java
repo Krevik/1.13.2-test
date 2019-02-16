@@ -27,7 +27,7 @@ public class ItemKathairisHoe extends ItemTiered {
     protected static final Map<Block, IBlockState> field_195973_b = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.FARMLAND.getDefaultState(), Blocks.GRASS_PATH, Blocks.FARMLAND.getDefaultState(), Blocks.DIRT, Blocks.FARMLAND.getDefaultState(), Blocks.COARSE_DIRT, Blocks.DIRT.getDefaultState()));
 
     public ItemKathairisHoe(String Name, IItemTier tier, ItemGroup group) {
-        super(tier, new Item.Properties().group(group));
+        super(tier, new Item.Properties().group(group).maxStackSize(1));
         this.speed = 1;
         setRegistryName(Name);
     }

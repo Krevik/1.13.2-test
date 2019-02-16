@@ -33,7 +33,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.stream.Collectors;
 
 @Mod("kathairis")
-public class KCore {
+public class Kathairis {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -43,7 +43,7 @@ public class KCore {
 
 
 
-    public KCore() {
+    public Kathairis() {
         KBlocks.initBlocks();
         KItems.initItems();
         // Register the setup method for modloading

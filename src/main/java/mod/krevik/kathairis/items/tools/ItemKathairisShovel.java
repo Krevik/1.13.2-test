@@ -25,7 +25,7 @@ public class ItemKathairisShovel extends ItemKathairisTool {
     protected static final Map<Block, IBlockState> field_195955_e = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.GRASS_PATH.getDefaultState()));
 
     public ItemKathairisShovel(String Name,IItemTier tier, ItemGroup group) {
-        super(Name, tier, EFFECTIVE_ON, new Item.Properties().group(group).addToolType(net.minecraftforge.common.ToolType.SHOVEL, tier.getHarvestLevel()));
+        super(Name, tier, EFFECTIVE_ON, new Item.Properties().group(group).addToolType(net.minecraftforge.common.ToolType.SHOVEL, tier.getHarvestLevel()).maxStackSize(1));
     }
 
     public boolean canHarvestBlock(IBlockState blockIn) {
