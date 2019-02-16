@@ -12,6 +12,7 @@ import java.util.ArrayList;
 @net.minecraftforge.registries.ObjectHolder("kathairis:blocks")
 public class KBlocks {
 
+
     public static ArrayList<Block> blockRegistryList=new ArrayList<>();
     public static ArrayList<ItemBlock> itemBlocksRegistryList=new ArrayList<>();
 

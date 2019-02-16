@@ -34,7 +34,7 @@ public class RegistryHelper {
             ItemBlock itemBlock1 = (ItemBlock) new ItemBlock(block,new Item.Properties().group(block.getItemGroup())).setRegistryName(registryName);
             registry.register(itemBlock1);
         }
-        for(BaseItem item: KItems.itemsToRegister){
+        for(Item item: KItems.itemsToRegister){
          registry.register(item);
         }
     }
