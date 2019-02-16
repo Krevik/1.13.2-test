@@ -12,8 +12,8 @@ import java.util.Set;
 
 public class ItemKathairisTool extends ItemTool {
 
-    protected ItemKathairisTool(String Name, float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Item.Properties properties) {
-        super(attackDamageIn,attackSpeedIn,tier,effectiveBlocksIn,properties);
+    protected ItemKathairisTool(String Name, IItemTier tier, Set<Block> effectiveBlocksIn, Item.Properties properties) {
+        super(tier.getAttackDamage(),1,tier,effectiveBlocksIn,properties);
         setRegistryName(KCore.MODID,Name);
     }
 

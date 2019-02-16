@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 public class BaseItem extends Item {
 
     protected String name;
-
+    protected boolean modded_Has_Effect=false;
     public BaseItem(String name, ItemGroup group) {
         super(new Item.Properties().group(group));
         this.name = name;
@@ -24,6 +24,11 @@ public class BaseItem extends Item {
         super(new Item.Properties().group(group).rarity(rarity));
         this.name = name;
         setRegistryName(new ResourceLocation(KCore.MODID,name));
+    }
+
+    public BaseItem setHasEffect(boolean hasORnot){
+        modded_Has_Effect=hasORnot;
+        return this;
     }
 
     @Nullable
@@ -53,7 +58,7 @@ public class BaseItem extends Item {
     {
         /*return this == KCore.MysticGem || this == KCore.CloudEssence || this == KCore.DarknessEssence ||
                 this == KCore.Ritual_Blade || stack.getItem().equals(KCore.skyray_feather);*/
-        return false;
+        return modded_Has_Effect;
     }
 
     @Override

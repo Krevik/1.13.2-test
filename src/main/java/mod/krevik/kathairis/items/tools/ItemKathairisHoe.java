@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.items.tools;
 
+import mod.krevik.kathairis.KItems;
 import net.minecraft.item.*;
 
 import com.google.common.collect.ImmutableMap;
@@ -25,9 +26,10 @@ public class ItemKathairisHoe extends ItemTiered {
     private final float speed;
     protected static final Map<Block, IBlockState> field_195973_b = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.FARMLAND.getDefaultState(), Blocks.GRASS_PATH, Blocks.FARMLAND.getDefaultState(), Blocks.DIRT, Blocks.FARMLAND.getDefaultState(), Blocks.COARSE_DIRT, Blocks.DIRT.getDefaultState()));
 
-    public ItemKathairisHoe(IItemTier tier, float p_i48488_2_, Item.Properties builder) {
-        super(tier, builder);
-        this.speed = p_i48488_2_;
+    public ItemKathairisHoe(String Name, IItemTier tier, ItemGroup group) {
+        super(tier, new Item.Properties().group(group));
+        this.speed = 1;
+        setRegistryName(Name);
     }
 
     public EnumActionResult onItemUse(ItemUseContext p_195939_1_) {
@@ -67,5 +69,10 @@ public class ItemKathairisHoe extends ItemTiered {
         }
 
         return multimap;
+    }
+
+    public ItemKathairisHoe addToRegistryList(){
+        KItems.itemsToRegister.add(this);
+        return this;
     }
 }
