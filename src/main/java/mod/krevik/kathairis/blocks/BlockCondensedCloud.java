@@ -2,7 +2,6 @@ package mod.krevik.kathairis.blocks;
 
 import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -16,9 +15,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BlockRefinedCloud extends BaseBlock {
-    public BlockRefinedCloud(String Name) {
-        super(Name, Block.Properties.create(Material.GLASS).sound(SoundType.GLASS).hardnessAndResistance(0.75f).slipperiness(0.98f), KathairisItemGroups.kathairis_building_blocks);
+public class BlockCondensedCloud extends BaseBlock {
+    public BlockCondensedCloud(String Name) {
+        super(Name, Material.CLOTH, 1f, 1f, SoundType.CLOTH, KathairisItemGroups.kathairis_building_blocks);
     }
 
     @Override
@@ -32,11 +31,6 @@ public class BlockRefinedCloud extends BaseBlock {
     }
 
     @Override
-    protected boolean canSilkHarvest() {
-        return true;
-    }
-
-    @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
@@ -47,7 +41,7 @@ public class BlockRefinedCloud extends BaseBlock {
 
     @Override
     public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune) {
-        return null;
+        return this;
     }
 
     @OnlyIn(Dist.CLIENT)

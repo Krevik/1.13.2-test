@@ -1,13 +1,11 @@
-package mod.krevik.kathairis.blocks;
+package mod.krevik.kathairis.blocks.helpers;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemGroup;

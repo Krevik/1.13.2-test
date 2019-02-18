@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.blocks;
 
+import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -9,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Particles;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;

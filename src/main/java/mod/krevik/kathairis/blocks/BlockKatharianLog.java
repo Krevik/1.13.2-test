@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.blocks;
 
+import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
 
@@ -10,7 +11,6 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
 

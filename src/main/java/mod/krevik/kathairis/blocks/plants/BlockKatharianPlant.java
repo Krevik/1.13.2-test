@@ -1,7 +1,7 @@
 package mod.krevik.kathairis.blocks.plants;
 
 import mod.krevik.kathairis.KBlocks;
-import mod.krevik.kathairis.blocks.BaseBlock;
+import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

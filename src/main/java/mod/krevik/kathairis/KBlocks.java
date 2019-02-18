@@ -1,6 +1,7 @@
 package mod.krevik.kathairis;
 
 import mod.krevik.kathairis.blocks.*;
+import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.ExpMinMax;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
@@ -8,7 +9,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,9 @@ public class KBlocks {
     SHINY_LOG, SHINY_LEAVES, SOUL_LOG, SOUL_LEAVES, REVENUM_ORE, TITANIUM_ORE, KATHARIAN_SAND, SOFT_SAND,
     BLUE_CLOUD, YELLOW_CLOUD, WEATHERED_ROCK, MYSTIC_PLANKS, SHINY_PLANKS, SOUL_PLANKS, KATHARIAN_COBBLESTONE, KATHARIAN_STONE_TILES,
     SHINY_ROCK, KATHARIAN_STONE_BRICKS, MUD_BLOCK, MUD_BRICKS, MAGNETHIUM, IRON_GOLD_BLOCK, HARDENED_WEATHERED_ROCK,
-    HARDENED_WEATHERED_ROCK_BRICKS, HARDENED_WEATHERED_ROCK_TILES, BLUE_CLOUD_REFINED, YELLOW_CLOUD_REFINED;
+    HARDENED_WEATHERED_ROCK_BRICKS, HARDENED_WEATHERED_ROCK_TILES, BLUE_CLOUD_REFINED, YELLOW_CLOUD_REFINED, BLUE_CLOUD_CONDENSED,
+    YELLOW_CLOUD_CONDENSED, MYSTIC_LOG_STRIPPED, SHINY_LOG_STRIPPED, SOUL_LOG_STRIPPED, MYSTIC_WOOD_FENCE, MYSTIC_WOOD_FENCE_GATE,
+    SHINY_WOOD_FENCE, SHINY_WOOD_FENCE_GATE, SOUL_WOOD_FENCE, SOUL_WOOD_FENCE_GATE;
 
     public static void initBlocks(){
         KATHARIAN_STONE = new BlockKatharianStone("katharian_stone").addToBlockAndItemBlockRegistryList();
@@ -60,6 +62,22 @@ public class KBlocks {
         HARDENED_WEATHERED_ROCK_TILES = new BaseBlock("hardened_weathered_rock_tiles",Material.ROCK,2f,2f,SoundType.STONE,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
         BLUE_CLOUD_REFINED = new BlockRefinedCloud("blue_cloud_refined").addToBlockAndItemBlockRegistryList();
         YELLOW_CLOUD_REFINED = new BlockRefinedCloud("yellow_cloud_refined").addToBlockAndItemBlockRegistryList();
+        BLUE_CLOUD_CONDENSED = new BlockCondensedCloud("blue_cloud_condensed").addToBlockAndItemBlockRegistryList();
+        YELLOW_CLOUD_CONDENSED = new BlockCondensedCloud("yellow_cloud_condensed").addToBlockAndItemBlockRegistryList();
+        MYSTIC_LOG_STRIPPED = new BlockKatharianLog("mystic_log_stripped").addToBlockAndItemBlockRegistryList();
+        SHINY_LOG_STRIPPED = new BlockKatharianLog("shiny_log_stripped").addToBlockAndItemBlockRegistryList();
+        SOUL_LOG_STRIPPED = new BlockKatharianLog("soul_log_stripped").addToBlockAndItemBlockRegistryList();
+
+        //fences and gates
+        MYSTIC_WOOD_FENCE = new BlockKatharianFence("mystic_wood_fence",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        SHINY_WOOD_FENCE = new BlockKatharianFence("shiny_wood_fence",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        SOUL_WOOD_FENCE = new BlockKatharianFence("soul_wood_fence",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        MYSTIC_WOOD_FENCE_GATE = new BlockKatharianFenceGate("mystic_wood_fence_gate",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        SHINY_WOOD_FENCE_GATE = new BlockKatharianFenceGate("shiny_wood_fence_gate",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        SOUL_WOOD_FENCE_GATE = new BlockKatharianFenceGate("soul_wood_fence_gate",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        //
+
+
     }
 
 }

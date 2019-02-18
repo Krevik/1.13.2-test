@@ -1,14 +1,12 @@
 package mod.krevik.kathairis.blocks;
 
+import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.ExpMinMax;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockOre;
 
 import java.util.Random;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
