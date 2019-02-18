@@ -25,7 +25,8 @@ public class KBlocks {
     SHINY_ROCK, KATHARIAN_STONE_BRICKS, MUD_BLOCK, MUD_BRICKS, MAGNETHIUM, IRON_GOLD_BLOCK, HARDENED_WEATHERED_ROCK,
     HARDENED_WEATHERED_ROCK_BRICKS, HARDENED_WEATHERED_ROCK_TILES, BLUE_CLOUD_REFINED, YELLOW_CLOUD_REFINED, BLUE_CLOUD_CONDENSED,
     YELLOW_CLOUD_CONDENSED, MYSTIC_LOG_STRIPPED, SHINY_LOG_STRIPPED, SOUL_LOG_STRIPPED, MYSTIC_WOOD_FENCE, MYSTIC_WOOD_FENCE_GATE,
-    SHINY_WOOD_FENCE, SHINY_WOOD_FENCE_GATE, SOUL_WOOD_FENCE, SOUL_WOOD_FENCE_GATE;
+    SHINY_WOOD_FENCE, SHINY_WOOD_FENCE_GATE, SOUL_WOOD_FENCE, SOUL_WOOD_FENCE_GATE, KATHARIAN_STONE_WALL, KATHARIAN_COBBLESTONE_WALL,
+    WEATHERED_ROCK_WALL, HARDENED_WEATHERED_ROCK_WALL, HARDENED_WEATHERED_ROCK_BRICKS_WALL, MUD_BRICKS_WALL;
 
     public static void initBlocks(){
         KATHARIAN_STONE = new BlockKatharianStone("katharian_stone").addToBlockAndItemBlockRegistryList();
@@ -77,6 +78,15 @@ public class KBlocks {
         SOUL_WOOD_FENCE_GATE = new BlockKatharianFenceGate("soul_wood_fence_gate",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
         //
 
+        //walls
+        KATHARIAN_STONE_WALL = new BlockKatharianWall("katharian_stone_wall",Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        KATHARIAN_COBBLESTONE_WALL = new BlockKatharianWall("katharian_cobblestone_wall",Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        WEATHERED_ROCK_WALL = new BlockKatharianWall("weathered_rock_wall",Material.ROCK,1.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        HARDENED_WEATHERED_ROCK_WALL = new BlockKatharianWall("hardened_weathered_rock_wall",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        HARDENED_WEATHERED_ROCK_BRICKS_WALL = new BlockKatharianWall("hardened_weathered_rock_bricks_wall",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        MUD_BRICKS_WALL = new BlockKatharianWall("mud_bricks_wall",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+
+        //
 
     }
 
