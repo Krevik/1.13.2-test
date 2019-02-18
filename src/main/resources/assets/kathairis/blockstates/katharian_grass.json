@@ -1,0 +1,18 @@
+{
+    "variants": {
+        "flower=false,snowy=false": [
+            { "model": "kathairis:block/katharian_grass_normal" },
+            { "model": "kathairis:block/katharian_grass_normal", "y": 90 },
+            { "model": "kathairis:block/katharian_grass_normal", "y": 180 },
+            { "model": "kathairis:block/katharian_grass_normal", "y": 270 }
+        ],
+        "flower=false,snowy=true":  { "model": "kathairis:block/katharian_grass_snowed" },
+		"flower=true,snowy=false": [
+            { "model": "kathairis:block/katharian_grass_flower" },
+            { "model": "kathairis:block/katharian_grass_flower", "y": 90 },
+            { "model": "kathairis:block/katharian_grass_flower", "y": 180 },
+            { "model": "kathairis:block/katharian_grass_flower", "y": 270 }
+        ],
+		"flower=true,snowy=true":  { "model": "kathairis:block/katharian_grass_snowed" }
+    }
+}

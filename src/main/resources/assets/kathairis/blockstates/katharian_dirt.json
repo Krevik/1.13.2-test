@@ -1,0 +1,10 @@
+{
+  "variants": {
+      "": [
+            { "model": "kathairis:block/katharian_dirt" },
+            { "model": "kathairis:block/katharian_dirt", "y": 90 },
+            { "model": "kathairis:block/katharian_dirt", "y": 180 },
+            { "model": "kathairis:block/katharian_dirt", "y": 270 }
+        ]
+  }
+}

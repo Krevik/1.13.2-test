@@ -1,0 +1,10 @@
+{
+  "variants": {
+      "": [
+            { "model": "kathairis:block/katharian_sand" },
+            { "model": "kathairis:block/katharian_sand", "y": 90 },
+            { "model": "kathairis:block/katharian_sand", "y": 180 },
+            { "model": "kathairis:block/katharian_sand", "y": 270 }
+        ]
+  }
+}

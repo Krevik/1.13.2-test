@@ -3,7 +3,6 @@ package mod.krevik.kathairis.util;
 import com.google.common.base.Preconditions;
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.KItems;
-import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.blocks.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -36,7 +35,7 @@ public class RegistryHelper {
         for(Item item: KItems.itemsToRegister){
          registry.register(item);
         }
-        registry.register(new ItemBlock(KBlocks.katharian_Portal,new Item.Properties().group(KathairisItemGroups.kathairis_building_blocks)).setRegistryName(KBlocks.katharian_Portal.getRegistryName().toString()));
+        registry.register(new ItemBlock(KBlocks.KATHARIAN_PORTAL,new Item.Properties().group(KathairisItemGroups.kathairis_building_blocks)).setRegistryName(KBlocks.KATHARIAN_PORTAL.getRegistryName().toString()));
     }
 
 }

@@ -2,7 +2,6 @@ package mod.krevik.kathairis.util;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.KItems;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -56,7 +55,14 @@ public class KathairisItemGroups {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
-            return new ItemStack(KBlocks.katharian_Stone);
+            return new ItemStack(KBlocks.KATHARIAN_STONE);
+        }
+    };
+    public static final ItemGroup kathairis_plants = new ItemGroup(index++,"kathairis_plants") {
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public ItemStack createIcon() {
+            return new ItemStack(KBlocks.KATHARIAN_STONE);
         }
     };
 }

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": [
+      { "model": "kathairis:block/yellow_cloud" },
+      { "model": "kathairis:block/yellow_cloud", "y": 180 }
+    ]
+  }
+}

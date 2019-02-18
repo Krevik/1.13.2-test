@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": [
+      { "model": "kathairis:block/revenum_ore" },
+      { "model": "kathairis:block/revenum_ore", "y": 180 }
+    ]
+  }
+}

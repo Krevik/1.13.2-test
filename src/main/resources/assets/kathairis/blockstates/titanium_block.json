@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": [
+      { "model": "kathairis:block/titanium_block" },
+      { "model": "kathairis:block/titanium_block", "y": 180 }
+    ]
+  }
+}

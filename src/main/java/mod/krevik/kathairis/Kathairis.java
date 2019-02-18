@@ -2,6 +2,7 @@ package mod.krevik.kathairis;
 
 import com.google.common.base.Preconditions;
 import mod.krevik.kathairis.blocks.BaseBlock;
+import mod.krevik.kathairis.util.ModBlocksColorsHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -9,10 +10,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.dimension.Dimension;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.dimension.OverworldDimension;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.ModDimension;
+import net.minecraftforge.common.util.NonNullSupplier;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -30,6 +38,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Mod("kathairis")
@@ -41,7 +50,13 @@ public class Kathairis {
     public static final String NAME = "Kathairis";
     public static final String VERSION = "@VERSION@";
 
-
+    //public static final int DIMENSION_ID = -6185249;
+    /*public static final DimensionType kath_Dim_Type = new DimensionType(DIMENSION_ID, "kathairis", "_kathairis", new Supplier<Dimension>() {
+        @Override
+        public Dimension get() {
+            return new OverworldDimension();
+        }
+    });*/
 
     public Kathairis() {
         KBlocks.initBlocks();
@@ -76,13 +91,11 @@ public class Kathairis {
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
-
+        //DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID,"kathairis"),new DimensionKathairis(),null);
         LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
     }
 

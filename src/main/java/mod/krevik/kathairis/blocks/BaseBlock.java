@@ -3,11 +3,19 @@ package mod.krevik.kathairis.blocks;
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 public class BaseBlock extends Block {
 
@@ -53,5 +61,13 @@ public class BaseBlock extends Block {
         return this;
     }
 
+    @Override
+    public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune) {
+        return super.getItemDropped(state, worldIn, pos, fortune);
+    }
 
+    @Override
+    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, IBlockState state) {
+        return new ItemStack(this);
+    }
 }

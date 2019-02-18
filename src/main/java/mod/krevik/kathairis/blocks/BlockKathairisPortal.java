@@ -1,6 +1,8 @@
 package mod.krevik.kathairis.blocks;
 
 import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.client.particle.system.DynamicParticle;
+import mod.krevik.kathairis.client.particle.system.ParticlesFactory;
 import net.minecraft.block.BlockPortal;
 
 import com.google.common.cache.LoadingCache;
@@ -11,11 +13,12 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.init.Particles;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
@@ -24,12 +27,15 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -191,8 +197,7 @@ public class BlockKathairisPortal extends BlockPortal
     }
 
     @Nullable
-    @Override
-    public BlockKathairisPortal.Size isPortal(IWorld p_201816_1_, BlockPos p_201816_2_) {
+    public BlockKathairisPortal.Size isPortal1(IWorld p_201816_1_, BlockPos p_201816_2_) {
         BlockKathairisPortal.Size blockportal$size = new BlockKathairisPortal.Size(p_201816_1_, p_201816_2_, EnumFacing.Axis.X);
         if (blockportal$size.isValid() && blockportal$size.portalBlockCount == 0) {
             return blockportal$size;
@@ -212,7 +217,7 @@ public class BlockKathairisPortal extends BlockPortal
         EnumFacing.Axis enumfacing$axis = facing.getAxis();
         EnumFacing.Axis enumfacing$axis1 = stateIn.get(AXIS);
         boolean flag = enumfacing$axis1 != enumfacing$axis && enumfacing$axis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new BlockPortal.Size(worldIn, currentPos, enumfacing$axis1)).func_208508_f() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !flag && facingState.getBlock() != this && !(new BlockKathairisPortal.Size(worldIn, currentPos, enumfacing$axis1)).func_208508_f() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     public int quantityDropped(IBlockState state, Random random) {
@@ -236,8 +241,8 @@ public class BlockKathairisPortal extends BlockPortal
 
     @Override
     public boolean trySpawnPortal(IWorld worldIn, BlockPos pos) {
-        BlockKathairisPortal.Size blockportal$size = this.isPortal(worldIn, pos);
-        if (blockportal$size != null && !net.minecraftforge.event.ForgeEventFactory.onTrySpawnPortal(worldIn, pos, blockportal$size)) {
+        BlockKathairisPortal.Size blockportal$size = this.isPortal1(worldIn, pos);
+        if (blockportal$size != null) {
             blockportal$size.placePortalBlocks();
             return true;
         } else {
@@ -276,63 +281,12 @@ public class BlockKathairisPortal extends BlockPortal
 
     }*/
 
-    /*@SideOnly(Side.CLIENT)
-    @Override
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-    {
-        if (rand.nextInt(100) == 0)
-        {
-            worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        /*if (rand.nextInt(100) == 0) {
+            worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
 
-        /*for (int i = 0; i < 4; ++i)
-        {
-            double d0 = (double)((float)pos.getX() + rand.nextFloat());
-            double d1 = (double)((float)pos.getY() + rand.nextFloat());
-            double d2 = (double)((float)pos.getZ() + rand.nextFloat());
-            double d3 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-            double d4 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-            double d5 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-            int j = rand.nextInt(2) * 2 - 1;
-
-            if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this)
-            {
-                d0 = (double)pos.getX() + 0.5D + 0.25D * (double)j;
-                d3 = (double)(rand.nextFloat() * 2.0F * (float)j);
-            }
-            else
-            {
-                d2 = (double)pos.getZ() + 0.5D + 0.25D * (double)j;
-                d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
-            }
-
-            KCore.cproxy.drawParticle(worldIn, new KetherPortalParticle(worldIn,d0,d1,d2,d3*0.1,d4*0.1,d5*0.1));
-        }
-        if(rand.nextInt(50)==0) {
-            for (int i = 0; i < 4; ++i)
-            {
-	            double d0 = (double)((float)pos.getX() + rand.nextFloat());
-	            double d1 = (double)((float)pos.getY() + rand.nextFloat());
-	            double d2 = (double)((float)pos.getZ() + rand.nextFloat());
-	            double d3 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-	            double d4 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-	            double d5 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-	            int j = rand.nextInt(2) * 2 - 1;
-
-	            if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this)
-	            {
-	                d0 = (double)pos.getX() + 0.5D + 0.25D * (double)j;
-	                d3 = (double)(rand.nextFloat() * 2.0F * (float)j);
-	            }
-	            else
-	            {
-	                d2 = (double)pos.getZ() + 0.5D + 0.25D * (double)j;
-	                d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
-	            }
-
-	            KCore.cproxy.drawParticle(worldIn, new DynamicMovementParticle(worldIn,d0,d1,d2,d3*0.01,d4*0.01,d5*0.01));
-            }
-        }*//*
         for (int i = 0; i < 6; ++i) {
             double d0 = (double) ((float) pos.getX() + rand.nextFloat());
             double d1 = (double) ((float) pos.getY() + rand.nextFloat());
@@ -352,9 +306,9 @@ public class BlockKathairisPortal extends BlockPortal
                     .setInitialAlpha(1.0F)
                     .setFinalAlpha(0.5F)
                     .setEnableDepth(true);
-            Minecraft.getMinecraft().effectRenderer.addEffect(theParticle);
-        }
-    }*/
+            worldIn.spawnParticle(theParticle,d0,d1,d2,d3,d4,d5);
+        }*/
+    }
 
     public IBlockState rotate(IBlockState state, Rotation rot) {
         switch(rot) {
@@ -422,7 +376,7 @@ public class BlockKathairisPortal extends BlockPortal
         return BlockFaceShape.UNDEFINED;
     }
 
-    public static class Size extends BlockPortal.Size {
+    public static class Size {
         private final IWorld world;
         private final EnumFacing.Axis axis;
         private final EnumFacing rightDir;
@@ -432,11 +386,10 @@ public class BlockKathairisPortal extends BlockPortal
         private int height;
         private int width;
 
-        public Size(IWorld p_i48740_1_, BlockPos p_i48740_2_, EnumFacing.Axis p_i48740_3_) {
-            super(p_i48740_1_,p_i48740_2_,p_i48740_3_);
-            this.world = p_i48740_1_;
-            this.axis = p_i48740_3_;
-            if (p_i48740_3_ == EnumFacing.Axis.X) {
+        public Size(IWorld world, BlockPos blockPos, EnumFacing.Axis enum_axis) {
+            this.world = world;
+            this.axis = enum_axis;
+            if (enum_axis == EnumFacing.Axis.X) {
                 this.leftDir = EnumFacing.EAST;
                 this.rightDir = EnumFacing.WEST;
             } else {
@@ -444,13 +397,13 @@ public class BlockKathairisPortal extends BlockPortal
                 this.rightDir = EnumFacing.SOUTH;
             }
 
-            for(BlockPos blockpos = p_i48740_2_; p_i48740_2_.getY() > blockpos.getY() - 21 && p_i48740_2_.getY() > 0 && this.func_196900_a(p_i48740_1_.getBlockState(p_i48740_2_.down())); p_i48740_2_ = p_i48740_2_.down()) {
+            for(BlockPos blockpos = blockPos; blockPos.getY() > blockpos.getY() - 21 && blockPos.getY() > 0 && world.isAirBlock(blockPos.down()); blockPos = blockPos.down()) {
                 ;
             }
 
-            int i = this.getDistanceUntilEdge(p_i48740_2_, this.leftDir) - 1;
+            int i = this.getDistanceUntilEdge(blockPos, this.leftDir) - 1;
             if (i >= 0) {
-                this.bottomLeft = p_i48740_2_.offset(this.leftDir, i);
+                this.bottomLeft = blockPos.offset(this.leftDir, i);
                 this.width = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
                 if (this.width < 2 || this.width > 21) {
                     this.bottomLeft = null;
@@ -468,7 +421,7 @@ public class BlockKathairisPortal extends BlockPortal
             int i;
             for(i = 0; i < 22; ++i) {
                 BlockPos blockpos = p_180120_1_.offset(p_180120_2_, i);
-                if (!this.func_196900_a(this.world.getBlockState(blockpos)) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.STONE) {
+                if (!world.isAirBlock(blockpos) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.STONE) {
                     break;
                 }
             }
@@ -491,12 +444,12 @@ public class BlockKathairisPortal extends BlockPortal
                 for(int i = 0; i < this.width; ++i) {
                     BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
                     IBlockState iblockstate = this.world.getBlockState(blockpos);
-                    if (!this.func_196900_a(iblockstate)) {
+                    if (!this.world.isAirBlock(blockpos)) {
                         break label56;
                     }
 
                     Block block = iblockstate.getBlock();
-                    if (block == KBlocks.katharian_Portal) {
+                    if (block == KBlocks.KATHARIAN_PORTAL) {
                         ++this.portalBlockCount;
                     }
 
@@ -531,9 +484,9 @@ public class BlockKathairisPortal extends BlockPortal
             }
         }
 
-        protected boolean func_196900_a(IBlockState p_196900_1_) {
-            Block block = p_196900_1_.getBlock();
-            return p_196900_1_.isAir() || block == Blocks.FIRE || block == KBlocks.katharian_Portal;
+        protected boolean isEmptyBlock(Block blockIn)
+        {
+            return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == Blocks.FIRE || blockIn == KBlocks.KATHARIAN_PORTAL;
         }
 
         public boolean isValid() {
@@ -545,7 +498,7 @@ public class BlockKathairisPortal extends BlockPortal
                 BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
                 for(int j = 0; j < this.height; ++j) {
-                    this.world.setBlockState(blockpos.up(j), KBlocks.katharian_Portal.getDefaultState().with(BlockPortal.AXIS, this.axis), 18);
+                    this.world.setBlockState(blockpos.up(j), KBlocks.KATHARIAN_PORTAL.getDefaultState().with(BlockKathairisPortal.AXIS, this.axis), 18);
                 }
             }
 
