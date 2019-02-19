@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "kathairis:block/hardened_weathered_rock_bricks_slab" },
+        "type=top": { "model": "kathairis:block/hardened_weathered_rock_bricks_slab_top" },
+        "type=double": { "model": "kathairis:block/hardened_weathered_rock_bricks" }
+    }
+}

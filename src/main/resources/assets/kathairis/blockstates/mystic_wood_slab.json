@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "kathairis:block/mystic_wood_slab" },
+        "type=top": { "model": "kathairis:block/mystic_wood_slab_top" },
+        "type=double": { "model": "kathairis:block/mystic_planks" }
+    }
+}

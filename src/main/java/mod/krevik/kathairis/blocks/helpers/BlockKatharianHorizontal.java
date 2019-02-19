@@ -16,10 +16,12 @@ public abstract class BlockKatharianHorizontal extends BaseBlock {
         super(Name,builder, KathairisItemGroups.kathairis_building_blocks);
     }
 
+    @Override
     public IBlockState rotate(IBlockState state, Rotation rot) {
         return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
     }
 
+    @Override
     public IBlockState mirror(IBlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
     }

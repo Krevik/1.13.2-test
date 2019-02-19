@@ -62,10 +62,12 @@ public class BlockKatharianFourWay extends BaseBlock implements IBucketPickupHan
         return avoxelshape;
     }
 
+    @Override
     public VoxelShape getShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
         return this.field_196412_B[this.getIndex(state)];
     }
 
+    @Override
     public VoxelShape getCollisionShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
         return this.field_196410_A[this.getIndex(state)];
     }
@@ -95,6 +97,7 @@ public class BlockKatharianFourWay extends BaseBlock implements IBucketPickupHan
         return i;
     }
 
+    @Override
     public Fluid pickupFluid(IWorld worldIn, BlockPos pos, IBlockState state) {
         if (state.get(WATERLOGGED)) {
             worldIn.setBlockState(pos, state.with(WATERLOGGED, Boolean.valueOf(false)), 3);
@@ -104,14 +107,17 @@ public class BlockKatharianFourWay extends BaseBlock implements IBucketPickupHan
         }
     }
 
+    @Override
     public IFluidState getFluidState(IBlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
     }
 
+    @Override
     public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, IBlockState state, Fluid fluidIn) {
         return !state.get(WATERLOGGED) && fluidIn == Fluids.WATER;
     }
 
+    @Override
     public boolean receiveFluid(IWorld worldIn, BlockPos pos, IBlockState state, IFluidState fluidStateIn) {
         if (!state.get(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
             if (!worldIn.isRemote()) {
@@ -125,10 +131,12 @@ public class BlockKatharianFourWay extends BaseBlock implements IBucketPickupHan
         }
     }
 
+    @Override
     public boolean allowsMovement(IBlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
     }
 
+    @Override
     public IBlockState rotate(IBlockState state, Rotation rot) {
         switch(rot) {
             case CLOCKWISE_180:
@@ -142,6 +150,7 @@ public class BlockKatharianFourWay extends BaseBlock implements IBucketPickupHan
         }
     }
 
+    @Override
     public IBlockState mirror(IBlockState state, Mirror mirrorIn) {
         switch(mirrorIn) {
             case LEFT_RIGHT:

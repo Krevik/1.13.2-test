@@ -26,7 +26,12 @@ public class KBlocks {
     HARDENED_WEATHERED_ROCK_BRICKS, HARDENED_WEATHERED_ROCK_TILES, BLUE_CLOUD_REFINED, YELLOW_CLOUD_REFINED, BLUE_CLOUD_CONDENSED,
     YELLOW_CLOUD_CONDENSED, MYSTIC_LOG_STRIPPED, SHINY_LOG_STRIPPED, SOUL_LOG_STRIPPED, MYSTIC_WOOD_FENCE, MYSTIC_WOOD_FENCE_GATE,
     SHINY_WOOD_FENCE, SHINY_WOOD_FENCE_GATE, SOUL_WOOD_FENCE, SOUL_WOOD_FENCE_GATE, KATHARIAN_STONE_WALL, KATHARIAN_COBBLESTONE_WALL,
-    WEATHERED_ROCK_WALL, HARDENED_WEATHERED_ROCK_WALL, HARDENED_WEATHERED_ROCK_BRICKS_WALL, MUD_BRICKS_WALL;
+    WEATHERED_ROCK_WALL, HARDENED_WEATHERED_ROCK_WALL, HARDENED_WEATHERED_ROCK_BRICKS_WALL, MUD_BRICKS_WALL,
+    KATHARIAN_STONE_BRICKS_WALL, MYSTIC_WOOD_STAIRS, SHINY_WOOD_STAIRS, SOUL_WOOD_STAIRS, KATHARIAN_STONE_STAIRS,
+            KATHARIAN_COBBLESTONE_STAIRS, WEATHERED_ROCK_STAIRS, HARDENED_WEATHERED_ROCK_STAIRS, HARDENED_WEATHERED_ROCK_BRICKS_STAIRS,
+            MUD_BRICKS_STAIRS, KATHARIAN_STONE_BRICKS_STAIRS, KATHARIAN_STONE_SLAB, KATHARIAN_COBBLESTONE_SLAB,
+    KATHARIAN_STONE_BRICKS_SLAB, MUD_BRICKS_SLAB, MYSTIC_WOOD_SLAB, SHINY_WOOD_SLAB, SOUL_WOOD_SLAB, WEATHERED_ROCK_SLAB,
+    HARDENED_WEATHERED_ROCK_SLAB, HARDENED_WEATHERED_ROCK_BRICKS_SLAB;
 
     public static void initBlocks(){
         KATHARIAN_STONE = new BlockKatharianStone("katharian_stone").addToBlockAndItemBlockRegistryList();
@@ -85,7 +90,33 @@ public class KBlocks {
         HARDENED_WEATHERED_ROCK_WALL = new BlockKatharianWall("hardened_weathered_rock_wall",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
         HARDENED_WEATHERED_ROCK_BRICKS_WALL = new BlockKatharianWall("hardened_weathered_rock_bricks_wall",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
         MUD_BRICKS_WALL = new BlockKatharianWall("mud_bricks_wall",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        KATHARIAN_STONE_BRICKS_WALL = new BlockKatharianWall("katharian_stone_bricks_wall",Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        //
 
+        //stairs
+        MYSTIC_WOOD_STAIRS = new BlockKatharianStairs("mystic_wood_stairs",MYSTIC_PLANKS.getDefaultState(),Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        SHINY_WOOD_STAIRS = new BlockKatharianStairs("shiny_wood_stairs",SHINY_PLANKS.getDefaultState(),Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        SOUL_WOOD_STAIRS = new BlockKatharianStairs("soul_wood_stairs",SOUL_PLANKS.getDefaultState(),Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        KATHARIAN_STONE_STAIRS = new BlockKatharianStairs("katharian_stone_stairs",KATHARIAN_STONE.getDefaultState(),Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        KATHARIAN_COBBLESTONE_STAIRS = new BlockKatharianStairs("katharian_cobblestone_stairs",KATHARIAN_COBBLESTONE.getDefaultState(),Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        KATHARIAN_STONE_BRICKS_STAIRS = new BlockKatharianStairs("katharian_stone_bricks_stairs",KATHARIAN_STONE_BRICKS.getDefaultState(),Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        WEATHERED_ROCK_STAIRS = new BlockKatharianStairs("weathered_rock_stairs",WEATHERED_ROCK.getDefaultState(),Material.ROCK,1.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        HARDENED_WEATHERED_ROCK_STAIRS = new BlockKatharianStairs("hardened_weathered_rock_stairs",HARDENED_WEATHERED_ROCK.getDefaultState(),Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        HARDENED_WEATHERED_ROCK_BRICKS_STAIRS = new BlockKatharianStairs("hardened_weathered_rock_bricks_stairs",HARDENED_WEATHERED_ROCK_BRICKS.getDefaultState(),Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        MUD_BRICKS_STAIRS = new BlockKatharianStairs("mud_bricks_stairs",KATHARIAN_STONE.getDefaultState(),Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        //
+
+        //slabs
+        KATHARIAN_STONE_SLAB = new BlockKatharianSlab("katharian_stone_slab",Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        KATHARIAN_COBBLESTONE_SLAB = new BlockKatharianSlab("katharian_cobblestone_slab",Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        KATHARIAN_STONE_BRICKS_SLAB = new BlockKatharianSlab("katharian_stone_bricks_slab",Material.ROCK,2.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        MUD_BRICKS_SLAB = new BlockKatharianSlab("mud_bricks_slab",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        WEATHERED_ROCK_SLAB = new BlockKatharianSlab("weathered_rock_slab",Material.ROCK,1.5f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        HARDENED_WEATHERED_ROCK_SLAB = new BlockKatharianSlab("hardened_weathered_rock_slab",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        HARDENED_WEATHERED_ROCK_BRICKS_SLAB = new BlockKatharianSlab("hardened_weathered_rock_bricks_slab",Material.ROCK,2f,SoundType.STONE).addToBlockAndItemBlockRegistryList();
+        MYSTIC_WOOD_SLAB = new BlockKatharianSlab("mystic_wood_slab",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        SHINY_WOOD_SLAB = new BlockKatharianSlab("shiny_wood_slab",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+        SOUL_WOOD_SLAB = new BlockKatharianSlab("soul_wood_slab",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
         //
 
     }

@@ -1,6 +1,9 @@
 package mod.krevik.kathairis.blocks;
 
+import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.blocks.helpers.BlockKatharianHorizontal;
+import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.*;
 
 import net.minecraft.block.material.Material;
@@ -9,6 +12,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -22,7 +27,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
+public class BlockKatharianFenceGate extends BlockFenceGate {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty IN_WALL = BlockStateProperties.IN_WALL;
@@ -38,10 +43,18 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
     protected static final VoxelShape field_208067_C = VoxelShapes.or(Block.makeCuboidShape(7.0D, 2.0D, 0.0D, 9.0D, 13.0D, 2.0D), Block.makeCuboidShape(7.0D, 2.0D, 14.0D, 9.0D, 13.0D, 16.0D));
 
     public BlockKatharianFenceGate(String Name, Material material, float hardnessAndResistance, SoundType soundType) {
-        super(Name,Block.Properties.create(material).hardnessAndResistance(hardnessAndResistance).sound(soundType));
+        super(Block.Properties.create(material).hardnessAndResistance(hardnessAndResistance).sound(soundType));
         this.setDefaultState(this.stateContainer.getBaseState().with(OPEN, Boolean.valueOf(false)).with(POWERED, Boolean.valueOf(false)).with(IN_WALL, Boolean.valueOf(false)));
+        setRegistryName(Kathairis.MODID,Name);
     }
 
+    public Block addToBlockAndItemBlockRegistryList(){
+        KBlocks.blockRegistryList.add(this);
+        KBlocks.itemBlocksRegistryList.add(new ItemBlock(this,new Item.Properties().group(KathairisItemGroups.kathairis_building_blocks)));
+        return this;
+    }
+
+    @Override
     public VoxelShape getShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
         if (state.get(IN_WALL)) {
             return state.get(HORIZONTAL_FACING).getAxis() == EnumFacing.Axis.X ? AABB_HITBOX_XAXIS_INWALL : AABB_HITBOX_ZAXIS_INWALL;
@@ -50,6 +63,7 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
         }
     }
 
+    @Override
     public IBlockState updatePostPlacement(IBlockState stateIn, EnumFacing facing, IBlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         EnumFacing.Axis enumfacing$axis = facing.getAxis();
         if (stateIn.get(HORIZONTAL_FACING).rotateY().getAxis() != enumfacing$axis) {
@@ -60,6 +74,7 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
         }
     }
 
+    @Override
     public VoxelShape getCollisionShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
         if (state.get(OPEN)) {
             return VoxelShapes.empty();
@@ -68,6 +83,7 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
         }
     }
 
+    @Override
     public VoxelShape getRenderShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
         if (state.get(IN_WALL)) {
             return state.get(HORIZONTAL_FACING).getAxis() == EnumFacing.Axis.X ? field_208067_C : field_208066_B;
@@ -76,10 +92,12 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
         }
     }
 
+    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
 
+    @Override
     public boolean allowsMovement(IBlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         switch(type) {
             case LAND:
@@ -93,6 +111,7 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
         }
     }
 
+    @Override
     public IBlockState getStateForPlacement(BlockItemUseContext context) {
         World world = context.getWorld();
         BlockPos blockpos = context.getPos();
@@ -107,6 +126,7 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
         return p_196380_1_.getBlock() == Blocks.COBBLESTONE_WALL || p_196380_1_.getBlock() == Blocks.MOSSY_COBBLESTONE_WALL || p_196380_1_.getBlock() instanceof BlockWall || p_196380_1_.getBlock() instanceof BlockKatharianWall;
     }
 
+    @Override
     public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (state.get(OPEN)) {
             state = state.with(OPEN, Boolean.valueOf(false));
@@ -125,6 +145,7 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
         return true;
     }
 
+    @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
         if (!worldIn.isRemote) {
             boolean flag = worldIn.isBlockPowered(pos);
@@ -138,10 +159,12 @@ public class BlockKatharianFenceGate extends BlockKatharianHorizontal {
         }
     }
 
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, IBlockState> builder) {
         builder.add(HORIZONTAL_FACING, OPEN, POWERED, IN_WALL);
     }
 
+    @Override
     public BlockFaceShape getBlockFaceShape(IBlockReader worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         if (face != EnumFacing.UP && face != EnumFacing.DOWN) {
             return state.get(HORIZONTAL_FACING).getAxis() == face.rotateY().getAxis() ? BlockFaceShape.MIDDLE_POLE : BlockFaceShape.UNDEFINED;

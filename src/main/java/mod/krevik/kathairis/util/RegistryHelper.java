@@ -27,9 +27,9 @@ public class RegistryHelper {
     public static void registerItems(final RegistryEvent.Register<Item> event){
         final IForgeRegistry<Item> registry = event.getRegistry();
         for(ItemBlock itemBlock:KBlocks.itemBlocksRegistryList){
-            final BaseBlock block = (BaseBlock) itemBlock.getBlock();
+            final Block block = itemBlock.getBlock();
             final ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(), "Block %s has null registry name", block);
-            ItemBlock itemBlock1 = (ItemBlock) new ItemBlock(block,new Item.Properties().group(block.getItemGroup())).setRegistryName(registryName);
+            ItemBlock itemBlock1 = (ItemBlock) new ItemBlock(block,new Item.Properties().group(itemBlock.getGroup())).setRegistryName(registryName);
             registry.register(itemBlock1);
         }
         for(Item item: KItems.itemsToRegister){

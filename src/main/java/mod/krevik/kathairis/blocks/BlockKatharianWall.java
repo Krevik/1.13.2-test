@@ -1,10 +1,11 @@
 package mod.krevik.kathairis.blocks;
 
+import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.Kathairis;
+import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.blocks.helpers.BlockKatharianFourWay;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.BlockFourWay;
-import net.minecraft.block.SoundType;
+import mod.krevik.kathairis.util.KathairisItemGroups;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -12,6 +13,8 @@ import net.minecraft.fluid.IFluidState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -23,16 +26,23 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
 
-public class BlockKatharianWall extends BlockKatharianFourWay {
+public class BlockKatharianWall extends BlockWall {
     public static final BooleanProperty UP = BlockStateProperties.UP;
     private final VoxelShape[] field_196422_D;
     private final VoxelShape[] field_196423_E;
 
     public BlockKatharianWall(String Name, Material material, float hardnessAndResistance, SoundType soundType) {
-        super(Name,0.0F, 3.0F, 0.0F, 14.0F, 24.0F, Block.Properties.create(material).sound(soundType).hardnessAndResistance(hardnessAndResistance));
+        super(Block.Properties.create(material).sound(soundType).hardnessAndResistance(hardnessAndResistance));
         this.setDefaultState(this.stateContainer.getBaseState().with(UP, Boolean.valueOf(true)).with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED, Boolean.valueOf(false)));
         this.field_196422_D = this.func_196408_a(4.0F, 3.0F, 16.0F, 0.0F, 14.0F);
         this.field_196423_E = this.func_196408_a(4.0F, 3.0F, 24.0F, 0.0F, 24.0F);
+        setRegistryName(Kathairis.MODID,Name);
+    }
+
+    public Block addToBlockAndItemBlockRegistryList(){
+        KBlocks.blockRegistryList.add(this);
+        KBlocks.itemBlocksRegistryList.add(new ItemBlock(this,new Item.Properties().group(KathairisItemGroups.kathairis_building_blocks)));
+        return this;
     }
 
     public VoxelShape getShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
