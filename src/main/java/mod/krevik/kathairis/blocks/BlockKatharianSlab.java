@@ -1,11 +1,7 @@
 package mod.krevik.kathairis.blocks;
 
-import java.util.Random;
-import javax.annotation.Nullable;
-
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
-import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -31,6 +27,9 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class BlockKatharianSlab extends BlockSlab implements IBucketPickupHandler, ILiquidContainer {
     public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;

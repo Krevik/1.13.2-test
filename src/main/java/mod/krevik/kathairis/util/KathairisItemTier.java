@@ -1,11 +1,8 @@
 package mod.krevik.kathairis.util;
 
 import mod.krevik.kathairis.KItems;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.LazyLoadBase;
 
 import java.util.function.Supplier;

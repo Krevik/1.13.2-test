@@ -2,10 +2,8 @@ package mod.krevik.kathairis.blocks;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
-import mod.krevik.kathairis.blocks.helpers.BlockKatharianHorizontal;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.*;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;

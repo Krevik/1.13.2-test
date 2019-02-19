@@ -1,24 +1,17 @@
 package mod.krevik.kathairis.blocks;
 
-import mod.krevik.kathairis.KBlocks;
-import mod.krevik.kathairis.client.particle.system.DynamicParticle;
-import mod.krevik.kathairis.client.particle.system.ParticlesFactory;
-import net.minecraft.block.BlockPortal;
-
 import com.google.common.cache.LoadingCache;
+import mod.krevik.kathairis.KBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPortal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Particles;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
@@ -27,7 +20,6 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;

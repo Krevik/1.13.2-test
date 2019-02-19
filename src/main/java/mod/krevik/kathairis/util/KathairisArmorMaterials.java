@@ -1,7 +1,7 @@
 package mod.krevik.kathairis.util;
 
-import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.KItems;
+import mod.krevik.kathairis.Kathairis;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;

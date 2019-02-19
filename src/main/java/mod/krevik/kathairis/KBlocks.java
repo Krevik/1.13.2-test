@@ -2,6 +2,7 @@ package mod.krevik.kathairis;
 
 import mod.krevik.kathairis.blocks.*;
 import mod.krevik.kathairis.blocks.helpers.BaseBlock;
+import mod.krevik.kathairis.blocks.plants.*;
 import mod.krevik.kathairis.util.ExpMinMax;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
@@ -31,7 +32,8 @@ public class KBlocks {
             KATHARIAN_COBBLESTONE_STAIRS, WEATHERED_ROCK_STAIRS, HARDENED_WEATHERED_ROCK_STAIRS, HARDENED_WEATHERED_ROCK_BRICKS_STAIRS,
             MUD_BRICKS_STAIRS, KATHARIAN_STONE_BRICKS_STAIRS, KATHARIAN_STONE_SLAB, KATHARIAN_COBBLESTONE_SLAB,
     KATHARIAN_STONE_BRICKS_SLAB, MUD_BRICKS_SLAB, MYSTIC_WOOD_SLAB, SHINY_WOOD_SLAB, SOUL_WOOD_SLAB, WEATHERED_ROCK_SLAB,
-    HARDENED_WEATHERED_ROCK_SLAB, HARDENED_WEATHERED_ROCK_BRICKS_SLAB;
+    HARDENED_WEATHERED_ROCK_SLAB, HARDENED_WEATHERED_ROCK_BRICKS_SLAB, BLUE_CRYSTAL, VIOLET_CRYSTAL, YELLOW_CRYSTAL,
+    BISON_STARS, EYE_PLANT, KATHARIAN_MINI_GRASS, KATHARIAN_TALL_GRASS, KATHARIAN_NIGHT_FLOWER;
 
     public static void initBlocks(){
         KATHARIAN_STONE = new BlockKatharianStone("katharian_stone").addToBlockAndItemBlockRegistryList();
@@ -57,7 +59,7 @@ public class KBlocks {
         SOUL_PLANKS = new BaseBlock("soul_planks",Material.WOOD,3f,3f,SoundType.WOOD,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
         KATHARIAN_COBBLESTONE = new BaseBlock("katharian_cobblestone",Material.ROCK,2.5f,2.5f,SoundType.STONE,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
         KATHARIAN_STONE_TILES = new BaseBlock("katharian_stone_tiles",Material.ROCK,2.5f,2.5f,SoundType.STONE,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
-        SHINY_ROCK = new BaseBlock("shiny_rock",Block.Properties.create(Material.ROCK).hardnessAndResistance(3f).sound(SoundType.STONE).lightValue(1),KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
+        SHINY_ROCK = new BaseBlock("shiny_rock",Block.Properties.create(Material.ROCK).hardnessAndResistance(3f).sound(SoundType.STONE).lightValue(12),KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
         KATHARIAN_STONE_BRICKS = new BaseBlock("katharian_stone_bricks",Material.ROCK,2.5f,2.5f,SoundType.STONE,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
         MUD_BLOCK = new BaseBlock("mud_block",Material.GROUND,1f,1f,SoundType.GROUND,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
         MUD_BRICKS = new BaseBlock("mud_bricks",Material.ROCK,2f,2f,SoundType.STONE,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
@@ -119,6 +121,16 @@ public class KBlocks {
         SOUL_WOOD_SLAB = new BlockKatharianSlab("soul_wood_slab",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
         //
 
+        BLUE_CRYSTAL = new BlockCrystal("blue_crystal").addToBlockAndItemBlockRegistryList();
+        YELLOW_CRYSTAL = new BlockCrystal("yellow_crystal").addToBlockAndItemBlockRegistryList();
+        VIOLET_CRYSTAL = new BlockCrystal("violet_crystal").addToBlockAndItemBlockRegistryList();
+
+        //plants
+        BISON_STARS = new BlockBisonStars("bison_stars").addToBlockAndItemBlockRegistryList();
+        EYE_PLANT = new BlockKatharianPlant("eye_plant").addToBlockAndItemBlockRegistryList();
+        KATHARIAN_MINI_GRASS = new BlockKatharianMiniGrass("katharian_mini_grass").addToBlockAndItemBlockRegistryList();
+        KATHARIAN_TALL_GRASS = new BlockKatharianTallGrass("katharian_tall_grass").addToBlockAndItemBlockRegistryList();
+        KATHARIAN_NIGHT_FLOWER = new BlockKatharianNightFlower("katharian_night_flower").addToBlockAndItemBlockRegistryList();
     }
 
 }

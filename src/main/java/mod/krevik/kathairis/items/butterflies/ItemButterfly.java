@@ -1,15 +1,8 @@
 package mod.krevik.kathairis.items.butterflies;
 
 import mod.krevik.kathairis.items.BaseItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class ItemButterfly extends BaseItem {
 

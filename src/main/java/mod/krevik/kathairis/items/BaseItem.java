@@ -1,7 +1,7 @@
 package mod.krevik.kathairis.items;
 
-import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.KItems;
+import mod.krevik.kathairis.Kathairis;
 import net.minecraft.item.*;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;

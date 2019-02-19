@@ -15,7 +15,8 @@ import mod.krevik.kathairis.util.KathairisArmorMaterials;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import mod.krevik.kathairis.util.KathairisItemTier;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.*;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 
 import java.util.ArrayList;
 

@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge.common.IPlantable
 {
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
+    protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 16.0D, 16.0D);
 
     @Override
     public VoxelShape getShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
@@ -68,7 +68,7 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
     @Override
     @OnlyIn(Dist.CLIENT)
     public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override

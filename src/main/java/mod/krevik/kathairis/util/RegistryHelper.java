@@ -3,7 +3,6 @@ package mod.krevik.kathairis.util;
 import com.google.common.base.Preconditions;
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.KItems;
-import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

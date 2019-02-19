@@ -1,7 +1,7 @@
 package mod.krevik.kathairis.items.tools;
 
-import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.KItems;
+import mod.krevik.kathairis.Kathairis;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

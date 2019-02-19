@@ -1,7 +1,9 @@
 package mod.krevik.kathairis.items.food;
 
 import mod.krevik.kathairis.KItems;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemGroup;
 
 public class ItemKathairisFood extends ItemFood {
 
