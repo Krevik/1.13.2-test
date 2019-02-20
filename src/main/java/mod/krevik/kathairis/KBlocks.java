@@ -35,7 +35,8 @@ public class KBlocks {
     HARDENED_WEATHERED_ROCK_SLAB, HARDENED_WEATHERED_ROCK_BRICKS_SLAB, BLUE_CRYSTAL, VIOLET_CRYSTAL, YELLOW_CRYSTAL,
     BISON_STARS, EYE_PLANT, KATHARIAN_MINI_GRASS, KATHARIAN_TALL_GRASS, KATHARIAN_NIGHT_FLOWER, KATHARIAN_MULTI_GRASS,
     BLUE_CLOUD_BRICKS, YELLOW_CLOUD_BLOCK, FRUP_PLANT, MYSTIC_WOOD_DOORS, SHINY_WOOD_DOORS, SOUL_WOOD_DOORS,
-    MYSTIC_WOOD_TRAPDOOR, SHINY_WOOD_TRAPDOOR, SOUL_WOOD_TRAPDOOR, KATHARIAN_FUNGI, GOOSEBERRY_BUSH;
+    MYSTIC_WOOD_TRAPDOOR, SHINY_WOOD_TRAPDOOR, SOUL_WOOD_TRAPDOOR, KATHARIAN_FUNGI, GOOSEBERRY_BUSH, KATHARIAN_SUCCULENT,
+    STEPPED_SUCCULENT;
 
     public static void initBlocks(){
         KBlocks.blockRegistryList.ensureCapacity(100);
@@ -137,6 +138,8 @@ public class KBlocks {
         FRUP_PLANT = new BlockFrupPlant("frup_plant").addToBlockRegistryList();
         KATHARIAN_FUNGI = new BlockKatharianFungi("katharian_fungi").addToBlockAndItemBlockRegistryList();
         GOOSEBERRY_BUSH = new BlockGooseberry("gooseberry_bush",Material.LEAVES,1f,1f,SoundType.PLANT,KathairisItemGroups.kathairis_plants).addToBlockRegistryList();
+        KATHARIAN_SUCCULENT = new BlockKatharianSucculent("katharian_succulent").addToBlockAndItemBlockRegistryList();
+        STEPPED_SUCCULENT = new BlockSteppedSucculent("stepped_succulent").addToBlockAndItemBlockRegistryList();
 
         //doors and trapdoors
         MYSTIC_WOOD_DOORS = new BlockKatharianDoors("mystic_wood_doors",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();

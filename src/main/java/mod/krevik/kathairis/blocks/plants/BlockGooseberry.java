@@ -31,8 +31,10 @@ public class BlockGooseberry extends BaseBlock {
 
     public BlockGooseberry(String Name, Material material, float hardness1, float resistance, SoundType soundType, ItemGroup group) {
         super(Name, material, hardness1, resistance, soundType, group);
-        setDefaultState(getDefaultState().mirror(Mirror.LEFT_RIGHT).with(VARIANT,EnumType.WITHOUT));
+        setDefaultState(getDefaultState().with(VARIANT,EnumType.WITHOUT));
     }
+
+
 
     @Override
     public void tick(IBlockState state, World world, BlockPos pos, Random random) {

@@ -1,12 +1,14 @@
 package mod.krevik.kathairis.blocks.plants;
 
 import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.blocks.BlockKatharianSand;
+import mod.krevik.kathairis.blocks.BlockSoftSand;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReaderBase;
@@ -14,9 +16,9 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockKatharianMultiGrass extends BlockKatharianPlant {
-    public BlockKatharianMultiGrass(String Name) {
-        super(Name, Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0f).doesNotBlockMovement().needsRandomTick());
+public class BlockSteppedSucculent extends BlockKatharianPlant {
+    public BlockSteppedSucculent(String Name) {
+        super(Name, Block.Properties.create(Material.PLANTS).needsRandomTick().hardnessAndResistance(0.5f).sound(SoundType.PLANT));
     }
 
     @Override
@@ -27,9 +29,10 @@ public class BlockKatharianMultiGrass extends BlockKatharianPlant {
     @Override
     protected boolean isValidGround(IBlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL ||
-                block == Blocks.FARMLAND || block== KBlocks.KATHARIAN_DIRT || block==KBlocks.KATHARIAN_GRASS ||
-                block == KBlocks.KATHARIAN_MULTI_GRASS;
+        boolean can=false;
+        can = block instanceof BlockSand || block instanceof BlockSoftSand || block instanceof BlockKatharianSand ||
+                block==KBlocks.STEPPED_SUCCULENT;
+        return can;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class BlockKatharianMultiGrass extends BlockKatharianPlant {
                     }
                 }
                 if(height<10){
-                    world.setBlockState(pos.up(),KBlocks.KATHARIAN_MULTI_GRASS.getDefaultState());
+                    world.setBlockState(pos.up(),world.getBlockState(pos));
                 }
             }
         }
