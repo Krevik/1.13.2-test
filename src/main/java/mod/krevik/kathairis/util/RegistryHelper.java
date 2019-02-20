@@ -14,6 +14,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryHelper {
+
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event){
         final IForgeRegistry<Block> registry = event.getRegistry();
@@ -32,7 +33,7 @@ public class RegistryHelper {
             registry.register(itemBlock1);
         }
         for(Item item: KItems.itemsToRegister){
-         registry.register(item);
+            registry.register(item);
         }
         registry.register(new ItemBlock(KBlocks.KATHARIAN_PORTAL,new Item.Properties().group(KathairisItemGroups.kathairis_building_blocks)).setRegistryName(KBlocks.KATHARIAN_PORTAL.getRegistryName().toString()));
     }

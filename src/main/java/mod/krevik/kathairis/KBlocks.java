@@ -34,7 +34,8 @@ public class KBlocks {
     KATHARIAN_STONE_BRICKS_SLAB, MUD_BRICKS_SLAB, MYSTIC_WOOD_SLAB, SHINY_WOOD_SLAB, SOUL_WOOD_SLAB, WEATHERED_ROCK_SLAB,
     HARDENED_WEATHERED_ROCK_SLAB, HARDENED_WEATHERED_ROCK_BRICKS_SLAB, BLUE_CRYSTAL, VIOLET_CRYSTAL, YELLOW_CRYSTAL,
     BISON_STARS, EYE_PLANT, KATHARIAN_MINI_GRASS, KATHARIAN_TALL_GRASS, KATHARIAN_NIGHT_FLOWER, KATHARIAN_MULTI_GRASS,
-    BLUE_CLOUD_BRICKS, YELLOW_CLOUD_BLOCK;
+    BLUE_CLOUD_BRICKS, YELLOW_CLOUD_BLOCK, FRUP_PLANT, MYSTIC_WOOD_DOORS, SHINY_WOOD_DOORS, SOUL_WOOD_DOORS,
+    MYSTIC_WOOD_TRAPDOOR, SHINY_WOOD_TRAPDOOR, SOUL_WOOD_TRAPDOOR, KATHARIAN_FUNGI, GOOSEBERRY_BUSH;
 
     public static void initBlocks(){
         KBlocks.blockRegistryList.ensureCapacity(100);
@@ -133,6 +134,17 @@ public class KBlocks {
         KATHARIAN_TALL_GRASS = new BlockKatharianTallGrass("katharian_tall_grass").addToBlockAndItemBlockRegistryList();
         KATHARIAN_NIGHT_FLOWER = new BlockKatharianNightFlower("katharian_night_flower").addToBlockAndItemBlockRegistryList();
         KATHARIAN_MULTI_GRASS = new BlockKatharianMultiGrass("katharian_multi_grass").addToBlockAndItemBlockRegistryList();
-    }
+        FRUP_PLANT = new BlockFrupPlant("frup_plant").addToBlockRegistryList();
+        KATHARIAN_FUNGI = new BlockKatharianFungi("katharian_fungi").addToBlockAndItemBlockRegistryList();
+        GOOSEBERRY_BUSH = new BlockGooseberry("gooseberry_bush",Material.LEAVES,1f,1f,SoundType.PLANT,KathairisItemGroups.kathairis_plants).addToBlockRegistryList();
 
+        //doors and trapdoors
+        MYSTIC_WOOD_DOORS = new BlockKatharianDoors("mystic_wood_doors",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();
+        SHINY_WOOD_DOORS = new BlockKatharianDoors("shiny_wood_doors",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();
+        SOUL_WOOD_DOORS = new BlockKatharianDoors("soul_wood_doors",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();
+        MYSTIC_WOOD_TRAPDOOR = new BlockKatharianTrapdoor("mystic_wood_trapdoor",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();
+        SHINY_WOOD_TRAPDOOR = new BlockKatharianTrapdoor("shiny_wood_trapdoor",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();
+        SOUL_WOOD_TRAPDOOR = new BlockKatharianTrapdoor("soul_wood_trapdoor",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();
+
+    }
 }

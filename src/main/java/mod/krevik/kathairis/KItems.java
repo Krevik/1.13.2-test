@@ -1,15 +1,13 @@
 package mod.krevik.kathairis;
 
 import mod.krevik.kathairis.items.BaseItem;
+import mod.krevik.kathairis.items.food.*;
+import mod.krevik.kathairis.items.tools.ItemMagnethiumSword;
 import mod.krevik.kathairis.items.ItemMysticGem;
 import mod.krevik.kathairis.items.ItemPotWithLivingFlower;
 import mod.krevik.kathairis.items.armor.ItemKathairisArmor;
 import mod.krevik.kathairis.items.butterflies.ItemButterfly;
 import mod.krevik.kathairis.items.butterflies.ItemButterflyCatcher;
-import mod.krevik.kathairis.items.food.ItemFungalDrug;
-import mod.krevik.kathairis.items.food.ItemHeart;
-import mod.krevik.kathairis.items.food.ItemKathairisFood;
-import mod.krevik.kathairis.items.food.ItemNectarBowl;
 import mod.krevik.kathairis.items.tools.*;
 import mod.krevik.kathairis.util.KathairisArmorMaterials;
 import mod.krevik.kathairis.util.KathairisItemGroups;
@@ -33,7 +31,8 @@ public class KItems {
             mystic_Shovel,cloud_Pearl,shiny_Stick,cloud_Dust_Blue,cloud_Dust_Yellow,condensed_Cloud_Dust_Blue,condensed_Cloud_Dust_Yellow,
     jar_With_Swamp_Gas,crystal_Blend,heart,cotton_Candy,bison_Meat,cooked_Bison_Meat,jellyfish_Tentacle,gooseberries,venom_Sac,glass_Jar,
     nectar_Bowl,butterfly_Common_1,butterfly_Common_2,butterfly_Common_Moth,butterfly_Illukini,butterfly_Cloud_Shimmer,butterfly_Catcher,
-    wings_Piece,fungal_Drug,bitten_Cookie,candy_Cane,christmas_Chocolate,ice_Creams,sweet_Muffin,pot_with_living_flower;
+    wings_Piece,fungal_Drug,bitten_Cookie,candy_Cane,christmas_Chocolate,ice_Creams,sweet_Muffin,pot_with_living_flower,
+    magnethium_Pickaxe, magnethium_Axe, magnethium_Shovel, magnethium_Sword, magnethium_Hoe, crystal_Pickaxe, frup;
 
     public static void initItems(){
         mystic_Gem = new ItemMysticGem("mystic_gem", KathairisItemGroups.kathairis_materials, EnumRarity.EPIC).addToRegistryList();
@@ -92,7 +91,6 @@ public class KItems {
         bison_Meat = new ItemKathairisFood("bison_meat",6,0.9f,true,KathairisItemGroups.kathairis_food).addToRegistryList();
         cooked_Bison_Meat = new ItemKathairisFood("cooked_bison_meat",8,1.2f,true,KathairisItemGroups.kathairis_food).addToRegistryList();
         jellyfish_Tentacle = new BaseItem("jellyfish_tentacle",KathairisItemGroups.kathairis_miscellaneous,EnumRarity.RARE).addToRegistryList();
-        gooseberries = new ItemKathairisFood("gooseberries",2,0.4f,false,KathairisItemGroups.kathairis_food).addToRegistryList();
         venom_Sac = new BaseItem("venom_sac",KathairisItemGroups.kathairis_miscellaneous).addToRegistryList();
         glass_Jar = new BaseItem("glass_jar",KathairisItemGroups.kathairis_miscellaneous).addToRegistryList();
         nectar_Bowl = new ItemNectarBowl("nectar_bowl",0,0,false,KathairisItemGroups.kathairis_food).addToRegistryList();
@@ -110,6 +108,15 @@ public class KItems {
         ice_Creams = new ItemKathairisFood("ice_creams",3,0.7f,false,KathairisItemGroups.kathairis_food).addToRegistryList();
         sweet_Muffin = new ItemKathairisFood("sweet_muffin",3,0.7f,false,KathairisItemGroups.kathairis_food).addToRegistryList();
         pot_with_living_flower = new ItemPotWithLivingFlower("pot_with_living_flower",KathairisItemGroups.kathairis_miscellaneous).addToRegistryList();
+        magnethium_Hoe = new ItemKathairisHoe("magnethium_hoe", KathairisItemTier.MAGNETHIUM,KathairisItemGroups.kathairis_tools).addToRegistryList();
+        magnethium_Sword = new ItemMagnethiumSword("magnethium_sword",KathairisItemTier.MAGNETHIUM,KathairisItemGroups.kathairis_weapons).addToRegistryList();
+        magnethium_Axe = new ItemKathairisAxe("magnethium_axe",KathairisItemTier.MAGNETHIUM,KathairisItemGroups.kathairis_tools).addToRegistryList();
+        magnethium_Pickaxe = new ItemKathairisPickaxe("magnethium_pickaxe",KathairisItemTier.MAGNETHIUM,KathairisItemGroups.kathairis_tools).addToRegistryList();
+        magnethium_Shovel = new ItemKathairisShovel("magnethium_shovel",KathairisItemTier.MAGNETHIUM,KathairisItemGroups.kathairis_tools).addToRegistryList();
+        crystal_Pickaxe = new ItemCrystalPickaxe("crystal_pickaxe",KathairisItemTier.CRYSTAL,KathairisItemGroups.kathairis_tools).addToRegistryList();
+        frup = new ItemFrup("frup",3,0.4f,KBlocks.FRUP_PLANT).addToRegistryList();
+        gooseberries = new ItemGooseberries("gooseberries",2,0.4f,KBlocks.GOOSEBERRY_BUSH).addToRegistryList();
+
     }
 
 }
