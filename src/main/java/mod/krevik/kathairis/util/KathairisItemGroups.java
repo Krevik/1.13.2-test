@@ -62,7 +62,7 @@ public class KathairisItemGroups {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
-            return new ItemStack(KBlocks.KATHARIAN_STONE);
+            return new ItemStack(KBlocks.KATHARIAN_MINI_GRASS);
         }
     };
 }

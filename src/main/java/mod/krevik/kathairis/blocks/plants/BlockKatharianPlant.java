@@ -47,8 +47,6 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
     @Override
     public boolean isValidPosition(IBlockState state, IWorldReaderBase worldIn, BlockPos pos) {
         BlockPos blockpos = pos.down();
-        if (state.getBlock() == this)
-            return worldIn.getBlockState(blockpos).canSustainPlant(worldIn, blockpos, EnumFacing.UP, this);
         return this.isValidGround(worldIn.getBlockState(blockpos), worldIn, blockpos);
     }
 

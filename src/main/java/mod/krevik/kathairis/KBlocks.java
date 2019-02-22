@@ -36,11 +36,11 @@ public class KBlocks {
     BISON_STARS, EYE_PLANT, KATHARIAN_MINI_GRASS, KATHARIAN_TALL_GRASS, KATHARIAN_NIGHT_FLOWER, KATHARIAN_MULTI_GRASS,
     BLUE_CLOUD_BRICKS, YELLOW_CLOUD_BLOCK, FRUP_PLANT, MYSTIC_WOOD_DOORS, SHINY_WOOD_DOORS, SOUL_WOOD_DOORS,
     MYSTIC_WOOD_TRAPDOOR, SHINY_WOOD_TRAPDOOR, SOUL_WOOD_TRAPDOOR, KATHARIAN_FUNGI, GOOSEBERRY_BUSH, KATHARIAN_SUCCULENT,
-    STEPPED_SUCCULENT;
+    STEPPED_SUCCULENT, VILYRIA, GLOWVINES, JADE_VINES, KATHARIAN_DEAD_GRASS, MYSTIC_GEM_BLOCK, MAGIC_BEANS,
+    BAURBLE, BUTTERFLY_FLOWER, SOLIS_CRYSTALS, BLUE_CLOUD_FLOWER, YELLOW_CLOUD_FLOWER, SNOWDROP_CYPREPEDIUM,
+    FLUO_FUNGI, LAYERED_SAND;
 
     public static void initBlocks(){
-        KBlocks.blockRegistryList.ensureCapacity(100);
-        KBlocks.itemBlocksRegistryList.ensureCapacity(100);
         KATHARIAN_STONE = new BlockKatharianStone("katharian_stone").addToBlockAndItemBlockRegistryList();
         KATHARIAN_PORTAL = new BlockKathairisPortal("katharian_portal", KathairisItemGroups.kathairis_building_blocks).addToBlockRegistryList();
         KATHARIAN_DIRT = new BaseBlock("katharian_dirt", Material.GROUND,0.5F,0.5F,SoundType.GROUND,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
@@ -80,6 +80,10 @@ public class KBlocks {
         MYSTIC_LOG_STRIPPED = new BlockKatharianLog("mystic_log_stripped").addToBlockAndItemBlockRegistryList();
         SHINY_LOG_STRIPPED = new BlockKatharianLog("shiny_log_stripped").addToBlockAndItemBlockRegistryList();
         SOUL_LOG_STRIPPED = new BlockKatharianLog("soul_log_stripped").addToBlockAndItemBlockRegistryList();
+        MYSTIC_GEM_BLOCK = new BaseBlock("mystic_gem_block",Material.IRON,4f,4f,SoundType.METAL,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
+        BAURBLE = new BlockBaurble("baurble").addToBlockAndItemBlockRegistryList();
+        SOLIS_CRYSTALS = new BlockSolisCrystals("solis_crystals").addToBlockAndItemBlockRegistryList();
+        LAYERED_SAND = new BlockLayeredSand("layered_sand").addToBlockAndItemBlockRegistryList();
 
         //fences and gates
         MYSTIC_WOOD_FENCE = new BlockKatharianFence("mystic_wood_fence",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
@@ -140,6 +144,16 @@ public class KBlocks {
         GOOSEBERRY_BUSH = new BlockGooseberry("gooseberry_bush",Material.LEAVES,1f,1f,SoundType.PLANT,KathairisItemGroups.kathairis_plants).addToBlockRegistryList();
         KATHARIAN_SUCCULENT = new BlockKatharianSucculent("katharian_succulent").addToBlockAndItemBlockRegistryList();
         STEPPED_SUCCULENT = new BlockSteppedSucculent("stepped_succulent").addToBlockAndItemBlockRegistryList();
+        VILYRIA = new BlockKatharianPlant("vilyria").addToBlockAndItemBlockRegistryList();
+        GLOWVINES = new BlockGlowVines("glowvines").addToBlockAndItemBlockRegistryList();
+        JADE_VINES = new BlockJadeVines("jade_vines").addToBlockAndItemBlockRegistryList();
+        KATHARIAN_DEAD_GRASS = new BlockKatharianDeadGrass("katharian_dead_grass").addToBlockAndItemBlockRegistryList();
+        MAGIC_BEANS = new BlockMagicBeans("magic_beans").addToBlockRegistryList();
+        BUTTERFLY_FLOWER = new BlockButterflyFlower("butterfly_flower").addToBlockAndItemBlockRegistryList();
+        YELLOW_CLOUD_FLOWER = new BlockCloudFlower("yellow_cloud_flower").addToBlockAndItemBlockRegistryList();
+        BLUE_CLOUD_FLOWER = new BlockCloudFlower("blue_cloud_flower").addToBlockAndItemBlockRegistryList();
+        SNOWDROP_CYPREPEDIUM = new BlockSnowdropCyprepedium("snowdrop_cyprepedium").addToBlockAndItemBlockRegistryList();
+        FLUO_FUNGI = new BlockFluoFungi("fluo_fungi").addToBlockAndItemBlockRegistryList();
 
         //doors and trapdoors
         MYSTIC_WOOD_DOORS = new BlockKatharianDoors("mystic_wood_doors",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();

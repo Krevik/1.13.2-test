@@ -32,7 +32,8 @@ public class KItems {
     jar_With_Swamp_Gas,crystal_Blend,heart,cotton_Candy,bison_Meat,cooked_Bison_Meat,jellyfish_Tentacle,gooseberries,venom_Sac,glass_Jar,
     nectar_Bowl,butterfly_Common_1,butterfly_Common_2,butterfly_Common_Moth,butterfly_Illukini,butterfly_Cloud_Shimmer,butterfly_Catcher,
     wings_Piece,fungal_Drug,bitten_Cookie,candy_Cane,christmas_Chocolate,ice_Creams,sweet_Muffin,pot_with_living_flower,
-    magnethium_Pickaxe, magnethium_Axe, magnethium_Shovel, magnethium_Sword, magnethium_Hoe, crystal_Pickaxe, frup;
+    magnethium_Pickaxe, magnethium_Axe, magnethium_Shovel, magnethium_Sword, magnethium_Hoe, crystal_Pickaxe, frup,
+    magic_Beans;
 
     public static void initItems(){
         mystic_Gem = new ItemMysticGem("mystic_gem", KathairisItemGroups.kathairis_materials, EnumRarity.EPIC).addToRegistryList();
@@ -116,7 +117,7 @@ public class KItems {
         crystal_Pickaxe = new ItemCrystalPickaxe("crystal_pickaxe",KathairisItemTier.CRYSTAL,KathairisItemGroups.kathairis_tools).addToRegistryList();
         frup = new ItemFrup("frup",3,0.4f,KBlocks.FRUP_PLANT).addToRegistryList();
         gooseberries = new ItemGooseberries("gooseberries",2,0.4f,KBlocks.GOOSEBERRY_BUSH).addToRegistryList();
-
+        magic_Beans = new ItemMagicBeans("magic_beans",2,0.4f,KBlocks.MAGIC_BEANS).addToRegistryList();
     }
 
 }

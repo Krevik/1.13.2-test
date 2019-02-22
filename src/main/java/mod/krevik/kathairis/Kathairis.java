@@ -3,10 +3,16 @@ package mod.krevik.kathairis;
 import com.google.common.base.Preconditions;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import mod.krevik.kathairis.util.RegistryHelper;
+import mod.krevik.kathairis.world.ModDimensionKathairis;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.dimension.EndDimension;
+import net.minecraft.world.dimension.OverworldDimension;
+import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -75,11 +81,13 @@ public class Kathairis {
     {
         // some preinit code
         //DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID,"kathairis"),new DimensionKathairis(),null);
+        //DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID,"kathairis"),new ModDimensionKathairis(),null);
         LOGGER.info("HELLO FROM PREINIT");
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+        OBJLoader.INSTANCE.addDomain(Kathairis.MODID);
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"variant=without": { "model": "kathairis:block/butterfly_flower_without" },
+		"variant=with": { "model": "kathairis:block/butterfly_flower_with" }
+	}
+}
