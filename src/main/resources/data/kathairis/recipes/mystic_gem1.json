@@ -1,0 +1,14 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "#Y#", "YXY", "#Y#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:brick"
+    }
+  },
+  "result": {
+    "item": "minecraft:bricks"
+  }
+}

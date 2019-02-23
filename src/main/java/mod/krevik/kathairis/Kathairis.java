@@ -1,20 +1,8 @@
 package mod.krevik.kathairis;
 
-import com.google.common.base.Preconditions;
-import mod.krevik.kathairis.util.KathairisItemGroups;
-import mod.krevik.kathairis.util.RegistryHelper;
-import mod.krevik.kathairis.world.ModDimensionKathairis;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.EndDimension;
-import net.minecraft.world.dimension.OverworldDimension;
+import mod.krevik.kathairis.util.FunctionHelper;
 import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +12,6 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -102,6 +89,12 @@ public class Kathairis {
     public static class RegistryEvents {
 
 
+    }
+
+    private static FunctionHelper helper = new FunctionHelper();
+
+    public static FunctionHelper getHelper(){
+        return helper;
     }
 
 }

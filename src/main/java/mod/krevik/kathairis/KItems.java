@@ -1,13 +1,12 @@
 package mod.krevik.kathairis;
 
 import mod.krevik.kathairis.items.BaseItem;
-import mod.krevik.kathairis.items.food.*;
-import mod.krevik.kathairis.items.tools.ItemMagnethiumSword;
 import mod.krevik.kathairis.items.ItemMysticGem;
 import mod.krevik.kathairis.items.ItemPotWithLivingFlower;
 import mod.krevik.kathairis.items.armor.ItemKathairisArmor;
 import mod.krevik.kathairis.items.butterflies.ItemButterfly;
 import mod.krevik.kathairis.items.butterflies.ItemButterflyCatcher;
+import mod.krevik.kathairis.items.food.*;
 import mod.krevik.kathairis.items.tools.*;
 import mod.krevik.kathairis.util.KathairisArmorMaterials;
 import mod.krevik.kathairis.util.KathairisItemGroups;

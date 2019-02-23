@@ -1,6 +1,5 @@
 package mod.krevik.kathairis.items.tools;
 
-import mod.krevik.kathairis.items.tools.ItemKathairisSword;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemGroup;
