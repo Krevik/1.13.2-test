@@ -1,7 +1,15 @@
 package mod.krevik.kathairis;
 
+import mod.krevik.kathairis.client.EntityRenderingRegistry;
+import mod.krevik.kathairis.util.EntityRegistry;
 import mod.krevik.kathairis.util.FunctionHelper;
+import mod.krevik.kathairis.world.DimensionKathairis;
+import mod.krevik.kathairis.world.ModDimensionKathairis;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.dimension.Dimension;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -15,6 +23,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Mod("kathairis")
@@ -64,17 +73,24 @@ public class Kathairis {
                 collect(Collectors.toList()));
     }
 
+    DimensionType kath_Dim_type = new DimensionType(16, "kathairis", "kathairis", new Supplier<Dimension>() {
+        @Override
+        public Dimension get() {
+            return new DimensionKathairis();
+        }
+    });
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
         //DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID,"kathairis"),new DimensionKathairis(),null);
-        //DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID,"kathairis"),new ModDimensionKathairis(),null);
+        DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID,"kathairis"),new ModDimensionKathairis(),null);
         LOGGER.info("HELLO FROM PREINIT");
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
         OBJLoader.INSTANCE.addDomain(Kathairis.MODID);
+        //EntityRenderingRegistry.registerRenders();
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

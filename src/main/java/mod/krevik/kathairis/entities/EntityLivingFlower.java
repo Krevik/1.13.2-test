@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.entities.ai.EntityAIHealTargets;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.EntityAgeable;
@@ -22,7 +23,7 @@ public class EntityLivingFlower extends EntityAnimal
     private static final DataParameter<Boolean> canDespawn = EntityDataManager.createKey(EntityLivingFlower.class, DataSerializers.BOOLEAN);
     public EntityLivingFlower(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.LIVING_FLOWER,worldIn);
         this.setSize(0.3F, 0.5F);
         this.experienceValue=10;
     }

@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -18,7 +19,7 @@ public class EntityFungite extends EntityMob
 {
     public EntityFungite(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.FUNGITE,worldIn);
         this.setSize(1.5F, 2.4F);
         this.experienceValue=30;
     }

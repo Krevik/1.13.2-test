@@ -4,6 +4,7 @@ import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.KItems;
 import mod.krevik.kathairis.entities.ai.EntityAIAttackMeleeBison;
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -38,7 +39,7 @@ public class EntityBison extends EntityAnimal
 
     public EntityBison(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.BISON,worldIn);
         this.setSize(1.5F, 1.7F);
         this.experienceValue=30;
         spawnableBlock= KBlocks.KATHARIAN_GRASS;

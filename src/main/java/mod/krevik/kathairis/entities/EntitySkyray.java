@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.KItems;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.IEntityLivingData;
@@ -47,7 +48,7 @@ public class EntitySkyray extends EntityFlying
 
     public EntitySkyray(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.SKYRAY,worldIn);
         this.setSize(10F, 2.5F);    
         this.moveHelper = new EntityFlyHelper(this);
         this.setNoGravity(true);
@@ -57,21 +58,22 @@ public class EntitySkyray extends EntityFlying
     public EntitySkyray getParent() {
     	return parent;
     }
-    
+
+
     @Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
-    {
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance p_204210_1_, @Nullable IEntityLivingData p_204210_2_, @Nullable NBTTagCompound p_204210_3_) {
         if(this.rand.nextInt(5)==0) {
-        	this.setAdult(1);
+            this.setAdult(1);
         }else {
-        	this.setAdult(0);
+            this.setAdult(0);
         }
         if(this.getAdult()==0) {
-            this.setSize(10F, 2.5F);    
+            this.setSize(10F, 2.5F);
         }else {
-            this.setSize(42F, 10F);    
+            this.setSize(42F, 10F);
         }
-        return super.onInitialSpawn(difficulty, livingdata);
+        return super.onInitialSpawn(p_204210_1_, p_204210_2_, p_204210_3_);
     }
     
     @Override public void tick() {

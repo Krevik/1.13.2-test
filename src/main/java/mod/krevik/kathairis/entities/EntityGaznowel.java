@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.entities;
 
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -37,7 +38,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
     private Vector3d movementVector=new Vector3d(0,0,0);
     public EntityGaznowel(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.GAZNOWEL,worldIn);
         this.setSize(1F, 2.0F);
         this.experienceValue = 35;
         this.moveHelper = new EntityGaznowel.GaznowelMoveHelper(this);
@@ -253,7 +254,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
             this.parentEntity = ghast;
         }
 
-        public void onUpdateMoveHelper()
+        public void tick()
         {
             if (this.action == EntityMoveHelper.Action.MOVE_TO)
             {
@@ -295,7 +296,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
             {
                 axisalignedbb = axisalignedbb.offset(d0, d1, d2);
 
-                if (!this.parentEntity.world.getCollisionBoxes(this.parentEntity, axisalignedbb).isEmpty())
+                if (!this.parentEntity.world.isCollisionBoxesEmpty(this.parentEntity, axisalignedbb))
                 {
                     return false;
                 }
@@ -332,7 +333,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
         private int strafingTime = -1;
         private final double moveSpeedAmp=1;
         private int attackCooldown=15;
-        public void updateTask() {
+        public void tick() {
             if(gaznowel.getAttackTarget()!=null) {
                 gaznowel.getLookHelper().setLookPositionWithEntity(gaznowel.getAttackTarget(), 10.0F, 100F);
                 gaznowel.faceEntity(gaznowel.getAttackTarget(), 1000, 1000);
@@ -415,7 +416,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
         /**
          * Keep ticking a continuous task that has already been started
          */
-        public void updateTask() {
+        public void tick() {
 
             if(!gaznowel.hasMovementVector&&gaznowel.getRNG().nextInt(500)==0){
                 BlockPos targetPos = findSomePosition(gaznowel);

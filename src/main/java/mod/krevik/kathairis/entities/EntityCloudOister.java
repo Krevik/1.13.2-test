@@ -3,6 +3,7 @@ package mod.krevik.kathairis.entities;
 import mod.krevik.kathairis.KItems;
 import mod.krevik.kathairis.blocks.BlockKatharianCloud;
 import mod.krevik.kathairis.entities.ai.EntityAIPanicNew;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -47,7 +48,7 @@ public class EntityCloudOister extends EntityAmbientCreature
 
     public EntityCloudOister(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.CLOUD_OISTER,worldIn);
         this.setSize(0.6F, 0.6F);
         this.experienceValue=5;
         this.setTimeUntilNextPearl(this.rand.nextInt(6000) + 6000);
@@ -83,16 +84,6 @@ public class EntityCloudOister extends EntityAmbientCreature
         this.getDataManager().register(panic, Boolean.valueOf(false));
     }
 
-
-    public void notifyDataManagerChange(DataParameter<?> key)
-    {
-        super.notifyDataManagerChange(key);
-    }
-
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
     int jumpTimer=0;
     int k = 50+rand.nextInt(300);
     int panicTimer=0;

@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -32,7 +33,7 @@ public class EntityGecko extends EntityAnimal {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(EntityGecko.class, DataSerializers.VARINT);
 
     public EntityGecko(World worldIn) {
-        super(worldIn);
+        super(KatharianEntityTypes.GECKO,worldIn);
         setSize(0.7F, 0.25F);
         experienceValue = 10;
     }
@@ -175,10 +176,10 @@ public class EntityGecko extends EntityAnimal {
         return null;
     }
 
-
     @Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
-        livingdata = super.onInitialSpawn(difficulty, livingdata);
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata, @Nullable NBTTagCompound nbt) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata,nbt);
         setVariant(rand.nextInt(4));
         return livingdata;
     }

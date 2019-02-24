@@ -1,6 +1,8 @@
 package mod.krevik.kathairis.entities;
 
-import mod.krevik.util.KatharianLootTables;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
+import mod.krevik.kathairis.util.KatharianLootTables;
+import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -30,7 +32,7 @@ public class EntityCactiSpore extends EntityMob
 
     public EntityCactiSpore(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.CACTI_SPORE,worldIn);
         this.setSize(1F, 1F);
         this.experienceValue=30;
     }
@@ -144,9 +146,9 @@ public class EntityCactiSpore extends EntityMob
     }
 
 
-    public EnumCreatureAttribute getCreatureAttribute()
+    public CreatureAttribute getCreatureAttribute()
     {
-        return EnumCreatureAttribute.UNDEFINED;
+        return CreatureAttribute.UNDEFINED;
     }
 
     @Nullable

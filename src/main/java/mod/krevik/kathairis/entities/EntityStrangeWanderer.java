@@ -1,35 +1,25 @@
 package mod.krevik.kathairis.entities;
 
-import mod.krevik.KCore;
-import mod.krevik.enchantment.KathairisEnchantments;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.datafix.DataFixer;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Calendar;
 import java.util.Map;
 
 public class EntityStrangeWanderer extends EntityMob
 {
     public EntityStrangeWanderer(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.STRANGE_WANDERER,worldIn);
         this.setSize(1F, 2F);
         this.experienceValue=0;
     }
@@ -43,10 +33,10 @@ public class EntityStrangeWanderer extends EntityMob
             if(source.getTrueSource() instanceof EntityPlayer) {
                 EntityPlayer attacker = (EntityPlayer) source.getTrueSource();
                 Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(attacker.getHeldItemMainhand());
-                if(map.containsKey(KathairisEnchantments.Ethereal)) {
+                /*if(map.containsKey(KathairisEnchantments.Ethereal)) {
                     this.damageEntity(source, 6);
                     return true;
-                }
+                }*/
             }
         return false;
     }
@@ -74,15 +64,6 @@ public class EntityStrangeWanderer extends EntityMob
     {
         super.notifyDataManagerChange(key);
     }
-
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
-    public void onLivingUpdate()
-    {
-        super.onLivingUpdate();
-    }
     
     @Override public void tick() {
     	super.tick();
@@ -94,7 +75,7 @@ public class EntityStrangeWanderer extends EntityMob
     }
 
 
-    protected SoundEvent getAmbientSound()
+    /*protected SoundEvent getAmbientSound()
     {
         return KCore.proxy.oldman_ambient;
     }
@@ -112,9 +93,9 @@ public class EntityStrangeWanderer extends EntityMob
     protected SoundEvent getStepSound()
     {
         return null;
-    }
+    }*/
 
-    int month = Calendar.getInstance().get(Calendar.MONTH);
+   /*int month = Calendar.getInstance().get(Calendar.MONTH);
     EntityPlayer lastTalker;
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
@@ -155,57 +136,17 @@ public class EntityStrangeWanderer extends EntityMob
             is=true;
         }
         return is;
-    }
+    }*/
     
-    /**
-     * Get this Entity's EnumCreatureAttribute
-     */
-    public EnumCreatureAttribute getCreatureAttribute()
+
+    public CreatureAttribute getCreatureAttribute()
     {
-        return EnumCreatureAttribute.UNDEFINED;
+        return CreatureAttribute.UNDEFINED;
     }
 
     @Nullable
     protected ResourceLocation getLootTable()
     {
         return null;
-    }
-
-    public static void registerFixesLivingFlower(DataFixer fixer)
-    {
-        EntityLiving.registerFixesMob(fixer, EntityStrangeWanderer.class);
-    }
-
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
-    public void writeAdditional(NBTTagCompound compound)
-    {
-        super.writeAdditional(compound);
-    }
-
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    public void readAdditional(NBTTagCompound compound)
-    {
-        super.readAdditional(compound);
-
-    }
-    
-    @Override
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
-    {
-
-    	return super.onInitialSpawn(difficulty, livingdata);
-    	
-    }
-
-    /**
-     * Called when the mob's health reaches 0.
-     */
-    public void onDeath(DamageSource cause)
-    {
-        super.onDeath(cause);
     }
 }

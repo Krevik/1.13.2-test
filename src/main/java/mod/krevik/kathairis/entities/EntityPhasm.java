@@ -1,13 +1,9 @@
 package mod.krevik.kathairis.entities;
 
-import mod.krevik.client.particle.DynamicParticle;
-import mod.krevik.client.particle.ParticlesFactory;
-import mod.krevik.enchantment.KathairisEnchantments;
 import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.util.FunctionHelper;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -33,8 +29,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -44,7 +38,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.createKey(EntityPhasm.class, DataSerializers.BOOLEAN);
     public EntityPhasm(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.PHASM,worldIn);
         this.setSize(1F, 2.0F);
         this.experienceValue = 35;
         this.moveHelper = new EntityPhasm.PhasmMoveHelper(this);
@@ -116,7 +110,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
         ticker++;
     }
 
-    @SideOnly(Side.CLIENT)
+    /*@SideOnly(Side.CLIENT)
     public void onLivingUpdate(){
         super.onLivingUpdate();
             if (ticker >= 1) {
@@ -136,7 +130,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
                         .setFinalAlpha(0.1F).setEnableDepth(true);
                 Minecraft.getMinecraft().effectRenderer.addEffect(theParticle);
             }
-    }
+    }*/
 
     public boolean attackEntityAsMob(Entity entityIn,float damage)
     {
@@ -198,9 +192,9 @@ public class EntityPhasm extends EntityFlying implements IMob {
         if(source.getTrueSource() instanceof EntityPlayer) {
             EntityPlayer attacker = (EntityPlayer) source.getTrueSource();
             Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(attacker.getHeldItemMainhand());
-            if(map.containsKey(KathairisEnchantments.Ethereal)) {
+            /*if(map.containsKey(KathairisEnchantments.Ethereal)) {
                 //return super.attackEntityFrom(source,amount);
-            }
+            }*/
         }
         return false;
     }
@@ -263,7 +257,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
             this.parentEntity = ghast;
         }
 
-        public void onUpdateMoveHelper()
+        public void tick()
         {
             if (this.action == EntityMoveHelper.Action.MOVE_TO)
             {
@@ -305,7 +299,8 @@ public class EntityPhasm extends EntityFlying implements IMob {
             {
                 axisalignedbb = axisalignedbb.offset(d0, d1, d2);
 
-                if (!this.parentEntity.world.getCollisionBoxes(this.parentEntity, axisalignedbb).isEmpty())
+
+                if (!this.parentEntity.world.isCollisionBoxesEmpty(this.parentEntity, axisalignedbb))
                 {
                     return false;
                 }
@@ -327,7 +322,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
             return phasm.getAttackTarget() != null;
         }
 
-        public void updateTask() {
+        public void tick() {
             if (phasm.getAttackTarget() != null) {
                 EntityLivingBase entitylivingbase = phasm.getAttackTarget();
                 double d1 = entitylivingbase.posX - this.phasm.posX;
@@ -347,7 +342,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
         }
 
         public boolean shouldExecute() {return phasm.getAttackTarget()!=null;}
-        public void updateTask(){
+        public void tick(){
             if(phasm.getAttackTarget()!=null){
                 phasm.motionX=(phasm.getAttackTarget().posX-phasm.posX)/50;
                 phasm.motionY=(phasm.getAttackTarget().posY+1-phasm.posY)/50;

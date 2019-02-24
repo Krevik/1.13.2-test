@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
@@ -23,7 +24,7 @@ public class EntityPoisonousScorpion extends EntityMob
 {
     public EntityPoisonousScorpion(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.POISONOUS_SCORPION,worldIn);
         this.setSize(0.4F, 0.7F);
         this.experienceValue=25;
     }

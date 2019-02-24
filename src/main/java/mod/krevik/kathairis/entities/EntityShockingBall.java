@@ -1,17 +1,6 @@
 package mod.krevik.kathairis.entities;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
-
+/*
 public class EntityShockingBall extends EntityThrowable
 {
 	Random random = new Random();
@@ -65,7 +54,7 @@ public class EntityShockingBall extends EntityThrowable
             	ClientProxy.drawParticle(this.world, particle);
             }
         }*/
-        super.onKillCommand();
+        /*super.onKillCommand();
     }
     
     protected void onImpact(RayTraceResult result)
@@ -88,4 +77,4 @@ public class EntityShockingBall extends EntityThrowable
 
         }
     }
-}
+}*/

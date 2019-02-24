@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.blocks.plants.BlockKatharianPlant;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -31,17 +32,17 @@ public class EntityMysticBird extends EntityAmbientCreature
 
     public EntityMysticBird(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.MYSTIC_BIRD,worldIn);
         this.setSize(0.5F, 0.7F);
         this.setIsBirdSitting(true);
         this.experienceValue=5;
     }
-    
+
     @Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
-    {
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance p_204210_1_, @Nullable IEntityLivingData p_204210_2_, @Nullable NBTTagCompound p_204210_3_) {
         this.setVariant(this.rand.nextInt(4));
-        return super.onInitialSpawn(difficulty, livingdata);
+        return super.onInitialSpawn(p_204210_1_, p_204210_2_, p_204210_3_);
     }
 
     public int getMaxSpawnedInChunk()

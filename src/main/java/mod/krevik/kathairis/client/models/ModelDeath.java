@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.entity.model.ModelBase;
 import net.minecraft.client.renderer.entity.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumHandSide;
-import net.minecraft.util.math.MathHelper;
 /**
  * ModelDeath - Undefined
  * Created using Tabula 7.0.0

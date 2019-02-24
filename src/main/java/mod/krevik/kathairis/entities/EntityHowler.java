@@ -4,6 +4,7 @@ import com.google.common.base.Predicate;
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
 import mod.krevik.kathairis.entities.ai.EntityAIHowlerAttackStun;
 import mod.krevik.kathairis.entities.ai.EntityAITargetSpecified;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
@@ -32,7 +33,7 @@ public class EntityHowler extends EntityMob
 
     public EntityHowler(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.HOWLER,worldIn);
         this.setSize(0.85F, 1F);
     }
 

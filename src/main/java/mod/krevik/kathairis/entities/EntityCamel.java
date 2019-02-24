@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.EntityAgeable;
@@ -10,7 +11,6 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
@@ -21,7 +21,7 @@ public class EntityCamel extends AbstractHorse
 
     public EntityCamel(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.CAMEL,worldIn);
         this.setSize(1.6F, 1.5F);
     }
     
@@ -30,29 +30,7 @@ public class EntityCamel extends AbstractHorse
     	super.initEntityAI();
         this.tasks.addTask(0, new EntityAIAvoidMovingSandsAndCactus(this,1.2D));
     }
-    
-    protected void registerData()
-    {
-        super.registerData();
 
-    }
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
-    public void writeAdditional(NBTTagCompound compound)
-    {
-        super.writeAdditional(compound);
-
-    }
-
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    public void readAdditional(NBTTagCompound compound)
-    {
-        super.readAdditional(compound);
-
-    }
     
     public void onDeath(DamageSource cause)
     {
@@ -60,18 +38,12 @@ public class EntityCamel extends AbstractHorse
 
     }
 
- 
-    /**
-     * Updates the items in the saddle and armor slots of the horse's inventory.
-     */
+
     protected void updateHorseSlots()
     {
         super.updateHorseSlots();
     }
 
-    /**
-     * Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
-     */
     public void onInventoryChanged(IInventory invBasic)
     {
         super.onInventoryChanged(invBasic);

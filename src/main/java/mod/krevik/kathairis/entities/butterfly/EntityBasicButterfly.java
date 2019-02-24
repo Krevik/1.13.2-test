@@ -1,7 +1,6 @@
 package mod.krevik.kathairis.entities.butterfly;
 
 import mod.krevik.kathairis.blocks.plants.BlockKatharianPlant;
-import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

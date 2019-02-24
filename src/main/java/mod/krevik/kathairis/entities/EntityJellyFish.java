@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.entities.ai.EntityAIAttackTarget;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
@@ -14,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
 
@@ -31,7 +33,7 @@ public class EntityJellyFish extends EntityMob
     private float randomMotionVecZ;
     public EntityJellyFish(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.JELLY_FISH,worldIn);
         this.experienceValue = 30;
         this.setBoundingBox(bb);
         this.moveHelper = new EntityJellyFish.JellyFishMoveHelper(this);
@@ -145,10 +147,9 @@ public class EntityJellyFish extends EntityMob
         return KatharianLootTables.LOOT_JELLYFISH;
     }
 
-
-    public boolean getCanSpawnHere()
-    {
-        return this.rand.nextInt(5) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
+    @Override
+    public boolean canSpawn(IWorld p_205020_1_, boolean p_205020_2_) {
+        return super.canSpawn(p_205020_1_, p_205020_2_);
     }
 
     public float getEyeHeight()
@@ -166,7 +167,7 @@ public class EntityJellyFish extends EntityMob
             this.parentEntity = ghast;
         }
 
-        public void onUpdateMoveHelper()
+        public void tick()
         {
         	if(!this.parentEntity.hasMovementVector()||this.parentEntity.getRNG().nextInt(40)==0) {
         		this.parentEntity.randomMotionVecX=this.parentEntity.getRNG().nextFloat()-this.parentEntity.getRNG().nextFloat();

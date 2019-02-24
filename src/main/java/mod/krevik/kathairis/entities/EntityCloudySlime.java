@@ -3,6 +3,7 @@ package mod.krevik.kathairis.entities;
 import com.google.common.collect.Sets;
 import mod.krevik.kathairis.KItems;
 import mod.krevik.kathairis.entities.ai.EntityAIAttackTarget;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
@@ -28,14 +29,14 @@ import net.minecraft.world.gen.Heightmap;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.Set;
-public class EntityCloudySlime extends EntityTameable implements EntityFlying
+public class EntityCloudySlime extends EntityTameable
 {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(EntityCloudySlime.class, DataSerializers.VARINT);
     private static final Set<Item> TAME_ITEMS = Sets.newHashSet(KItems.cloud_Essence);
 
     public EntityCloudySlime(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.CLOUDY_SLIME,worldIn);
         this.setSize(1.4F, 1.4F);
         this.moveHelper = new EntityFlyHelper(this);
         this.setTamed(false);
@@ -73,6 +74,52 @@ public class EntityCloudySlime extends EntityTameable implements EntityFlying
         pathnavigateflying.setCanOpenDoors(false);
         pathnavigateflying.setCanEnterDoors(true);
         return pathnavigateflying;
+    }
+
+    public void travel(float strafe, float vertical, float forward) {
+        if (this.isInWater()) {
+            this.moveRelative(strafe, vertical, forward, 0.02F);
+            this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+            this.motionX *= (double)0.8F;
+            this.motionY *= (double)0.8F;
+            this.motionZ *= (double)0.8F;
+        } else if (this.isInLava()) {
+            this.moveRelative(strafe, vertical, forward, 0.02F);
+            this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+            this.motionX *= 0.5D;
+            this.motionY *= 0.5D;
+            this.motionZ *= 0.5D;
+        } else {
+            float f = 0.91F;
+            if (this.onGround) {
+                BlockPos underPos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getBoundingBox().minY) - 1, MathHelper.floor(this.posZ));
+                f = this.world.getBlockState(underPos).getSlipperiness(world, underPos, this) * 0.91F;
+            }
+
+            float f1 = 0.16277137F / (f * f * f);
+            this.moveRelative(strafe, vertical, forward, this.onGround ? 0.1F * f1 : 0.02F);
+            f = 0.91F;
+            if (this.onGround) {
+                BlockPos underPos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getBoundingBox().minY) - 1, MathHelper.floor(this.posZ));
+                f = this.world.getBlockState(underPos).getSlipperiness(world, underPos, this) * 0.91F;
+            }
+
+            this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+            this.motionX *= (double)f;
+            this.motionY *= (double)f;
+            this.motionZ *= (double)f;
+        }
+
+        this.prevLimbSwingAmount = this.limbSwingAmount;
+        double d1 = this.posX - this.prevPosX;
+        double d0 = this.posZ - this.prevPosZ;
+        float f2 = MathHelper.sqrt(d1 * d1 + d0 * d0) * 4.0F;
+        if (f2 > 1.0F) {
+            f2 = 1.0F;
+        }
+
+        this.limbSwingAmount += (f2 - this.limbSwingAmount) * 0.4F;
+        this.limbSwing += this.limbSwingAmount;
     }
 
     public float getEyeHeight()

@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.entities;
 
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.MoverType;
@@ -35,7 +36,7 @@ public class EntityFlyingSquid extends EntityFlying
 
     public EntityFlyingSquid(World worldIn)
     {
-        super(worldIn);
+        super(KatharianEntityTypes.FLYING_SQUID,worldIn);
         this.setSize(1.5F, 2F);
         this.getDataManager().set(isHoldingPlayer, Boolean.valueOf(false));
         this.getDataManager().set(canHoldPlayer, Boolean.valueOf(true));
@@ -274,7 +275,7 @@ public class EntityFlyingSquid extends EntityFlying
             /**
              * Keep ticking a continuous task that has already been started
              */
-            public void updateTask()
+            public void tick()
             {
                 int i = this.squid.getIdleTime();
                 boolean isHoldingPlayer=this.squid.isHoldingPlayer();
