@@ -2,6 +2,9 @@ package mod.krevik.kathairis.blocks;
 
 import com.google.common.cache.LoadingCache;
 import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.Kathairis;
+import mod.krevik.kathairis.dimension.KathairisTeleportManager;
+import mod.krevik.kathairis.dimension.TeleporterKathairis;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.SoundType;
@@ -11,6 +14,7 @@ import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -26,8 +30,12 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.DimensionManager;
+import org.apache.commons.lang3.Validate;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -178,6 +186,7 @@ public class BlockKathairisPortal extends BlockPortal
         return VoxelShapes.empty();
     }
 
+    @Override
     public VoxelShape getShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
         switch((EnumFacing.Axis)state.get(AXIS)) {
             case Z:
@@ -212,17 +221,51 @@ public class BlockKathairisPortal extends BlockPortal
         return !flag && facingState.getBlock() != this && !(new BlockKathairisPortal.Size(worldIn, currentPos, enumfacing$axis1)).func_208508_f() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
+    @Override
     public int quantityDropped(IBlockState state, Random random) {
         return 0;
     }
 
+    @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 
+    @Override
     public void onEntityCollision(IBlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (!entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
-            entityIn.setPortal(pos);
+        if(entityIn!=null) {
+            if(entityIn instanceof EntityPlayerMP){
+                KathairisTeleportManager.tele((EntityPlayerMP)entityIn);
+            }else{
+                KathairisTeleportManager.teleEntity(entityIn);
+            }
+        }
+           /* if(!worldIn.isRemote) {
+                if (!entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
+                    entityIn.setPortal(pos);
+                    if (entityIn instanceof EntityPlayerMP) {
+                        EntityPlayerMP player = (EntityPlayerMP) entityIn;
+                        entityIn.timeUntilPortal = 10;
+                        if (player.dimension == Kathairis.kath_Dim_type) {
+
+                        } else if (player.dimension == DimensionType.OVERWORLD) {
+
+                            WorldServer server = player.getServer().getWorld(DimensionType.OVERWORLD);
+                            player.changeDimension(DimensionType.OVERWORLD, new TeleporterKathairis(server));
+                        }
+                    } else {
+                        entityIn.timeUntilPortal = 10;
+                        if (entityIn.dimension == Kathairis.kath_Dim_type) {
+                            entityIn.changeDimension(DimensionType.OVERWORLD, new TeleporterKathairis(entityIn.getServer().getWorld(DimensionType.OVERWORLD)));
+                        } else if (entityIn.dimension == DimensionType.OVERWORLD) {
+                            WorldServer server = worldIn.getServer().getWorld(DimensionType.OVERWORLD);
+                            Validate.notNull(server, "server is null!");
+
+                            entityIn.changeDimension(DimensionType.OVERWORLD, new TeleporterKathairis(server));
+                        }
+                    }
+                }
+            /*}
         }
     }
 
@@ -271,7 +314,7 @@ public class BlockKathairisPortal extends BlockPortal
 		}
 
 
-    }*/
+    }
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
@@ -302,6 +345,7 @@ public class BlockKathairisPortal extends BlockPortal
         }*/
     }
 
+    @Override
     public IBlockState rotate(IBlockState state, Rotation rot) {
         switch(rot) {
             case COUNTERCLOCKWISE_90:
@@ -319,10 +363,12 @@ public class BlockKathairisPortal extends BlockPortal
         }
     }
 
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, IBlockState> builder) {
         builder.add(AXIS);
     }
 
+    @Override
     public BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos p_181089_2_) {
         EnumFacing.Axis enumfacing$axis = EnumFacing.Axis.Z;
         BlockKathairisPortal.Size blockportal$size = new BlockKathairisPortal.Size(worldIn, p_181089_2_, EnumFacing.Axis.X);
@@ -364,6 +410,7 @@ public class BlockKathairisPortal extends BlockPortal
         }
     }
 
+    @Override
     public BlockFaceShape getBlockFaceShape(IBlockReader worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.UNDEFINED;
     }

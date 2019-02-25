@@ -11,6 +11,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -34,14 +36,8 @@ public class Kathairis {
     public static final String MODID = "kathairis";
     public static final String NAME = "Kathairis";
     public static final String VERSION = "@VERSION@";
-
-    //public static final int DIMENSION_ID = -6185249;
-    /*public static final DimensionType kath_Dim_Type = new DimensionType(DIMENSION_ID, "kathairis", "_kathairis", new Supplier<Dimension>() {
-        @Override
-        public Dimension get() {
-            return new OverworldDimension();
-        }
-    });*/
+    public static final int kath_DIM_ID = 4564512;
+    public static DimensionType kath_Dim_type = new DimensionType(kath_DIM_ID , "kathairis", "kathairis", DimensionKathairis::new).setRegistryName(Kathairis.MODID,"kathairis");
 
     public Kathairis() {
         KBlocks.initBlocks();
@@ -73,17 +69,10 @@ public class Kathairis {
                 collect(Collectors.toList()));
     }
 
-    DimensionType kath_Dim_type = new DimensionType(16, "kathairis", "kathairis", new Supplier<Dimension>() {
-        @Override
-        public Dimension get() {
-            return new DimensionKathairis();
-        }
-    });
+
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
-        //DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID,"kathairis"),new DimensionKathairis(),null);
-        DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID,"kathairis"),new ModDimensionKathairis(),null);
+        DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID, "kathairis"), new ModDimensionKathairis(),kath_Dim_type.getData());
         LOGGER.info("HELLO FROM PREINIT");
     }
 
