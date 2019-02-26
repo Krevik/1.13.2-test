@@ -3,11 +3,15 @@ package mod.krevik.kathairis.util;
 import com.google.common.base.Preconditions;
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.KItems;
+import mod.krevik.kathairis.Kathairis;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,6 +28,20 @@ public class RegistryHelper {
             registry.register(block);
         }
     }
+
+    @SubscribeEvent
+    public static void registerDimensionTypes(final RegistryEvent.Register<DimensionType> event){
+        final IForgeRegistry<DimensionType> registry = event.getRegistry();
+        registry.register(Kathairis.kath_Dim_type);
+    }
+
+    @SubscribeEvent
+    public static void registerDimensionMod(final RegistryEvent.Register<ModDimension> event){
+        final IForgeRegistry<ModDimension> registry = event.getRegistry();
+        registry.register(Kathairis.kath_Mod_Dim);
+    }
+
+
 
     @SubscribeEvent
     public static void registerItems(final RegistryEvent.Register<Item> event){

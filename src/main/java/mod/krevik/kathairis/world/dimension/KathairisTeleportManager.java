@@ -1,21 +1,17 @@
-package mod.krevik.kathairis.dimension;
+package mod.krevik.kathairis.world.dimension;
 
 import mod.krevik.kathairis.Kathairis;
-import net.minecraft.block.BlockPortal;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-
-import java.util.Arrays;
+import net.minecraftforge.fml.loading.FMLCommonLaunchHandler;
+import org.apache.commons.lang3.Validate;
 
 public class KathairisTeleportManager extends TileEntity
 {
@@ -189,8 +185,12 @@ public class KathairisTeleportManager extends TileEntity
                         player1.timeUntilPortal = 10;
                         setDme21();
 
+                        Validate.notNull(Kathairis.kath_Dim_type,"Kath Dim Type is null");
+                        Validate.notNull(player1.getServerWorld(),"Server is null");
                         setOverworldXYZ(player1.posX, player1.posY, player1.posZ);
-                        player.changeDimension(DimensionType.OVERWORLD, new TeleporterKathairis(player1.getServerWorld()));
+
+                        mcServer.getPlayerList().transferEntityToWorld(player1,DimensionType.OVERWORLD, player1.getServerWorld(), mcServer.getWorld(Kathairis.kath_Dim_type),new TeleporterKathairis(player1.getServerWorld()));
+                        //player.changeDimension(Kathairis.kath_Dim_type, new TeleporterKathairis(player1.getServerWorld()));
                         setTestXYZ(player1.posX, player1.posY, player1.posZ);
 
 
@@ -198,7 +198,7 @@ public class KathairisTeleportManager extends TileEntity
                         player1.timeUntilPortal = 10;
                         setDme22();
                         setOverworldXYZ(player1.posX, player1.posY, player1.posZ);
-                        player.changeDimension(DimensionType.OVERWORLD, new TeleporterKathairis(player1.getServerWorld()));
+                        player.changeDimension(Kathairis.kath_Dim_type, new TeleporterKathairis(player1.getServerWorld()));
 
                     }
 

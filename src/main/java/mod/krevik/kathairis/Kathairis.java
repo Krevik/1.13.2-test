@@ -1,13 +1,10 @@
 package mod.krevik.kathairis;
 
-import mod.krevik.kathairis.client.EntityRenderingRegistry;
-import mod.krevik.kathairis.util.EntityRegistry;
 import mod.krevik.kathairis.util.FunctionHelper;
-import mod.krevik.kathairis.world.DimensionKathairis;
-import mod.krevik.kathairis.world.ModDimensionKathairis;
+import mod.krevik.kathairis.world.dimension.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.*;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,7 +21,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.function.Function;
+import java.io.File;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -37,7 +34,14 @@ public class Kathairis {
     public static final String NAME = "Kathairis";
     public static final String VERSION = "@VERSION@";
     public static final int kath_DIM_ID = 4564512;
-    public static DimensionType kath_Dim_type = new DimensionType(kath_DIM_ID , "kathairis", "kathairis", DimensionKathairis::new).setRegistryName(Kathairis.MODID,"kathairis");
+    public static final ModDimension kath_Mod_Dim = new ModDimensionKathairis();
+    public static final DimensionType kath_Dim_type = new DimensionType(kath_DIM_ID , Kathairis.MODID, Kathairis.MODID, DimensionKathairis::new).setRegistryName(Kathairis.MODID);
+    public static final ChunkGeneratorType<OverworldGenSettings, ChunkGeneratorKathairis> kath_Chunk_Generator = new ChunkGeneratorType<OverworldGenSettings, ChunkGeneratorKathairis>(ChunkGeneratorKathairis::new,false, new Supplier<OverworldGenSettings>() {
+        @Override
+        public OverworldGenSettings get() {
+            return new OverworldGenSettings();
+        }
+    }, new ResourceLocation(Kathairis.MODID,"chunk_gen_kathairis"));
 
     public Kathairis() {
         KBlocks.initBlocks();
@@ -72,7 +76,7 @@ public class Kathairis {
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID, "kathairis"), new ModDimensionKathairis(),kath_Dim_type.getData());
+        DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID), kath_Mod_Dim,kath_Dim_type.getData());
         LOGGER.info("HELLO FROM PREINIT");
     }
 

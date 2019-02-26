@@ -1,11 +1,9 @@
-package mod.krevik.kathairis.world;
+package mod.krevik.kathairis.world.dimension;
 
 import com.mojang.datafixers.FunctionType;
 import mod.krevik.kathairis.Kathairis;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.OverworldDimension;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 
 import javax.annotation.Nonnull;
@@ -14,7 +12,7 @@ import java.util.function.Function;
 public class ModDimensionKathairis extends ModDimension {
 
     public ModDimensionKathairis(){
-        setRegistryName(Kathairis.MODID,"kathairis1");
+        setRegistryName(Kathairis.MODID);
     }
 
     @Override

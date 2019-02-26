@@ -1,12 +1,10 @@
-package mod.krevik.kathairis.dimension;
+package mod.krevik.kathairis.world.dimension;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.BlockKathairisPortal;
-import mod.krevik.kathairis.blocks.plants.BlockKatharianPlant;
-import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
@@ -27,7 +25,7 @@ public class TeleporterKathairis extends Teleporter {
     private static final BlockKathairisPortal BLOCK_NETHER_PORTAL = (BlockKathairisPortal) KBlocks.KATHARIAN_PORTAL;
     protected final WorldServer world;
     protected final Random random;
-    protected final Long2ObjectMap<net.minecraft.world.Teleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<>(4096);
+    protected final Long2ObjectMap<TeleporterKathairis.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<>(4096);
 
     public TeleporterKathairis(WorldServer worldIn) {
         super(worldIn);
@@ -76,7 +74,7 @@ public class TeleporterKathairis extends Teleporter {
         BlockPos blockpos = BlockPos.ORIGIN;
         long l = ChunkPos.asLong(j, k);
         if (this.destinationCoordinateCache.containsKey(l)) {
-            net.minecraft.world.Teleporter.PortalPosition teleporter$portalposition = this.destinationCoordinateCache.get(l);
+            TeleporterKathairis.PortalPosition teleporter$portalposition = this.destinationCoordinateCache.get(l);
             d0 = 0.0D;
             blockpos = teleporter$portalposition;
             teleporter$portalposition.lastUpdateTime = this.world.getGameTime();
@@ -107,7 +105,7 @@ public class TeleporterKathairis extends Teleporter {
 
         if (d0 >= 0.0D) {
             if (flag) {
-                this.destinationCoordinateCache.put(l, new Teleporter.PortalPosition(blockpos, this.world.getGameTime()));
+                this.destinationCoordinateCache.put(l, new TeleporterKathairis.PortalPosition(blockpos, this.world.getGameTime()));
             }
 
             double d5 = (double)blockpos.getX() + 0.5D;
@@ -323,16 +321,25 @@ public class TeleporterKathairis extends Teleporter {
     public void removeStalePortalLocations(long worldTime) {
         if (worldTime % 100L == 0L) {
             long i = worldTime - 300L;
-            ObjectIterator<net.minecraft.world.Teleporter.PortalPosition> objectiterator = this.destinationCoordinateCache.values().iterator();
+            ObjectIterator<TeleporterKathairis.PortalPosition> objectiterator = this.destinationCoordinateCache.values().iterator();
 
             while(objectiterator.hasNext()) {
-                net.minecraft.world.Teleporter.PortalPosition teleporter$portalposition = objectiterator.next();
+                TeleporterKathairis.PortalPosition teleporter$portalposition = objectiterator.next();
                 if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i) {
                     objectiterator.remove();
                 }
             }
         }
 
+    }
+
+    public class PortalPosition extends BlockPos {
+        public long lastUpdateTime;
+
+        public PortalPosition(BlockPos pos, long lastUpdate) {
+            super(pos.getX(), pos.getY(), pos.getZ());
+            this.lastUpdateTime = lastUpdate;
+        }
     }
 
     @Override
