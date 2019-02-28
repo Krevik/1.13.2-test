@@ -18,12 +18,15 @@ import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.*;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.OverworldDimension;
 import net.minecraft.world.gen.*;
+import net.minecraftforge.common.DimensionManager;
 
 public class DimensionKathairis extends OverworldDimension {
+
     public DimensionKathairis() {
-        super(Kathairis.kath_Dim_type);
+        super(DimensionManager.getRegistry().get(Kathairis.kath_DIM_ID));
     }
 
     public IChunkGenerator<? extends IChunkGenSettings> createChunkGenerator() {
@@ -38,5 +41,10 @@ public class DimensionKathairis extends OverworldDimension {
         overworldgensettings1.setDefautBlock(KBlocks.KATHARIAN_STONE.getDefaultState());
         overworldgensettings1.setDefaultFluid(Blocks.WATER.getDefaultState());
         return chunkgeneratortype4.create(this.world, biomeprovider, overworldgensettings1);
+    }
+
+    @Override
+    public DimensionType getType() {
+        return DimensionManager.getRegistry().get(Kathairis.kath_DIM_ID);
     }
 }

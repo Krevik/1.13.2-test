@@ -12,7 +12,7 @@ import java.util.function.Function;
 public class ModDimensionKathairis extends ModDimension {
 
     public ModDimensionKathairis(){
-        setRegistryName(Kathairis.MODID);
+        setRegistryName(Kathairis.MODID,Kathairis.MODID);
     }
 
     @Override

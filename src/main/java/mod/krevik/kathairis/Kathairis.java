@@ -3,12 +3,17 @@ package mod.krevik.kathairis;
 import mod.krevik.kathairis.util.FunctionHelper;
 import mod.krevik.kathairis.world.dimension.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.village.VillageCollection;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.*;
+import net.minecraft.world.storage.DimensionSavedDataManager;
+import net.minecraft.world.storage.ISaveHandler;
+import net.minecraft.world.storage.SaveDataMemoryStorage;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
+import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -22,6 +27,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -33,9 +39,9 @@ public class Kathairis {
     public static final String MODID = "kathairis";
     public static final String NAME = "Kathairis";
     public static final String VERSION = "@VERSION@";
-    public static final int kath_DIM_ID = 4564512;
+    public static final int kath_DIM_ID = 3;
     public static final ModDimension kath_Mod_Dim = new ModDimensionKathairis();
-    public static final DimensionType kath_Dim_type = new DimensionType(kath_DIM_ID , Kathairis.MODID, Kathairis.MODID, DimensionKathairis::new).setRegistryName(Kathairis.MODID);
+    public static DimensionType kath_Dim_type = new DimensionType(kath_DIM_ID , Kathairis.MODID, Kathairis.MODID, DimensionKathairis::new).setRegistryName(Kathairis.MODID,"kathairis");
     public static final ChunkGeneratorType<OverworldGenSettings, ChunkGeneratorKathairis> kath_Chunk_Generator = new ChunkGeneratorType<OverworldGenSettings, ChunkGeneratorKathairis>(ChunkGeneratorKathairis::new,false, new Supplier<OverworldGenSettings>() {
         @Override
         public OverworldGenSettings get() {
@@ -62,26 +68,20 @@ public class Kathairis {
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("forge", "helloworld", () -> { LOGGER.info("Hello world"); return "Hello world";});
     }
 
     private void processIMC(final InterModProcessEvent event)
     {
         // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC", event.getIMCStream().
-                map(m->m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
     }
 
 
     private void setup(final FMLCommonSetupEvent event)
     {
         DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID), kath_Mod_Dim,kath_Dim_type.getData());
-        LOGGER.info("HELLO FROM PREINIT");
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
         OBJLoader.INSTANCE.addDomain(Kathairis.MODID);
         //EntityRenderingRegistry.registerRenders();
     }
@@ -90,7 +90,6 @@ public class Kathairis {
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
-        LOGGER.info("HELLO from server starting");
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD event bus
