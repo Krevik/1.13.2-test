@@ -221,7 +221,6 @@ public class KathairisTeleportManager extends TileEntity
                     player.changeDimension(DimensionType.OVERWORLD, new TeleporterKathairis(toWorld));
 
                 }
-                System.out.println("teleported plaayer to: " + player1.dimension.toString());
 
             }
         }

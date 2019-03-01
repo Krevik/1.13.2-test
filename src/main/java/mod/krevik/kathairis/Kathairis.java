@@ -2,8 +2,13 @@ package mod.krevik.kathairis;
 
 import mod.krevik.kathairis.util.FunctionHelper;
 import mod.krevik.kathairis.world.dimension.*;
+import mod.krevik.kathairis.world.dimension.biome.BiomeMysticForest;
+import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
+import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.village.VillageCollection;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.provider.*;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.storage.DimensionSavedDataManager;
@@ -42,16 +47,11 @@ public class Kathairis {
     public static final int kath_DIM_ID = 3;
     public static final ModDimension kath_Mod_Dim = new ModDimensionKathairis();
     public static DimensionType kath_Dim_type = new DimensionType(kath_DIM_ID , Kathairis.MODID, Kathairis.MODID, DimensionKathairis::new).setRegistryName(Kathairis.MODID,"kathairis");
-    public static final ChunkGeneratorType<OverworldGenSettings, ChunkGeneratorKathairis> kath_Chunk_Generator = new ChunkGeneratorType<OverworldGenSettings, ChunkGeneratorKathairis>(ChunkGeneratorKathairis::new,false, new Supplier<OverworldGenSettings>() {
-        @Override
-        public OverworldGenSettings get() {
-            return new OverworldGenSettings();
-        }
-    }, new ResourceLocation(Kathairis.MODID,"chunk_gen_kathairis"));
-
+    public static final BiomeProviderType<KatharianBiomeProviderSettings, KatharianBiomeProvider> KATHARIAN_BIOME_PROVIDER_TYPE = BiomeProviderType.func_212581_a("katharian_biome_provider_type", KatharianBiomeProvider::new, KatharianBiomeProviderSettings::new);
     public Kathairis() {
         KBlocks.initBlocks();
         KItems.initItems();
+        initBiomes();
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the doClientStuff method for modloading
@@ -103,6 +103,13 @@ public class Kathairis {
 
     public static FunctionHelper getHelper(){
         return helper;
+    }
+
+
+    public static Biome BIOME_MYSTIC_FOREST;
+
+    private static void initBiomes(){
+        BIOME_MYSTIC_FOREST= new BiomeMysticForest().setRegistryName(Kathairis.MODID,"katharian_forest");
     }
 
 }

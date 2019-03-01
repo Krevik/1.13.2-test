@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ModDimension;
@@ -42,6 +43,11 @@ public class RegistryHelper {
         registry.register(Kathairis.kath_Mod_Dim);
     }
 
+    @SubscribeEvent
+    public static void registerKatharianBiomes(final RegistryEvent.Register<Biome> event){
+        final IForgeRegistry<Biome> registry = event.getRegistry();
+        registry.register(Kathairis.BIOME_MYSTIC_FOREST);
+    }
 
 
     @SubscribeEvent

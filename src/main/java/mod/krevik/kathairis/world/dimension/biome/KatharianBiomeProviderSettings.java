@@ -1,12 +1,14 @@
 package mod.krevik.kathairis.world.dimension.biome;
 
+import mod.krevik.kathairis.world.dimension.KatharianGenSettings;
+import net.minecraft.world.biome.provider.IBiomeProviderSettings;
 import net.minecraft.world.biome.provider.OverworldBiomeProviderSettings;
 import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraft.world.storage.WorldInfo;
 
-public class KatharianBiomeProviderSettings {
+public class KatharianBiomeProviderSettings extends OverworldBiomeProviderSettings {
     private WorldInfo worldInfo;
-    private OverworldGenSettings generatorSettings;
+    private KatharianGenSettings generatorSettings;
 
     public KatharianBiomeProviderSettings() {
     }
@@ -16,7 +18,7 @@ public class KatharianBiomeProviderSettings {
         return this;
     }
 
-    public KatharianBiomeProviderSettings setGeneratorSettings(OverworldGenSettings p_205441_1_) {
+    public KatharianBiomeProviderSettings setGeneratorSettings(KatharianGenSettings p_205441_1_) {
         this.generatorSettings = p_205441_1_;
         return this;
     }
@@ -25,7 +27,7 @@ public class KatharianBiomeProviderSettings {
         return this.worldInfo;
     }
 
-    public OverworldGenSettings getGeneratorSettings() {
+    public KatharianGenSettings getGeneratorSettings() {
         return this.generatorSettings;
     }
 }

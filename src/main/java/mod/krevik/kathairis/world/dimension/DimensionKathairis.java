@@ -7,6 +7,8 @@ import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.JsonOps;
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
+import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
+import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -31,10 +33,10 @@ public class DimensionKathairis extends OverworldDimension {
 
     public IChunkGenerator<? extends IChunkGenSettings> createChunkGenerator() {
         WorldType worldtype = this.world.getWorldInfo().getTerrainType();
-        BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeprovidertype = BiomeProviderType.FIXED;
+        BiomeProviderType<KatharianBiomeProviderSettings, KatharianBiomeProvider> biomeprovidertype1 = Kathairis.KATHARIAN_BIOME_PROVIDER_TYPE;
 
-        SingleBiomeProviderSettings singlebiomeprovidersettings2 = biomeprovidertype.createSettings().setBiome(Biomes.OCEAN);
-        BiomeProvider biomeprovider = biomeprovidertype.create(singlebiomeprovidersettings2);
+        KatharianBiomeProviderSettings overworldbiomeprovidersettings1 = biomeprovidertype1.createSettings().setGeneratorSettings(new KatharianGenSettings()).setWorldInfo(this.world.getWorldInfo());
+        BiomeProvider biomeprovider = biomeprovidertype1.create(overworldbiomeprovidersettings1);
 
         ChunkGeneratorType<OverworldGenSettings, ChunkGeneratorOverworld> chunkgeneratortype4 = ChunkGeneratorType.SURFACE;
         OverworldGenSettings overworldgensettings1 = chunkgeneratortype4.createSettings();
