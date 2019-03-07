@@ -23,7 +23,10 @@ import net.minecraft.world.biome.provider.*;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.OverworldDimension;
 import net.minecraft.world.gen.*;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.common.DimensionManager;
+
+import javax.annotation.Nullable;
 
 public class DimensionKathairis extends OverworldDimension {
 
@@ -48,5 +51,16 @@ public class DimensionKathairis extends OverworldDimension {
     @Override
     public DimensionType getType() {
         return DimensionManager.getRegistry().get(Kathairis.kath_DIM_ID);
+    }
+
+    @Override
+    public float getCloudHeight() {
+        return -1000;
+    }
+
+    @Nullable
+    @Override
+    public IRenderHandler getCloudRenderer() {
+        return null;
     }
 }

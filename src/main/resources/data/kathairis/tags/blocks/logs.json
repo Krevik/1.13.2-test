@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "kathairis:mystic_log",
-    "kathairis:shiny_log",
-    "kathairis:soul_log"
+    "#kathairis:mystic_logs",
+    "#kathairis:shiny_logs",
+    "#kathairis:soul_logs"
   ]
 }

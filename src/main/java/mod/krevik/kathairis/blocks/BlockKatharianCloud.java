@@ -4,6 +4,8 @@ import mod.krevik.kathairis.KItems;
 import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockGlass;
+import net.minecraft.block.BlockIce;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -29,6 +31,18 @@ public class BlockKatharianCloud extends BaseBlock {
         super(Name, Block.Properties.create(Material.CLOTH).doesNotBlockMovement().sound(SoundType.CLOTH).hardnessAndResistance(0.5f),KathairisItemGroups.kathairis_building_blocks);
         pickedItem=itemAfterPick;
     }
+
+    @Override
+    public boolean propagatesSkylightDown(IBlockState p_200123_1_, IBlockReader p_200123_2_, BlockPos p_200123_3_) {
+        return true;
+    }
+
+    @Override
+    public boolean isVariableOpacity() {
+        return true;
+    }
+
+
 
     @Override
     public void onEntityCollision(IBlockState state, World worldIn, BlockPos pos, Entity entityIn) {

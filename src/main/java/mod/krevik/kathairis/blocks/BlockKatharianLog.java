@@ -1,12 +1,17 @@
 package mod.krevik.kathairis.blocks;
 
+import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -14,20 +19,21 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
 
 
-public class BlockKatharianLog extends BaseBlock {
+public class BlockKatharianLog extends BlockLog {
     public static final EnumProperty<EnumFacing.Axis> AXIS = BlockStateProperties.AXIS;
 
     public BlockKatharianLog(String Name) {
-        super(Name,Block.Properties.create(Material.WOOD).hardnessAndResistance(3.5f).sound(SoundType.WOOD), KathairisItemGroups.kathairis_building_blocks);
+        super(null,Block.Properties.create(Material.WOOD).hardnessAndResistance(3.5f).sound(SoundType.WOOD));
         this.setDefaultState(this.getDefaultState().with(AXIS, EnumFacing.Axis.Y));
+        setRegistryName(Kathairis.MODID,Name);
     }
 
-    /**
-     * Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
-     * @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is
-     * fine.
-     */
+    public Block addToBlockAndItemBlockRegistryList(){
+        KBlocks.blockRegistryList.add(this);
+        KBlocks.itemBlocksRegistryList.add(new ItemBlock(this,new Item.Properties().group(KathairisItemGroups.kathairis_building_blocks)));
+        return this;
+    }
+
     @Override
     public IBlockState rotate(IBlockState state, Rotation rot) {
         switch(rot) {

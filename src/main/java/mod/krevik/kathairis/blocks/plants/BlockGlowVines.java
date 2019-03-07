@@ -36,6 +36,8 @@ public class BlockGlowVines extends BlockKatharianPlant {
         setDefaultState(getDefaultState().with(VARIANT, EnumType.TOP).with(FACING, EnumFacing.EAST));
     }
 
+
+
     @Override
     public boolean isFullCube(IBlockState state)
     {
@@ -141,6 +143,29 @@ public class BlockGlowVines extends BlockKatharianPlant {
 
     public boolean canPlaceBlockAt(IWorldReaderBase worldIn, BlockPos pos)
     {
+        boolean can=false;
+        if(!worldIn.isAirBlock(pos.east())&&worldIn.getBlockState(pos.east()).isFullCube()){
+            can=true;
+        }
+        if(!worldIn.isAirBlock(pos.west())&&worldIn.getBlockState(pos.west()).isFullCube()){
+            can=true;
+        }
+        if(!worldIn.isAirBlock(pos.south())&&worldIn.getBlockState(pos.south()).isFullCube()){
+            can=true;
+        }
+        if(!worldIn.isAirBlock(pos.north())&&worldIn.getBlockState(pos.north()).isFullCube()){
+            can=true;
+        }
+        if(!worldIn.isAirBlock(pos.up())) {
+            if (worldIn.getBlockState(pos.up()).getBlock() instanceof BlockGlowVines) {
+                EnumType upperVariant = worldIn.getBlockState(pos.up()).get(VARIANT);
+                can = upperVariant != EnumType.BOTTOM;
+            }
+        }
+        return can;
+    }
+
+    public static boolean canPlaceBlockAtStatic(IWorldReaderBase worldIn, BlockPos pos) {
         boolean can=false;
         if(!worldIn.isAirBlock(pos.east())&&worldIn.getBlockState(pos.east()).isFullCube()){
             can=true;

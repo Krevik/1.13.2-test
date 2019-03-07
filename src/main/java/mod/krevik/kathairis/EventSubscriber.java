@@ -1,5 +1,6 @@
 package mod.krevik.kathairis;
 
+import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -8,6 +9,7 @@ import net.minecraft.init.Particles;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BasicParticleType;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;

@@ -2,25 +2,19 @@ package mod.krevik.kathairis;
 
 import mod.krevik.kathairis.util.FunctionHelper;
 import mod.krevik.kathairis.world.dimension.*;
-import mod.krevik.kathairis.world.dimension.biome.BiomeMysticForest;
+import mod.krevik.kathairis.world.dimension.biome.biomes.BiomeMysticForest;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
+import mod.krevik.kathairis.world.dimension.biome.biomes.BiomeKatharianRiver;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.village.VillageCollection;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.*;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.*;
-import net.minecraft.world.storage.DimensionSavedDataManager;
-import net.minecraft.world.storage.ISaveHandler;
-import net.minecraft.world.storage.SaveDataMemoryStorage;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
-import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -30,11 +24,6 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 @Mod("kathairis")
 public class Kathairis {
@@ -48,6 +37,7 @@ public class Kathairis {
     public static final ModDimension kath_Mod_Dim = new ModDimensionKathairis();
     public static DimensionType kath_Dim_type = new DimensionType(kath_DIM_ID , Kathairis.MODID, Kathairis.MODID, DimensionKathairis::new).setRegistryName(Kathairis.MODID,"kathairis");
     public static final BiomeProviderType<KatharianBiomeProviderSettings, KatharianBiomeProvider> KATHARIAN_BIOME_PROVIDER_TYPE = BiomeProviderType.func_212581_a("katharian_biome_provider_type", KatharianBiomeProvider::new, KatharianBiomeProviderSettings::new);
+
     public Kathairis() {
         KBlocks.initBlocks();
         KItems.initItems();
@@ -79,6 +69,7 @@ public class Kathairis {
     private void setup(final FMLCommonSetupEvent event)
     {
         DimensionManager.registerDimension(new ResourceLocation(Kathairis.MODID), kath_Mod_Dim,kath_Dim_type.getData());
+        handleTags();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -107,9 +98,15 @@ public class Kathairis {
 
 
     public static Biome BIOME_MYSTIC_FOREST;
+    public static Biome BIOME_KATHARIAN_RIVER;
 
     private static void initBiomes(){
-        BIOME_MYSTIC_FOREST= new BiomeMysticForest().setRegistryName(Kathairis.MODID,"katharian_forest");
+        BIOME_MYSTIC_FOREST = new BiomeMysticForest().setRegistryName(Kathairis.MODID,"katharian_forest");
+        BIOME_KATHARIAN_RIVER = new BiomeKatharianRiver().setRegistryName(Kathairis.MODID,"katharian_river");
+    }
+
+    private static void handleTags(){
+
     }
 
 }

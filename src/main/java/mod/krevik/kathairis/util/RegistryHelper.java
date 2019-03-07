@@ -47,6 +47,7 @@ public class RegistryHelper {
     public static void registerKatharianBiomes(final RegistryEvent.Register<Biome> event){
         final IForgeRegistry<Biome> registry = event.getRegistry();
         registry.register(Kathairis.BIOME_MYSTIC_FOREST);
+        registry.register(Kathairis.BIOME_KATHARIAN_RIVER);
     }
 
 
