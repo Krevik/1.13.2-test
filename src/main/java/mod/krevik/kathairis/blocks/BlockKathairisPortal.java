@@ -214,6 +214,17 @@ public class BlockKathairisPortal extends BlockPortal
     }
 
     @Override
+    public boolean trySpawnPortal(IWorld worldIn, BlockPos pos) {
+        BlockKathairisPortal.Size blockportal$size = this.isPortal1(worldIn, pos);
+        if (blockportal$size != null) {
+            blockportal$size.placePortalBlocks();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public int quantityDropped(IBlockState state, Random random) {
         return 0;
     }
@@ -407,7 +418,7 @@ public class BlockKathairisPortal extends BlockPortal
         return BlockFaceShape.UNDEFINED;
     }
 
-    public static class Size {
+    public static class Size{
         private final IWorld world;
         private final EnumFacing.Axis axis;
         private final EnumFacing rightDir;
@@ -417,10 +428,10 @@ public class BlockKathairisPortal extends BlockPortal
         private int height;
         private int width;
 
-        public Size(IWorld world, BlockPos blockPos, EnumFacing.Axis enum_axis) {
-            this.world = world;
-            this.axis = enum_axis;
-            if (enum_axis == EnumFacing.Axis.X) {
+        public Size(IWorld p_i48740_1_, BlockPos p_i48740_2_, EnumFacing.Axis p_i48740_3_) {
+            this.world = p_i48740_1_;
+            this.axis = p_i48740_3_;
+            if (p_i48740_3_ == EnumFacing.Axis.X) {
                 this.leftDir = EnumFacing.EAST;
                 this.rightDir = EnumFacing.WEST;
             } else {
@@ -428,13 +439,13 @@ public class BlockKathairisPortal extends BlockPortal
                 this.rightDir = EnumFacing.SOUTH;
             }
 
-            for(BlockPos blockpos = blockPos; blockPos.getY() > blockpos.getY() - 21 && blockPos.getY() > 0 && world.isAirBlock(blockPos.down()); blockPos = blockPos.down()) {
+            for(BlockPos blockpos = p_i48740_2_; p_i48740_2_.getY() > blockpos.getY() - 21 && p_i48740_2_.getY() > 0 && this.func_196900_a(p_i48740_1_.getBlockState(p_i48740_2_.down())); p_i48740_2_ = p_i48740_2_.down()) {
                 ;
             }
 
-            int i = this.getDistanceUntilEdge(blockPos, this.leftDir) - 1;
+            int i = this.getDistanceUntilEdge(p_i48740_2_, this.leftDir) - 1;
             if (i >= 0) {
-                this.bottomLeft = blockPos.offset(this.leftDir, i);
+                this.bottomLeft = p_i48740_2_.offset(this.leftDir, i);
                 this.width = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
                 if (this.width < 2 || this.width > 21) {
                     this.bottomLeft = null;
@@ -475,7 +486,7 @@ public class BlockKathairisPortal extends BlockPortal
                 for(int i = 0; i < this.width; ++i) {
                     BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
                     IBlockState iblockstate = this.world.getBlockState(blockpos);
-                    if (!this.world.isAirBlock(blockpos)) {
+                    if (!this.func_196900_a(iblockstate)) {
                         break label56;
                     }
 
@@ -515,8 +526,8 @@ public class BlockKathairisPortal extends BlockPortal
             }
         }
 
-        protected boolean isEmptyBlock(Block blockIn)
-        {
+        protected boolean func_196900_a(IBlockState p_196900_1_) {
+            Block blockIn = p_196900_1_.getBlock();
             return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == Blocks.FIRE || blockIn == KBlocks.KATHARIAN_PORTAL;
         }
 
@@ -529,7 +540,7 @@ public class BlockKathairisPortal extends BlockPortal
                 BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
                 for(int j = 0; j < this.height; ++j) {
-                    this.world.setBlockState(blockpos.up(j), KBlocks.KATHARIAN_PORTAL.getDefaultState().with(BlockKathairisPortal.AXIS, this.axis), 18);
+                    this.world.setBlockState(blockpos.up(j), KBlocks.KATHARIAN_PORTAL.getDefaultState().with(BlockPortal.AXIS, this.axis), 18);
                 }
             }
 

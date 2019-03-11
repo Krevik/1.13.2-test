@@ -16,6 +16,7 @@ import net.minecraft.world.biome.Biome.BiomeBuilder;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.GenerationStage.Carving;
 import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.feature.*;
@@ -32,7 +33,7 @@ import net.minecraft.world.gen.placement.LakeChanceConfig;
 import net.minecraft.world.gen.surfacebuilders.CompositeSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
-public final class BiomeKatharianRiver extends Biome {
+public final class BiomeKatharianRiver extends BiomeKatharianBiomeBase {
     public static final SurfaceBuilderConfig KATHARIAN_GRASS_DIRT_GRAVEL_SURFACE = new SurfaceBuilderConfig(KBlocks.KATHARIAN_GRASS.getDefaultState(), KBlocks.KATHARIAN_DIRT.getDefaultState(), GRAVEL);
 
 
@@ -65,5 +66,8 @@ public final class BiomeKatharianRiver extends Biome {
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.KATHARIAN_FUNGI), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(4)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.KATHARIAN_NIGHT_FLOWER), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(1)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.VILYRIA), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(1)));
+        this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(3, 0, 0, 128)));
+        this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD_MINI_ISLAND, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
+
     }
 }

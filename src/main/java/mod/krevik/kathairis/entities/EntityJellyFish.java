@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.entities;
 
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.entities.ai.EntityAIAttackTarget;
 import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.IWorld;
@@ -31,6 +33,7 @@ public class EntityJellyFish extends EntityMob
     private float randomMotionVecX;
     private float randomMotionVecY;
     private float randomMotionVecZ;
+
     public EntityJellyFish(World worldIn)
     {
         super(KatharianEntityTypes.JELLY_FISH,worldIn);
@@ -39,6 +42,8 @@ public class EntityJellyFish extends EntityMob
         this.moveHelper = new EntityJellyFish.JellyFishMoveHelper(this);
         this.setNoGravity(true);
     }
+
+    @Override
     protected void initEntityAI()
     {
     	super.initEntityAI();
@@ -49,12 +54,17 @@ public class EntityJellyFish extends EntityMob
         //this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 
     }
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 2;
     }
+
     public EntityJellyFish jellyfish=null;
-    @Override public void tick()
+
+    @Override
+    public void tick()
     {
         super.tick();
         if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL)
@@ -85,9 +95,8 @@ public class EntityJellyFish extends EntityMob
         return this.randomMotionVecX != 0.0F || this.randomMotionVecY != 0.0F || this.randomMotionVecZ != 0.0F;
     }
 
-    /**
-     * Called when the entity is attacked.
-     */
+
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
     	if(!this.world.isRemote) {
@@ -106,11 +115,13 @@ public class EntityJellyFish extends EntityMob
         }
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -121,27 +132,32 @@ public class EntityJellyFish extends EntityMob
         this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
     }
 
+    @Override
     public SoundCategory getSoundCategory()
     {
         return SoundCategory.HOSTILE;
     }
 
-    /*protected SoundEvent getAmbientSound()
+    @Override
+    protected SoundEvent getAmbientSound()
     {
-        return KCore.proxy.jellyfish_living;
+        return Kathairis.jellyfish_living;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return KCore.proxy.jellyfish_hurt;
+        return Kathairis.jellyfish_hurt;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
-        return KCore.proxy.jellyfish_dead;
-    }*/
+        return Kathairis.jellyfish_dead;
+    }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_JELLYFISH;
@@ -152,10 +168,12 @@ public class EntityJellyFish extends EntityMob
         return super.canSpawn(p_205020_1_, p_205020_2_);
     }
 
+    @Override
     public float getEyeHeight()
     {
         return 2.6F;
     }
+
     static class JellyFishMoveHelper extends EntityMoveHelper
     {
         private final EntityJellyFish parentEntity;
@@ -167,6 +185,7 @@ public class EntityJellyFish extends EntityMob
             this.parentEntity = ghast;
         }
 
+        @Override
         public void tick()
         {
         	if(!this.parentEntity.hasMovementVector()||this.parentEntity.getRNG().nextInt(40)==0) {

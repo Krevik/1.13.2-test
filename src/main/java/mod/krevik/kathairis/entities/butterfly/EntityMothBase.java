@@ -24,115 +24,60 @@ public class EntityMothBase extends EntityBasicButterfly
         this.setSize(0.15F, 0.15F);
         this.experienceValue=1;
     }
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 1;
     }
-    protected void registerData()
-    {
-        super.registerData();
-    }
 
-    protected float getSoundVolume()
-    {
-        return 1F;
-    }
-
-    /**
-     * Gets the pitch of living sounds in living entities.
-     */
-    protected float getSoundPitch()
-    {
-        return super.getSoundPitch() * 0.95F;
-    }
-
-    @Nullable
-    public SoundEvent getAmbientSound()
-    {
-    	return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
+    @Override
     public boolean canBePushed()
     {
         return false;
     }
 
+    @Override
     protected void collideWithEntity(Entity entityIn)
     {
     }
 
+    @Override
     protected void collideWithNearbyEntities()
     {
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1.0D);
     }
 
-    @Override public void tick()
-    {
-        super.tick();
-    }
-    
-
-
-    protected void updateAITasks()
-    {
-        super.updateAITasks();
-    }
-
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
+    @Override
     public void fall(float distance, float damageMultiplier)
     {
     }
 
+    @Override
     protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
     {
     }
 
+    @Override
     public boolean doesEntityNotTriggerPressurePlate()
     {
         return true;
     }
 
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-            return super.attackEntityFrom(source, amount);
-    }
-
-    public void readAdditional(NBTTagCompound compound)
-    {
-        super.readAdditional(compound);
-    }
-
-    public void writeAdditional(NBTTagCompound compound)
-    {
-        super.writeAdditional(compound);
-
-    }
-
-    public float getEyeHeight()
-    {
-        return this.height / 2.0F;
-    }
-
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_BUTTERFLY;

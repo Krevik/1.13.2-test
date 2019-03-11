@@ -2,9 +2,11 @@ package mod.krevik.kathairis.util;
 
 import mod.krevik.kathairis.Kathairis;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.entity.EntityType;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.event.RegistryEvent;
 
 public class EntityRegistry {
     public static final ResourceLocation LivingFlowerLoc = new ResourceLocation(Kathairis.MODID,"textures/entity/livingflower.png");
@@ -42,11 +44,9 @@ public class EntityRegistry {
     public static final ResourceLocation CactiSporeLoc = new ResourceLocation(Kathairis.MODID, "textures/entity/cacti_spore.png");
     public static final ResourceLocation PhasmLoc = new ResourceLocation(Kathairis.MODID, "textures/entity/phasm.png");
 
-
-    static int id=1;
-
-    public static void registerEntitiesAndEggs() {
-        EntitySpawnPlacementRegistry.register(KatharianEntityTypes.BISON,EntitySpawnPlacementRegistry.SpawnPlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, BlockTags.VALID_SPAWN);
+    public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event)
+    {
+            KatharianEntityTypes.registerEntityTypes(event);
     }
 
 }

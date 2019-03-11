@@ -37,7 +37,8 @@ public class EntityGecko extends EntityAnimal {
         setSize(0.7F, 0.25F);
         experienceValue = 10;
     }
-    
+
+    @Override
     protected void initEntityAI() {
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIPanic(this, 1.25D));
@@ -52,17 +53,20 @@ public class EntityGecko extends EntityAnimal {
     }
 
     @Nonnull
+    @Override
     protected PathNavigate createNavigator(@Nonnull World worldIn)
     {
         return new PathNavigateClimber(this, worldIn);
     }
-    
+
+    @Override
     protected void registerData() {
         super.registerData();
         this.getDataManager().register(climbingSide, EnumClimbSide.FLOOR.ordinal());
         this.getDataManager().register(VARIANT, 0);
 
     }
+
     public int getVariant()
     {
         return MathHelper.clamp(getDataManager().get(VARIANT), 0, 4);
@@ -83,29 +87,34 @@ public class EntityGecko extends EntityAnimal {
     private void setClimbingSide(EnumClimbSide side) {
     	getDataManager().set(climbingSide, side.ordinal());
     }
-    
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 4;
     }
-    
+
+    @Override
     protected void registerAttributes() {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(7.0D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3000000417232513D);
     }
 
+    @Override
     protected ResourceLocation getLootTable()
     {
     	return KatharianLootTables.LOOT_GECKO;
     }
-    
+
+    @Override
     public boolean isOnLadder()
     {
         return this.isClimbing();
     }
 
-    @Override public void tick() {
+    @Override
+    public void tick() {
         super.tick();
         this.fallDistance=0;
         //operate can walk on wall
@@ -134,6 +143,7 @@ public class EntityGecko extends EntityAnimal {
         FLOOR()
     }
 
+    @Override
     public void writeAdditional(NBTTagCompound compound) {
         super.writeAdditional(compound);
         compound.setInt("climbingSide", climbingSide().ordinal());
@@ -141,6 +151,7 @@ public class EntityGecko extends EntityAnimal {
 
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound) {
         super.readAdditional(compound);
         //migration purpose
@@ -150,21 +161,8 @@ public class EntityGecko extends EntityAnimal {
 
         setVariant(compound.getInt("Variant"));
     }
-    
 
-    protected SoundEvent getAmbientSound() {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound() {
-        return null;
-    }
-
-
+    @Override
     public EntityGecko createChild(@Nonnull EntityAgeable ageable) {
         if (!world.isRemote) {
             if (world.isBlockFullCube(getPosition().down())) {
@@ -184,6 +182,7 @@ public class EntityGecko extends EntityAnimal {
         return livingdata;
     }
 
+    @Override
     public float getEyeHeight() {
         return 0.95F * height;
     }

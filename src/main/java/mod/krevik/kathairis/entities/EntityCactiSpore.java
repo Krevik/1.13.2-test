@@ -41,6 +41,7 @@ public class EntityCactiSpore extends EntityMob
         getDataManager().set(canDespawn,false);
     }
 
+    @Override
     protected void initEntityAI()
     {
         super.initEntityAI();
@@ -63,11 +64,13 @@ public class EntityCactiSpore extends EntityMob
         return getDataManager().get(canDespawn).booleanValue();
     }
 
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 1;
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -77,6 +80,7 @@ public class EntityCactiSpore extends EntityMob
         this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
@@ -84,15 +88,8 @@ public class EntityCactiSpore extends EntityMob
         this.getDataManager().register(spikeTimer, 0);
     }
 
-
-
-    public void notifyDataManagerChange(DataParameter<?> key)
-    {
-
-        super.notifyDataManagerChange(key);
-    }
-
-    @Override public void tick() {
+    @Override
+    public void tick() {
         this.motionY=-1;
         this.motionX=0;
         this.motionZ=0;
@@ -110,6 +107,7 @@ public class EntityCactiSpore extends EntityMob
             setSpikeTimer(MathHelper.clamp(getSpikeTimer() - 1, 0, 100));
     }
 
+    @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
         this.setLastAttackedEntity(entityIn);
@@ -122,66 +120,30 @@ public class EntityCactiSpore extends EntityMob
         return super.attackEntityAsMob(entityIn);
     }
 
-
-    protected SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
-
-
-    public boolean processInteract(EntityPlayer player, EnumHand hand)
-    {
-    return super.processInteract(player, hand);
-    }
-
-
+    @Override
     public CreatureAttribute getCreatureAttribute()
     {
         return CreatureAttribute.UNDEFINED;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_CACTISPORE;
     }
 
-
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
         compound.setBoolean("canDespawn",this.getDataManager().get(canDespawn));
     }
 
-
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);
         getDataManager().set(canDespawn,compound.getBoolean("canDespawn"));
-    }
-
-    /**
-     * Called when the mob's health reaches 0.
-     */
-    public void onDeath(DamageSource cause)
-    {
-        super.onDeath(cause);
     }
 }

@@ -22,7 +22,7 @@ public class FeatureKatharianCloud extends Feature<NoFeatureConfig> {
     public boolean func_212245_a(IWorld world, IChunkGenerator<? extends IChunkGenSettings> p_212245_2_, Random random, BlockPos pos, NoFeatureConfig config) {
             if(random.nextInt(5)==0) {
                 IBlockState block = random.nextInt(2)==0 ? KBlocks.BLUE_CLOUD.getDefaultState() : KBlocks.YELLOW_CLOUD.getDefaultState();
-                int height = 80+random.nextInt(24)+random.nextInt(24)+random.nextInt(24)+random.nextInt(24)+random.nextInt(24);
+                int height = 100+random.nextInt(24)+random.nextInt(24)+random.nextInt(24)+random.nextInt(24)+random.nextInt(24);
                generateCloud(world,new BlockPos(pos.getX(),height,pos.getZ()),2+random.nextInt(7),random,block,0);
             }
         return false;
@@ -50,19 +50,6 @@ public class FeatureKatharianCloud extends Feature<NoFeatureConfig> {
                     }
                 }
             }
-        }
-    }
-
-    private float getSomeHalfer(Random random){
-        int k=2+random.nextInt(6);
-        if(k==2){return 0.8f;}
-        else if(k==3){return 0.6f;}
-        else if(k==4){return 0.7f;}
-        else if(k==5){return 0.9f;}
-        else if(k==6){return 0.5f;}
-        else if(k==7){return 1.0f;}
-        else{
-            return 1.0f;
         }
     }
 }

@@ -22,6 +22,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -54,8 +55,8 @@ public class EntityCloudOister extends EntityAmbientCreature
         this.setTimeUntilNextPearl(this.rand.nextInt(6000) + 6000);
         this.setPanic(false);
     }
-    
 
+    @Override
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -64,11 +65,14 @@ public class EntityCloudOister extends EntityAmbientCreature
         this.tasks.addTask(1, new EntityAIPanicNew(this,1D));
 
     }
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 4;
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -77,6 +81,7 @@ public class EntityCloudOister extends EntityAmbientCreature
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
@@ -88,7 +93,8 @@ public class EntityCloudOister extends EntityAmbientCreature
     int k = 50+rand.nextInt(300);
     int panicTimer=0;
     
-    @Override public void tick() {
+    @Override
+    public void tick() {
     	super.tick();
         this.setTimeUntilNextPearl(this.timeUntilNextPearl()-1);
         if (!this.world.isRemote && this.timeUntilNextPearl() <= 0)
@@ -130,39 +136,13 @@ public class EntityCloudOister extends EntityAmbientCreature
         }
     }
 
-
-    protected SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getStepSound()
-    {
-        return null;
-    }
-
-    
-    public boolean processInteract(EntityPlayer player, EnumHand hand)
-    {
-            return super.processInteract(player, hand);
-    }
-
     /*public EnumCreatureAttribute getCreatureAttribute()
     {
         return EnumCreatureAttribute.UNDEFINED;
     }*/
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_CLOUDOISTER;
@@ -184,6 +164,7 @@ public class EntityCloudOister extends EntityAmbientCreature
     	return super.attackEntityFrom(source, amount);
     }*/
 
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
@@ -191,9 +172,7 @@ public class EntityCloudOister extends EntityAmbientCreature
         compound.setBoolean("panic", panic());
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);
@@ -201,16 +180,8 @@ public class EntityCloudOister extends EntityAmbientCreature
         this.setPanic(compound.getBoolean("panic"));
     }
 
-    /**
-     * Called when the mob's health reaches 0.
-     */
-    public void onDeath(DamageSource cause)
-    {
-        super.onDeath(cause);
-    }
-    
-    public boolean getCanSpawnHere()
-    {
+    @Override
+    public boolean canSpawn(IWorld p_205020_1_, boolean p_205020_2_) {
         int i = MathHelper.floor(this.posX);
         int j = MathHelper.floor(this.getBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);

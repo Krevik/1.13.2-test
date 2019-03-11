@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.entities;
 
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.blocks.plants.BlockKatharianPlant;
 import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
@@ -27,7 +28,6 @@ public class EntityMysticBird extends EntityAmbientCreature
 {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(EntityMysticBird.class, DataSerializers.VARINT);
     private static final DataParameter<Byte> SITTING = EntityDataManager.createKey(EntityMysticBird.class, DataSerializers.BYTE);
-    /** Coordinates of where the bat spawned. */
     private BlockPos spawnPosition;
 
     public EntityMysticBird(World worldIn)
@@ -45,10 +45,12 @@ public class EntityMysticBird extends EntityAmbientCreature
         return super.onInitialSpawn(p_204210_1_, p_204210_2_, p_204210_3_);
     }
 
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 2;
     }
+
     public int getVariant()
     {
         return MathHelper.clamp(this.getDataManager().get(VARIANT).intValue(), 0, 4);
@@ -59,6 +61,7 @@ public class EntityMysticBird extends EntityAmbientCreature
         this.getDataManager().set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
@@ -67,39 +70,45 @@ public class EntityMysticBird extends EntityAmbientCreature
     }
 
 
-    /*@Nullable
+    @Nullable
     public SoundEvent getAmbientSound()
     {
     	if(this.getIsBirdSitting()) {
-            return ClientProxy.bird;
+            return Kathairis.bird;
     	}else {
     		return null;
     	}
-    }*/
+    }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return null;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         return null;
     }
 
+    @Override
     public boolean canBePushed()
     {
         return false;
     }
 
+    @Override
     protected void collideWithEntity(Entity entityIn)
     {
     }
 
+    @Override
     protected void collideWithNearbyEntities()
     {
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -125,7 +134,8 @@ public class EntityMysticBird extends EntityAmbientCreature
         }
     }
 
-    @Override public void tick()
+    @Override
+    public void tick()
     {
         super.tick();
 
@@ -143,6 +153,7 @@ public class EntityMysticBird extends EntityAmbientCreature
         }
     }
 
+    @Override
     protected void updateAITasks()
     {
         super.updateAITasks();
@@ -196,24 +207,29 @@ public class EntityMysticBird extends EntityAmbientCreature
         }
     }
 
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
+    @Override
     public void fall(float distance, float damageMultiplier)
     {
     }
 
+    @Override
     protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
     {
     }
 
+    @Override
     public boolean doesEntityNotTriggerPressurePlate()
     {
         return true;
     }
 
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (this.isInvulnerableTo(source))
@@ -231,6 +247,7 @@ public class EntityMysticBird extends EntityAmbientCreature
         }
     }
 
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
@@ -239,6 +256,7 @@ public class EntityMysticBird extends EntityAmbientCreature
 
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);
@@ -247,12 +265,14 @@ public class EntityMysticBird extends EntityAmbientCreature
 
     }
 
+    @Override
     public float getEyeHeight()
     {
         return this.height / 2.0F;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_MYSTICBIRD;

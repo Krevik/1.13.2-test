@@ -15,6 +15,8 @@ import net.minecraft.particles.BlockParticleData;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReaderBase;
@@ -28,6 +30,11 @@ public class BlockSoftSand extends BaseBlock {
     public static boolean fallInstantly=false;
     public BlockSoftSand(String Name) {
         super(Name, Block.Properties.create(Material.SAND).needsRandomTick().hardnessAndResistance(0.3f).sound(SoundType.SAND), KathairisItemGroups.kathairis_building_blocks);
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(IBlockState p_196268_1_, IBlockReader p_196268_2_, BlockPos p_196268_3_) {
+        return VoxelShapes.empty();
     }
 
     @Override

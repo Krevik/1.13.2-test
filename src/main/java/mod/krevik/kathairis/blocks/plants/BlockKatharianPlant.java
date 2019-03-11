@@ -13,9 +13,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReaderBase;
+import net.minecraft.world.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -40,6 +38,14 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
     }
 
     @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block p_189540_4_, BlockPos p_189540_5_) {
+        super.neighborChanged(state, world, pos, p_189540_4_, p_189540_5_);
+        if(!isValidPosition(state,world,pos)){
+            world.removeBlock(pos);
+        }
+    }
+
+    @Override
     public IBlockState updatePostPlacement(IBlockState stateIn, EnumFacing facing, IBlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
@@ -56,6 +62,10 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
                 block == Blocks.FARMLAND || block== KBlocks.KATHARIAN_DIRT || block==KBlocks.KATHARIAN_GRASS;
     }
 
+    @Override
+    public void onNeighborChange(IBlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor) {
+        super.onNeighborChange(state,world,pos,neighbor);
+    }
 
     @Override
     public boolean isFullCube(IBlockState state)

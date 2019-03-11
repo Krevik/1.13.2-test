@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.KItems;
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.entity.EntityFlying;
@@ -17,6 +18,7 @@ import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -76,7 +78,8 @@ public class EntitySkyray extends EntityFlying
         return super.onInitialSpawn(p_204210_1_, p_204210_2_, p_204210_3_);
     }
     
-    @Override public void tick() {
+    @Override
+    public void tick() {
     	super.tick();
 
         this.setTimeUntilNextFeather(this.timeUntilNextFeather()-1);
@@ -116,14 +119,15 @@ public class EntitySkyray extends EntityFlying
         this.getDataManager().set(ADULT, Integer.valueOf(p_191997_1_));
     }
 
-
+    @Override
     protected void registerData()
     {
         super.registerData();
         this.getDataManager().register(ADULT, Integer.valueOf(0));
         this.getDataManager().register(timeUntilNextFeather,Integer.valueOf(12000));
     }
-    
+
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
@@ -131,6 +135,7 @@ public class EntitySkyray extends EntityFlying
         compound.setInt("Adult", this.getAdult());
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);
@@ -144,6 +149,7 @@ public class EntitySkyray extends EntityFlying
     }
 
 
+    @Override
     protected void initEntityAI()
     {
     	super.initEntityAI();
@@ -151,9 +157,9 @@ public class EntitySkyray extends EntityFlying
         this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(2, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
         this.tasks.addTask(2, new EntityAILookIdle(this));
-
     }
-    
+
+    @Override
     protected PathNavigate createNavigator(World worldIn)
     {
         PathNavigateFlying pathnavigateflying = new PathNavigateFlying(this, worldIn);
@@ -162,6 +168,7 @@ public class EntitySkyray extends EntityFlying
         return pathnavigateflying;
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -180,7 +187,8 @@ public class EntitySkyray extends EntityFlying
         }
         return super.attackEntityFrom(source,amount);
     }
-    
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 4;
@@ -192,32 +200,32 @@ public class EntitySkyray extends EntityFlying
         return false;
     }
 
-    /*protected SoundEvent getAmbientSound()
+    @Override
+    protected SoundEvent getAmbientSound()
     {
-        return KCore.proxy.skyray_ambient;
+        return Kathairis.skyray_ambient;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return KCore.proxy.skyray_hurt;
+        return Kathairis.skyray_hurt;
     }
 
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }*/
-
+    @Override
     protected float getSoundVolume()
     {
         return 15F;
     }
 
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_SKYRAY;
@@ -238,12 +246,6 @@ public class EntitySkyray extends EntityFlying
     public void travel()
     {
     	this.moveHelper.setMoveTo(this.posX+randomMotionVecX, this.posY+randomMotionVecY, this.posZ+randomMotionVecZ, 1000f);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-            super.handleStatusUpdate(id);
     }
 
     public void setMovementVector(float randomMotionVecXIn, float randomMotionVecYIn, float randomMotionVecZIn)
@@ -268,6 +270,7 @@ public class EntitySkyray extends EntityFlying
                 this.setMutexBits(3);
             }
 
+            @Override
             public boolean shouldExecute()
             {
                 return true;
@@ -275,6 +278,8 @@ public class EntitySkyray extends EntityFlying
 
             float destX;
             float destZ;
+
+            @Override
             public void tick()
             {
             	

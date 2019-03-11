@@ -2,20 +2,21 @@ package mod.krevik.kathairis.blocks;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.helpers.BaseBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -30,6 +31,7 @@ public class BlockKatharianGrass extends BaseBlock implements IGrowable
     public static final BooleanProperty SNOWY = BooleanProperty.create("snowy");
     int month = Calendar.getInstance().get(Calendar.MONTH);
 
+
     public BlockKatharianGrass(String Name, float hardness, float resistance, ItemGroup group)
     {
         super(Name,Block.Properties.create(Material.GRASS).hardnessAndResistance(hardness,resistance).needsRandomTick().sound(SoundType.PLANT),group);
@@ -39,6 +41,7 @@ public class BlockKatharianGrass extends BaseBlock implements IGrowable
     public IBlockState updatePostPlacement(IBlockState stateIn, EnumFacing facing, IBlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
             return stateIn.with(SNOWY,shouldBeSnowed(stateIn)).with(FLOWER,stateIn.get(FLOWER));
     }
+
 
     public IBlockState getStateForPlacement(BlockItemUseContext context) {
         return this.getDefaultState();
@@ -52,40 +55,40 @@ public class BlockKatharianGrass extends BaseBlock implements IGrowable
         return state.get(SNOWY);
     }
 
-    @Override
-    public void tick(IBlockState state,World worldIn, BlockPos pos, Random rand)
-    {
-        if (!worldIn.isRemote)
-        {
-            if (worldIn.getLight(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getOpacity(worldIn, pos.up()) > 2)
-            {
-                worldIn.setBlockState(pos, KBlocks.KATHARIAN_DIRT.getDefaultState());
-            }
-            else
-            {
-                if (worldIn.getLight(pos.up()) >= 9)
-                {
-                    for (int i = 0; i < 4; ++i)
-                    {
-                        BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+    private static boolean func_196383_a(IWorldReaderBase p_196383_0_, BlockPos p_196383_1_) {
+        BlockPos blockpos = p_196383_1_.up();
+        return p_196383_0_.getLight(blockpos) >= 4 || p_196383_0_.getBlockState(blockpos).getOpacity(p_196383_0_, blockpos) < p_196383_0_.getMaxLightLevel();
+    }
 
-                        if (blockpos.getY() >= 0 && blockpos.getY() < 256 && !worldIn.isBlockLoaded(blockpos))
-                        {
+    private static boolean func_196384_b(IWorldReaderBase p_196384_0_, BlockPos p_196384_1_) {
+        BlockPos blockpos = p_196384_1_.up();
+        return p_196384_0_.getLight(blockpos) >= 4 && p_196384_0_.getBlockState(blockpos).getOpacity(p_196384_0_, blockpos) < p_196384_0_.getMaxLightLevel() && !p_196384_0_.getFluidState(blockpos).isTagged(FluidTags.WATER);
+    }
+
+    public void tick(IBlockState state, World worldIn, BlockPos pos, Random random) {
+        if (!worldIn.isRemote) {
+            if (!worldIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
+            if (!func_196383_a(worldIn, pos)) {
+                worldIn.setBlockState(pos, KBlocks.KATHARIAN_DIRT.getDefaultState());
+            } else {
+                if (worldIn.getLight(pos.up()) >= 9) {
+                    for(int i = 0; i < 4; ++i) {
+                        BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+                        if (!worldIn.isBlockPresent(blockpos)) {
                             return;
                         }
 
-                        IBlockState iblockstate = worldIn.getBlockState(blockpos.up());
-                        IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
-
-                        if (iblockstate1.getBlock() == KBlocks.KATHARIAN_DIRT && worldIn.getLight(blockpos.up()) >= 4 && iblockstate.getOpacity(worldIn, pos.up()) <= 2)
-                        {
-                            worldIn.setBlockState(blockpos, KBlocks.KATHARIAN_GRASS.getDefaultState(),2);
+                        if (worldIn.getBlockState(blockpos).getBlock() == KBlocks.KATHARIAN_DIRT && func_196384_b(worldIn, blockpos) && worldIn.isAirBlock(blockpos.up())) {
+                            worldIn.setBlockState(blockpos, this.getDefaultState());
                         }
                     }
                 }
+
             }
         }
-        //TODO ADD THESE EVENTS
+
+
+            //TODO ADD THESE EVENTS
         /*if(rand.nextInt(999999)==0) {
             int month = Calendar.getInstance().get(Calendar.MONTH);
             int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
@@ -132,8 +135,8 @@ public class BlockKatharianGrass extends BaseBlock implements IGrowable
     }*/
 
     @Override
-    public boolean canGrow(IBlockReader worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return true;
+    public boolean canGrow(IBlockReader p_176473_1_, BlockPos p_176473_2_, IBlockState p_176473_3_, boolean p_176473_4_) {
+        return p_176473_1_.getBlockState(p_176473_2_.up()).isAir();
     }
 
     @Override
@@ -215,6 +218,10 @@ public class BlockKatharianGrass extends BaseBlock implements IGrowable
         builder.add(FLOWER).add(SNOWY);
     }
 
+    @Override
+    public boolean isSolid(IBlockState p_200124_1_) {
+        return true;
+    }
 
 
 }

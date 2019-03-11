@@ -24,6 +24,7 @@ public class EntityFungite extends EntityMob
         this.experienceValue=30;
     }
 
+    @Override
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -41,7 +42,7 @@ public class EntityFungite extends EntityMob
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
-
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -52,27 +53,14 @@ public class EntityFungite extends EntityMob
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
     }
 
-    protected SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
+    @Override
     public CreatureAttribute getCreatureAttribute()
     {
         return CreatureAttribute.UNDEFINED;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_FUNGITE;

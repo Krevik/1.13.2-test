@@ -28,7 +28,8 @@ public class EntityPoisonousScorpion extends EntityMob
         this.setSize(0.4F, 0.7F);
         this.experienceValue=25;
     }
-    
+
+    @Override
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -39,12 +40,14 @@ public class EntityPoisonousScorpion extends EntityMob
         this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.2D, false));
         this.tasks.addTask(0, new EntityAIAvoidMovingSandsAndCactus(this,1.2D));
     }
-    
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 2;
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -54,12 +57,13 @@ public class EntityPoisonousScorpion extends EntityMob
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
     }
 
-
+    @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
         if (super.attackEntityAsMob(entityIn))
@@ -91,39 +95,22 @@ public class EntityPoisonousScorpion extends EntityMob
         }
     }
     
-    @Override public void tick() {
+    @Override
+    public void tick() {
     	super.tick();
     	if(!this.world.isRemote) {
     		
     	}
     }
 
-    protected SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getStepSound()
-    {
-        return null;
-    }
-
+    @Override
     public CreatureAttribute getCreatureAttribute()
     {
         return CreatureAttribute.ARTHROPOD;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_POISONOUSSCORPION;

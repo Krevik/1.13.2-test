@@ -2,6 +2,7 @@ package mod.krevik.kathairis.items;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.BlockKathairisPortal;
+import net.minecraft.block.BlockFire;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,8 @@ public class ItemMysticGem extends BaseItem {
     public ItemMysticGem(String name, ItemGroup group, EnumRarity rarity) {
         super(name, group, rarity);
     }
+
+
 
     @Override
     public EnumActionResult onItemUse(ItemUseContext context)

@@ -1,16 +1,22 @@
 package mod.krevik.kathairis.world.dimension.biome.biomes;
 
+import jdk.nashorn.internal.objects.NativeInt16Array;
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.world.dimension.feature.KatharianFeatureList;
 import mod.krevik.kathairis.world.dimension.feature.KatharianMinableConfig;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.ForestBiome;
 import net.minecraft.world.biome.NetherBiome;
 import net.minecraft.world.biome.PlainsBiome;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeManager;
 
 import com.google.common.collect.Lists;
@@ -50,18 +56,19 @@ import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.LakeChanceConfig;
 import net.minecraft.world.gen.surfacebuilders.CompositeSurfaceBuilder;
 
-public final class BiomeMysticForest extends Biome {
+import java.awt.*;
+import java.util.ArrayList;
+
+public final class BiomeKatharianForest extends BiomeKatharianBiomeBase {
     public static final SurfaceBuilderConfig KATHARIAN_GRASS_DIRT_GRAVEL_SURFACE = new SurfaceBuilderConfig(KBlocks.KATHARIAN_GRASS.getDefaultState(), KBlocks.KATHARIAN_DIRT.getDefaultState(), GRAVEL);
 
-    public BiomeMysticForest() {
+    public BiomeKatharianForest() {
         super((new BiomeBuilder()).surfaceBuilder(new CompositeSurfaceBuilder(DEFAULT_SURFACE_BUILDER, KATHARIAN_GRASS_DIRT_GRAVEL_SURFACE)).precipitation(RainType.RAIN).category(Category.FOREST).depth(0.1F).scale(0.2F).temperature(0.7F).downfall(0.8F).waterColor(4159204).waterFogColor(329011).parent((String)null));
         this.addCarver(Carving.AIR, createWorldCarverWrapper(KatharianFeatureList.KATHARIAN_CAVE_WORLD_CARVER, new ProbabilityConfig(0.14285715F)));
-        this.addCarver(Carving.AIR, createWorldCarverWrapper(CANYON_WORLD_CARVER, new ProbabilityConfig(0.02F)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.LIQUIDS, new LiquidsConfig(Fluids.WATER), HEIGHT_BIASED_RANGE, new CountRangeConfig(50, 8, 8, 256)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.LIQUIDS, new LiquidsConfig(Fluids.LAVA), HEIGHT_VERY_BIASED_RANGE, new CountRangeConfig(20, 8, 16, 256)));
         this.addFeature(Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(Feature.LAKES, new LakesConfig(Blocks.WATER), LAKE_WATER, new LakeChanceConfig(4)));
         this.addFeature(Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(Feature.LAKES, new LakesConfig(Blocks.LAVA), LAVA_LAKE, new LakeChanceConfig(80)));
-        this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.DEFAULT_RANDOM_FEATURE_LIST, new RandomFeatureListConfig(new Feature[]{Feature.DOUBLE_PLANT, Feature.DOUBLE_PLANT, Feature.DOUBLE_PLANT}, new IFeatureConfig[]{new DoublePlantConfig(Blocks.LILAC.getDefaultState()), new DoublePlantConfig(Blocks.ROSE_BUSH.getDefaultState()), new DoublePlantConfig(Blocks.PEONY.getDefaultState())}, 0), SURFACE_PLUS_32, new FrequencyConfig(5)));
         this.addFeature(Decoration.UNDERGROUND_ORES, createCompositeFeature(Feature.MINABLE, new MinableConfig(KatharianMinableConfig.IS_ROCK, Blocks.DIRT.getDefaultState(), 33), COUNT_RANGE, new CountRangeConfig(10, 0, 0, 256)));
         this.addFeature(Decoration.UNDERGROUND_ORES, createCompositeFeature(Feature.MINABLE, new MinableConfig(KatharianMinableConfig.IS_ROCK, Blocks.GRAVEL.getDefaultState(), 33), COUNT_RANGE, new CountRangeConfig(8, 0, 0, 256)));
         this.addFeature(Decoration.UNDERGROUND_ORES, createCompositeFeature(Feature.MINABLE, new MinableConfig(KatharianMinableConfig.IS_ROCK, Blocks.GRANITE.getDefaultState(), 33), COUNT_RANGE, new CountRangeConfig(10, 0, 0, 80)));
@@ -86,11 +93,13 @@ public final class BiomeMysticForest extends Biome {
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.KATHARIAN_NIGHT_FLOWER), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.VILYRIA), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
         this.addFeature(Decoration.UNDERGROUND_DECORATION, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
-
+        this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD_MINI_ISLAND, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
     }
 
-    @Override
+    /*@Override
     public int getGrassColor(BlockPos p_180627_1_) {
         return 0x41f4c7;
-    }
+    }*/
+
+
 }

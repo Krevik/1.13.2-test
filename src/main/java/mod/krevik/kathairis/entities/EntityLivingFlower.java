@@ -49,11 +49,14 @@ public class EntityLivingFlower extends EntityAnimal
     {
         return getDataManager().get(canDespawn).booleanValue();
     }
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 1;
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -62,13 +65,15 @@ public class EntityLivingFlower extends EntityAnimal
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
         this.getDataManager().register(canDespawn, Boolean.valueOf(true));
     }
     
-    @Override public void tick() {
+    @Override
+    public void tick() {
         this.motionY=-1;
         this.motionX=0;
         this.motionZ=0;
@@ -84,23 +89,6 @@ public class EntityLivingFlower extends EntityAnimal
         }
     	super.tick();
     }
-
-
-    protected SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
 
     
     /*public boolean processInteract(EntityPlayer player, EnumHand hand)
@@ -129,23 +117,27 @@ public class EntityLivingFlower extends EntityAnimal
         }
     }*/
 
+    @Override
     public CreatureAttribute getCreatureAttribute()
     {
         return CreatureAttribute.UNDEFINED;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_LIVINGFLOWER;
     }
 
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
         compound.setBoolean("canDespawn",this.getDataManager().get(canDespawn));
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);

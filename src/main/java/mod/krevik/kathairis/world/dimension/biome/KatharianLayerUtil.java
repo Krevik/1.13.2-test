@@ -8,6 +8,7 @@ import mod.krevik.kathairis.world.dimension.biome.gen_layers.GenLayerKatharianRi
 import net.minecraft.init.Biomes;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.BadlandsPlateauBiome;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.IContextExtended;
 import net.minecraft.world.gen.LazyAreaLayerContext;
@@ -40,6 +41,7 @@ public class KatharianLayerUtil {
         return iareafactory;
     }
 
+
     public static <T extends IArea, C extends IContextExtended<T>> ImmutableList<IAreaFactory<T>> buildOverworldProcedure(WorldType worldTypeIn, OverworldGenSettings settings, LongFunction<C> contextFactory) {
         IAreaFactory<T> iareafactory = GenLayerIsland.INSTANCE.apply(contextFactory.apply(1L));
         iareafactory = GenLayerZoom.FUZZY.apply(contextFactory.apply(2000L), iareafactory);
@@ -60,7 +62,8 @@ public class KatharianLayerUtil {
             j = settings.getRiverSize();
         }
 
-        i = 1;
+        i = 4;
+
 
         IAreaFactory<T> lvt_7_1_ = repeat(1000L, GenLayerZoom.NORMAL, iareafactory, 0, contextFactory);
         lvt_7_1_ = GenLayerRiverInit.INSTANCE.apply((IContextExtended)contextFactory.apply(100L), lvt_7_1_);
@@ -89,11 +92,11 @@ public class KatharianLayerUtil {
     {
         parentLayer = (new GenLayerKatharianBiome(chunkSettings)).apply((IContextExtended) contextFactory.apply(200L), parentLayer);
         parentLayer = LayerUtil.repeat(1000L, GenLayerZoom.NORMAL, parentLayer, 2, contextFactory);
+        parentLayer = GenLayerBiomeEdge.INSTANCE.apply((IContextExtended) contextFactory.apply(1000L), parentLayer);
         return parentLayer;
     }
 
     public static GenLayer[] buildOverworldProcedure(long seed, WorldType typeIn, OverworldGenSettings settings) {
-        int i = 1;
         int[] aint = new int[1];
         ImmutableList<IAreaFactory<LazyArea>> immutablelist = buildOverworldProcedure(typeIn, settings, (p_202825_3_) -> {
             ++aint[0];
@@ -107,13 +110,5 @@ public class KatharianLayerUtil {
 
     public static boolean isOcean(int biomeIn) {
         return biomeIn == WARM_OCEAN || biomeIn == LUKEWARM_OCEAN || biomeIn == OCEAN || biomeIn == COLD_OCEAN || biomeIn == FROZEN_OCEAN || biomeIn == DEEP_WARM_OCEAN || biomeIn == DEEP_LUKEWARM_OCEAN || biomeIn == DEEP_OCEAN || biomeIn == DEEP_COLD_OCEAN || biomeIn == DEEP_FROZEN_OCEAN;
-    }
-
-    /* ======================================== FORGE START =====================================*/
-    public static int getModdedBiomeSize(net.minecraft.world.WorldType worldType, int original)
-    {
-        net.minecraftforge.event.terraingen.WorldTypeEvent.BiomeSize event = new net.minecraftforge.event.terraingen.WorldTypeEvent.BiomeSize(worldType, original);
-        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
-        return event.getNewSize();
     }
 }

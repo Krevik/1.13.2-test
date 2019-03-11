@@ -42,8 +42,8 @@ public class EntityFlyingSquid extends EntityFlying
         this.getDataManager().set(canHoldPlayer, Boolean.valueOf(true));
 
     }
-    
-    
+
+    @Override
     protected void registerData()
     {
         super.registerData();
@@ -73,7 +73,8 @@ public class EntityFlyingSquid extends EntityFlying
     public void setCanHoldPlayer(boolean truorfalse) {
         this.getDataManager().set(canHoldPlayer, Boolean.valueOf(truorfalse));
     }
-    
+
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
     	if(this.isHoldingPlayer()||this.isDiving()) {
@@ -82,8 +83,8 @@ public class EntityFlyingSquid extends EntityFlying
     	}
     	return super.attackEntityFrom(source,amount);
     }
-    
 
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
@@ -93,6 +94,7 @@ public class EntityFlyingSquid extends EntityFlying
 
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);
@@ -102,55 +104,57 @@ public class EntityFlyingSquid extends EntityFlying
 
     }
 
+    @Override
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityFlyingSquid.AIMoveRandom(this));
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
+    @Override
     public float getEyeHeight()
     {
         return this.height * 0.5F;
     }
 
+    @Override
     protected SoundEvent getAmbientSound()
     {
         return SoundEvents.ENTITY_SQUID_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_SQUID_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         return SoundEvents.ENTITY_SQUID_DEATH;
     }
 
-    /**
-     * Returns the volume for the sounds this mob makes.
-     */
+    @Override
     protected float getSoundVolume()
     {
         return 0.4F;
     }
 
-    /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
-     */
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_FLYINGSQUID;
@@ -160,7 +164,8 @@ public class EntityFlyingSquid extends EntityFlying
     public int animTravelTime2=0;
     private int mode=0;
     int swingTries=0;
-    @Override public void tick() {
+    @Override
+    public void tick() {
     	super.tick();
         if(isDiving()) {
             this.travel(motionX, motionY, motionZ);
@@ -237,12 +242,6 @@ public class EntityFlyingSquid extends EntityFlying
         this.move(MoverType.SELF, x, y, z);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-            super.handleStatusUpdate(id);
-    }
-
     public void setMovementVector(float randomMotionVecXIn, float randomMotionVecYIn, float randomMotionVecZIn)
     {
         this.randomMotionVecX = randomMotionVecXIn;
@@ -264,17 +263,13 @@ public class EntityFlyingSquid extends EntityFlying
                 this.squid = p_i45859_1_;
             }
 
-            /**
-             * Returns whether the EntityAIBase should begin execution.
-             */
+            @Override
             public boolean shouldExecute()
             {
                 return true;
             }
 
-            /**
-             * Keep ticking a continuous task that has already been started
-             */
+            @Override
             public void tick()
             {
                 int i = this.squid.getIdleTime();

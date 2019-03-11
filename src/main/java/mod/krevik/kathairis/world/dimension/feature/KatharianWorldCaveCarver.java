@@ -3,6 +3,7 @@ package mod.krevik.kathairis.world.dimension.feature;
 import java.util.BitSet;
 import java.util.Random;
 
+import com.google.common.collect.ImmutableSet;
 import mod.krevik.kathairis.KBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -17,6 +18,8 @@ import net.minecraft.world.gen.feature.ProbabilityConfig;
 
 public class KatharianWorldCaveCarver extends WorldCarver<ProbabilityConfig> {
     public KatharianWorldCaveCarver() {
+        this.terrainBlocks= ImmutableSet.of(KBlocks.KATHARIAN_GRASS,KBlocks.KATHARIAN_DIRT,KBlocks.KATHARIAN_STONE,KBlocks.KATHARIAN_SAND,
+                KBlocks.SOFT_SAND,KBlocks.KATHARIAN_SANDSTONE,Blocks.STONE,Blocks.DIRT,Blocks.ANDESITE,Blocks.DIORITE,Blocks.GRAVEL);
     }
 
     public boolean func_212246_a(IBlockReader p_212246_1_, Random p_212246_2_, int p_212246_3_, int p_212246_4_, ProbabilityConfig p_212246_5_) {
@@ -144,7 +147,7 @@ public class KatharianWorldCaveCarver extends WorldCarver<ProbabilityConfig> {
 
                                         if (this.isTargetSafeFromFalling(lvt_44_1_, lvt_45_1_)) {
                                             if (lvt_40_1_ < 11) {
-                                                p_202516_1_.setBlockState(lvt_28_1_, LAVA_FLUID.getBlockState(), 2);
+                                                p_202516_1_.setBlockState(lvt_28_1_, WATER_FLUID.getBlockState(), 2);
                                             } else {
                                                 p_202516_1_.setBlockState(lvt_28_1_, DEFAULT_CAVE_AIR, 2);
                                                 if (lvt_39_1_) {

@@ -2,6 +2,7 @@ package mod.krevik.kathairis.entities;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.KItems;
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.entities.ai.EntityAIAttackMeleeBison;
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
 import mod.krevik.kathairis.util.KatharianEntityTypes;
@@ -23,6 +24,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -45,6 +47,7 @@ public class EntityBison extends EntityAnimal
         spawnableBlock= KBlocks.KATHARIAN_GRASS;
     }
 
+    @Override
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -61,16 +64,13 @@ public class EntityBison extends EntityAnimal
 
     }
 
-    protected void updateAITasks()
-    {
-        super.updateAITasks();
-    }
-    
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 4;
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -78,6 +78,7 @@ public class EntityBison extends EntityAnimal
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3000000417232513D);
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
@@ -86,11 +87,13 @@ public class EntityBison extends EntityAnimal
         this.getDataManager().register(hapiness, Float.valueOf(0));
     }
 
+    @Override
     public boolean isBreedingItem(ItemStack stack)
     {
         return stack.getItem() == Item.getItemFromBlock(KBlocks.BISON_STARS);
     }
 
+    @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
         entityIn.attackEntityFrom(DamageSource.causeMobDamage(this),2F);
@@ -125,6 +128,7 @@ public class EntityBison extends EntityAnimal
 
 
     boolean shouldDeleteRevenegeTarget=false;
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         int k = getRNG().nextInt(100);
@@ -151,18 +155,13 @@ public class EntityBison extends EntityAnimal
         return super.attackEntityFrom(source, amount);
     }
 
-
+    @Override
     protected ResourceLocation getLootTable()
     {
     	return KatharianLootTables.LOOT_BISON;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-            super.handleStatusUpdate(id);
-    }
-
+    @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
         ItemStack itemstack = player.getHeldItem(hand);
@@ -189,7 +188,8 @@ public class EntityBison extends EntityAnimal
     	return c;
     }
 
-    @Override public void tick(){
+    @Override
+    public void tick(){
         super.tick();
         if(!getShouldAnimTail()) {
             if(getRNG().nextInt(750)==0) {
@@ -209,7 +209,7 @@ public class EntityBison extends EntityAnimal
 
     }
 
-
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
@@ -219,6 +219,7 @@ public class EntityBison extends EntityAnimal
 
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);
@@ -227,22 +228,25 @@ public class EntityBison extends EntityAnimal
         setHapiness(compound.getFloat("hapiness"));
     }
 
-   /* protected SoundEvent getAmbientSound()
+    @Override
+    protected SoundEvent getAmbientSound()
     {
-        return KCore.proxy.bison_living;
+        return Kathairis.bison_living;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return KCore.proxy.bison_hurt;
+        return Kathairis.bison_hurt;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
-        return KCore.proxy.bison_dead;
-    }*/
+        return Kathairis.bison_dead;
+    }
 
- 
+    @Override
     public EntityBison createChild(EntityAgeable ageable)
     {
         EntityBison entitysheep = (EntityBison)ageable;
@@ -250,6 +254,7 @@ public class EntityBison extends EntityAnimal
         return entitysheep1;
     }
 
+    @Override
     public float getEyeHeight()
     {
         return 0.95F * this.height;

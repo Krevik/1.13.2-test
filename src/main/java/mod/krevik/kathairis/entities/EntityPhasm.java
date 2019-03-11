@@ -49,6 +49,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
         return getDataManager().get(SWINGING_ARMS).booleanValue();
     }
 
+    @Override
     protected void initEntityAI()
     {
         this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 25.0F));
@@ -57,6 +58,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
         this.targetTasks.addTask(3, new EntityPhasm.AIInteractWithPlayer(this));
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -71,7 +73,8 @@ public class EntityPhasm extends EntityFlying implements IMob {
     int ticker=100;
     FunctionHelper helper = Kathairis.getHelper();
 
-    @Override public void tick()
+    @Override
+    public void tick()
     {
         super.tick();
 
@@ -187,6 +190,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
 
 
 
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if(source.getTrueSource() instanceof EntityPlayer) {
@@ -199,44 +203,21 @@ public class EntityPhasm extends EntityFlying implements IMob {
         return false;
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
         this.getDataManager().register(SWINGING_ARMS, Boolean.valueOf(false));
     }
 
-
-    public SoundCategory getSoundCategory()
-    {
-        return SoundCategory.HOSTILE;
-    }
-
-    protected SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_PHASM;
     }
 
-    protected float getSoundVolume()
-    {
-        return 3.0F;
-    }
-
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 1;
@@ -257,6 +238,7 @@ public class EntityPhasm extends EntityFlying implements IMob {
             this.parentEntity = ghast;
         }
 
+        @Override
         public void tick()
         {
             if (this.action == EntityMoveHelper.Action.MOVE_TO)
@@ -285,9 +267,6 @@ public class EntityPhasm extends EntityFlying implements IMob {
             }
         }
 
-        /**
-         * Checks if entity bounding box is not colliding with terrain
-         */
         private boolean isNotColliding(double x, double y, double z, double p_179926_7_)
         {
             double d0 = (x - this.parentEntity.posX) / p_179926_7_;
@@ -318,10 +297,12 @@ public class EntityPhasm extends EntityFlying implements IMob {
             this.setMutexBits(3);
         }
 
+        @Override
         public boolean shouldExecute() {
             return phasm.getAttackTarget() != null;
         }
 
+        @Override
         public void tick() {
             if (phasm.getAttackTarget() != null) {
                 EntityLivingBase entitylivingbase = phasm.getAttackTarget();
@@ -341,7 +322,10 @@ public class EntityPhasm extends EntityFlying implements IMob {
             this.setMutexBits(3);
         }
 
+        @Override
         public boolean shouldExecute() {return phasm.getAttackTarget()!=null;}
+
+        @Override
         public void tick(){
             if(phasm.getAttackTarget()!=null){
                 phasm.motionX=(phasm.getAttackTarget().posX-phasm.posX)/50;
@@ -377,11 +361,13 @@ public class EntityPhasm extends EntityFlying implements IMob {
             this.setMutexBits(3);
         }
 
+        @Override
         public boolean shouldExecute()
         {
             return gaznowel.getAttackTarget()==null;
         }
 
+        @Override
         public void tick() {
 
             if(gaznowel.getAttackTarget()==null&&gaznowel.getRNG().nextInt(500)==0){

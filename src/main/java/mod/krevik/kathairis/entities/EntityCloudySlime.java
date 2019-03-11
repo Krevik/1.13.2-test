@@ -42,6 +42,7 @@ public class EntityCloudySlime extends EntityTameable
         this.setTamed(false);
     }
 
+    @Override
     protected void initEntityAI()
     {
     	super.initEntityAI();
@@ -59,6 +60,7 @@ public class EntityCloudySlime extends EntityTameable
 
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -68,6 +70,7 @@ public class EntityCloudySlime extends EntityTameable
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000000298023224D);
     }
 
+    @Override
     protected PathNavigate createNavigator(World worldIn)
     {
         PathNavigateFlying pathnavigateflying = new PathNavigateFlying(this, worldIn);
@@ -76,6 +79,7 @@ public class EntityCloudySlime extends EntityTameable
         return pathnavigateflying;
     }
 
+    @Override
     public void travel(float strafe, float vertical, float forward) {
         if (this.isInWater()) {
             this.moveRelative(strafe, vertical, forward, 0.02F);
@@ -122,6 +126,7 @@ public class EntityCloudySlime extends EntityTameable
         this.limbSwing += this.limbSwingAmount;
     }
 
+    @Override
     public float getEyeHeight()
     {
         return this.height * 0.6F;
@@ -149,6 +154,7 @@ public class EntityCloudySlime extends EntityTameable
 
     }
 
+    @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
         ItemStack itemstack = player.getHeldItem(hand);
@@ -201,80 +207,50 @@ public class EntityCloudySlime extends EntityTameable
         }
     }
 
-
+    @Override
     public boolean isBreedingItem(ItemStack stack)
     {
         return false;
     }
 
+    @Override
     public void fall(float distance, float damageMultiplier)
     {
     	
     }
 
+    @Override
     protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
     {
     	
     }
 
-
+    @Override
     public boolean canMateWith(EntityAnimal otherAnimal)
     {
         return false;
     }
 
     @Nullable
+    @Override
     public EntityAgeable createChild(EntityAgeable ageable)
     {
         return null;
     }
 
+    @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
         return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
     }
 
-    @Nullable
-    public SoundEvent getAmbientSound()
-    {
-        return getAmbientSound(this.rand);
-    }
-
-    private static SoundEvent getAmbientSound(Random random)
-    {
-    	return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
-    protected float getSoundPitch()
-    {
-        return getPitch(this.rand);
-    }
-
-    private static float getPitch(Random random)
-    {
-        return (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F;
-    }
-
-    public SoundCategory getSoundCategory()
-    {
-        return SoundCategory.NEUTRAL;
-    }
-
+    @Override
     public boolean canBePushed()
     {
         return true;
     }
 
+    @Override
     protected void collideWithEntity(Entity entityIn)
     {
         if (!(entityIn instanceof EntityPlayer))
@@ -283,6 +259,7 @@ public class EntityCloudySlime extends EntityTameable
         }
     }
 
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (this.isInvulnerableTo(source))
@@ -317,18 +294,21 @@ public class EntityCloudySlime extends EntityTameable
         this.getDataManager().set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
         this.getDataManager().register(VARIANT, Integer.valueOf(0));
     }
 
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
         compound.setInt("Variant", this.getVariant());
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);
@@ -336,13 +316,9 @@ public class EntityCloudySlime extends EntityTameable
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_CLOUDYSLIME;
-    }
-
-    public boolean isFlying()
-    {
-        return !this.onGround;
     }
 }

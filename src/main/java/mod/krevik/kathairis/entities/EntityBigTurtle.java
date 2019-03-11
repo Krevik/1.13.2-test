@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.entities;
 
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
 import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.util.KatharianLootTables;
@@ -27,6 +28,7 @@ public class EntityBigTurtle extends EntityAnimal
         this.experienceValue=10;
     }
 
+    @Override
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -38,12 +40,14 @@ public class EntityBigTurtle extends EntityAnimal
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.tasks.addTask(0, new EntityAIAvoidMovingSandsAndCactus(this,1.2D));
     }
-    
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 1;
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -51,62 +55,23 @@ public class EntityBigTurtle extends EntityAnimal
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.1000000417232513D);
     }
 
-    protected void registerData()
-    {
-        super.registerData();
-    }
-
+    @Override
     protected ResourceLocation getLootTable()
     {
     	return KatharianLootTables.LOOT_BIGTURTLE;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte id)
+    @Override
+    protected SoundEvent getDeathSound()
     {
-            super.handleStatusUpdate(id);
+        return Kathairis.turtle_dead;
     }
 
-    public boolean processInteract(EntityPlayer player, EnumHand hand)
-    {
-    	return false;
-    }
-
-    public void writeAdditional(NBTTagCompound compound)
-    {
-        super.writeAdditional(compound);
-    }
-
-    public void readAdditional(NBTTagCompound compound)
-    {
-        super.readAdditional(compound);
-    }
-
-    protected SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    /*protected SoundEvent getDeathSound()
-    {
-        return KCore.proxy.turtle_dead;
-    }*/
-
- 
+    @Override
     public EntityBigTurtle createChild(EntityAgeable ageable)
     {
         EntityBigTurtle entitysheep1 = new EntityBigTurtle(this.world);
         return entitysheep1;
-    }
-
-    public float getEyeHeight()
-    {
-        return 0.95F * this.height;
     }
 
 }

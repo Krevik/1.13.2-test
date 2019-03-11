@@ -1,6 +1,7 @@
 package mod.krevik.kathairis.entities;
 
 import com.google.common.base.Predicate;
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.entities.ai.EntityAIAvoidMovingSandsAndCactus;
 import mod.krevik.kathairis.entities.ai.EntityAIHowlerAttackStun;
 import mod.krevik.kathairis.entities.ai.EntityAITargetSpecified;
@@ -17,7 +18,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -37,7 +40,7 @@ public class EntityHowler extends EntityMob
         this.setSize(0.85F, 1F);
     }
 
-
+    @Override
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -60,18 +63,15 @@ public class EntityHowler extends EntityMob
         }));
         this.experienceValue=15;
 
-        this.applyEntityAI();
     }
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 1;
     }
 
-    protected void applyEntityAI()
-    {
-
-    }
-
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -83,6 +83,7 @@ public class EntityHowler extends EntityMob
 
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
@@ -116,6 +117,7 @@ public class EntityHowler extends EntityMob
         return this.getDataManager().get(shouldAnimJaw);
     }
 
+    @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
         boolean flag = super.attackEntityAsMob(entityIn);
@@ -134,7 +136,8 @@ public class EntityHowler extends EntityMob
     }
 
     int someTimer=0;
-    @Override public void tick() {
+    @Override
+    public void tick() {
     	super.tick();
     	if(getShouldAnimJaw()==false){
     	    if(rand.nextInt(500)==0){
@@ -165,49 +168,46 @@ public class EntityHowler extends EntityMob
             }
     }
 
-    /*protected SoundEvent getAmbientSound()
+    @Override
+    protected SoundEvent getAmbientSound()
     {
-        return KCore.proxy.Howler_living;
+        return Kathairis.Howler_living;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return KCore.proxy.Howler_hurt;
+        return Kathairis.Howler_hurt;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
-        return KCore.proxy.Howler_dead;
+        return Kathairis.Howler_dead;
     }
 
-    protected SoundEvent getStepSound()
-    {
-        return null;
-    }
-
-    protected void playStepSound(BlockPos pos, Block blockIn)
-    {
-        this.playSound(this.getStepSound(), 0.15F, 1.0F);
-    }*/
-
+    @Override
     public CreatureAttribute getCreatureAttribute()
     {
         return CreatureAttribute.UNDEAD;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_HOWLER;
     }
 
 
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
         compound.setFloat("animTimer",getAnimTimer());
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);

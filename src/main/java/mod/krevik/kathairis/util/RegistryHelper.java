@@ -5,23 +5,26 @@ import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.KItems;
 import mod.krevik.kathairis.Kathairis;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryHelper {
+
+    @SubscribeEvent
+    public static void registerSounds(final RegistryEvent.Register<SoundEvent> event){
+
+    }
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event){
@@ -46,14 +49,22 @@ public class RegistryHelper {
     @SubscribeEvent
     public static void registerKatharianBiomes(final RegistryEvent.Register<Biome> event){
         final IForgeRegistry<Biome> registry = event.getRegistry();
-        registry.register(Kathairis.BIOME_MYSTIC_FOREST);
+        registry.register(Kathairis.BIOME_KATHARIAN_FOREST);
         registry.register(Kathairis.BIOME_KATHARIAN_RIVER);
+        registry.register(Kathairis.BIOME_KATHARIAN_DESERT);
+        registry.register(Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS);
+    }
+
+    @SubscribeEvent
+    public static void registerEntityTypes(final RegistryEvent.Register<EntityType<?>> event){
+        EntityRegistry.registerEntities(event);
     }
 
 
     @SubscribeEvent
     public static void registerItems(final RegistryEvent.Register<Item> event){
         final IForgeRegistry<Item> registry = event.getRegistry();
+        KatharianEntityTypes.registerEggs(event);
         for(ItemBlock itemBlock:KBlocks.itemBlocksRegistryList){
             final Block block = itemBlock.getBlock();
             final ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(), "Block %s has null registry name", block);

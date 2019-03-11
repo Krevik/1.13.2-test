@@ -27,7 +27,6 @@ public class EntityBasicButterfly extends EntityAmbientCreature
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(EntityBasicButterfly.class, DataSerializers.VARINT);
 
     private static final DataParameter<Byte> SITTING = EntityDataManager.createKey(EntityIllukini.class, DataSerializers.BYTE);
-    /** Coordinates of where the bat spawned. */
     private BlockPos spawnPosition;
 
     public EntityBasicButterfly(World worldIn, EntityType type)
@@ -37,55 +36,25 @@ public class EntityBasicButterfly extends EntityAmbientCreature
         this.setIsBirdSitting(true);
         this.experienceValue=1;
     }
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 2;
     }
 
-    /**
-     * Returns the volume for the sounds this mob makes.
-     */
-    protected float getSoundVolume()
-    {
-        return 1F;
-    }
-
-    /**
-     * Gets the pitch of living sounds in living entities.
-     */
-    protected float getSoundPitch()
-    {
-        return super.getSoundPitch() * 0.95F;
-    }
-
-    @Nullable
-    public SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
-    /**
-     * Returns true if this entity should push and be pushed by other entities when colliding.
-     */
+    @Override
     public boolean canBePushed()
     {
         return false;
     }
 
+    @Override
     protected void collideWithEntity(Entity entityIn)
     {
     }
 
+    @Override
     protected void collideWithNearbyEntities()
     {
     }
@@ -116,10 +85,8 @@ public class EntityBasicButterfly extends EntityAmbientCreature
         }
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
-    @Override public void tick()
+    @Override
+    public void tick()
     {
         super.tick();
 
@@ -139,6 +106,7 @@ public class EntityBasicButterfly extends EntityAmbientCreature
         }
     }
 
+    @Override
     protected void updateAITasks()
     {
         super.updateAITasks();
@@ -195,30 +163,29 @@ public class EntityBasicButterfly extends EntityAmbientCreature
     }
 
 
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
+    @Override
     public void fall(float distance, float damageMultiplier)
     {
     }
 
+    @Override
     protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
     {
     }
 
-    /**
-     * Return whether this entity should NOT trigger a pressure plate or a tripwire.
-     */
+    @Override
     public boolean doesEntityNotTriggerPressurePlate()
     {
         return true;
     }
 
-    /**
-     * Called when the entity is attacked.
-     */
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (this.isInvulnerableTo(source))
@@ -242,6 +209,7 @@ public class EntityBasicButterfly extends EntityAmbientCreature
         return MathHelper.clamp(this.getDataManager().get(VARIANT).intValue(), 0, ButterflyType.META_LOOKUP.length);
     }
 
+    @Override
     protected void registerData()
     {
         super.registerData();
@@ -255,6 +223,7 @@ public class EntityBasicButterfly extends EntityAmbientCreature
         this.getDataManager().set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
+    @Override
     public void readAdditional(NBTTagCompound compound)
     {
         super.readAdditional(compound);
@@ -263,6 +232,7 @@ public class EntityBasicButterfly extends EntityAmbientCreature
 
     }
 
+    @Override
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
@@ -270,13 +240,8 @@ public class EntityBasicButterfly extends EntityAmbientCreature
         compound.setInt("Variant", this.getVariant());
 
     }
-
-    public float getEyeHeight()
-    {
-        return this.height / 2.0F;
-    }
-
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_BUTTERFLY;

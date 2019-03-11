@@ -2,26 +2,21 @@ package mod.krevik.kathairis.world.dimension.biome;
 
 import com.google.common.collect.ImmutableList;
 import mod.krevik.kathairis.Kathairis;
-import net.minecraft.init.Biomes;
 import net.minecraft.util.registry.IRegistry;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.IContext;
 import net.minecraft.world.gen.OverworldGenSettings;
-import net.minecraft.world.gen.layer.GenLayerBiome;
-import net.minecraft.world.gen.layer.LayerUtil;
 import net.minecraft.world.gen.layer.traits.IC0Transformer;
 import net.minecraftforge.common.BiomeManager;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GenLayerKatharianBiome implements IC0Transformer {
 
     public static ImmutableList<BiomeManager.BiomeEntry> getBiomesToGeneration(){
         ArrayList<BiomeManager.BiomeEntry> list = new ArrayList<>();
-        list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_MYSTIC_FOREST,10));
-        list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_RIVER,9));
+        list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_FOREST,10));
+        list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_DESERT,10));
+        list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS,10));
 
         return ImmutableList.copyOf(list);
     }

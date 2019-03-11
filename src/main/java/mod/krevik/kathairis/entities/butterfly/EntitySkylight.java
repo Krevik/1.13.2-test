@@ -15,41 +15,26 @@ public class EntitySkylight extends EntityMothBase
         this.experienceValue=1;
     }
 
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 3;
     }
-    protected void registerData()
-    {
-        super.registerData();
-    }
 
+    @Override
     protected void collideWithEntity(Entity entityIn)
     {
     }
 
+    @Override
     protected void collideWithNearbyEntities()
     {
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-    }
-
-    /**
-     * Called to update the entity's position/logic.
-     */
-    @Override public void tick()
-    {
-        super.tick();
-    }
-    
-
-
-    protected void updateAITasks()
-    {
-        super.updateAITasks();
     }
 }

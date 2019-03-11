@@ -49,6 +49,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
         return getDataManager().get(SWINGING_ARMS).booleanValue();
     }
 
+    @Override
     protected void initEntityAI()
     {
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
@@ -58,6 +59,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
 
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -67,6 +69,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
         this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
     }
 
+    @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
     {
         EntityArrow entityarrow = this.getArrow(distanceFactor);
@@ -87,7 +90,8 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
     }
 
    int timer=0;
-    @Override public void tick()
+    @Override
+    public void tick()
     {
         super.tick();
 
@@ -146,6 +150,8 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
             return result;
         }
     }
+
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if(getAttackTarget()!=null){
@@ -170,6 +176,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
         }
     }
 
+    @Override
     public void onDeath(DamageSource cause){
         if(!world.isRemote) {
             EntitySkeleton skeleton = new EntitySkeleton(world);
@@ -179,6 +186,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
         super.onDeath(cause);
     }
 
+    @Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         super.setEquipmentBasedOnDifficulty(difficulty);
@@ -193,45 +201,33 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
         return livingdata;
     }*/
 
+    @Override
     protected void registerData()
     {
         super.registerData();
         this.getDataManager().register(SWINGING_ARMS, Boolean.valueOf(false));
     }
 
-
+    @Override
     public SoundCategory getSoundCategory()
     {
         return SoundCategory.HOSTILE;
     }
 
-    protected SoundEvent getAmbientSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_GAZNOWEL;
     }
 
+    @Override
     protected float getSoundVolume()
     {
         return 3.0F;
     }
 
-
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 1;
@@ -254,6 +250,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
             this.parentEntity = ghast;
         }
 
+        @Override
         public void tick()
         {
             if (this.action == EntityMoveHelper.Action.MOVE_TO)
@@ -282,9 +279,6 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
             }
         }
 
-        /**
-         * Checks if entity bounding box is not colliding with terrain
-         */
         private boolean isNotColliding(double x, double y, double z, double p_179926_7_)
         {
             double d0 = (x - this.parentEntity.posX) / p_179926_7_;
@@ -316,9 +310,7 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
             this.setMutexBits(3);
         }
 
-        /**
-         * Returns whether the EntityAIBase should begin execution.
-         */
+        @Override
         public boolean shouldExecute()
         {
             return gaznowel.getAttackTarget()!=null;
@@ -333,6 +325,8 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
         private int strafingTime = -1;
         private final double moveSpeedAmp=1;
         private int attackCooldown=15;
+
+        @Override
         public void tick() {
             if(gaznowel.getAttackTarget()!=null) {
                 gaznowel.getLookHelper().setLookPositionWithEntity(gaznowel.getAttackTarget(), 10.0F, 100F);
@@ -405,17 +399,13 @@ public class EntityGaznowel extends EntityFlying implements IRangedAttackMob, IM
             this.setMutexBits(3);
         }
 
-        /**
-         * Returns whether the EntityAIBase should begin execution.
-         */
+        @Override
         public boolean shouldExecute()
         {
             return gaznowel.getAttackTarget()==null;
         }
 
-        /**
-         * Keep ticking a continuous task that has already been started
-         */
+        @Override
         public void tick() {
 
             if(!gaznowel.hasMovementVector&&gaznowel.getRNG().nextInt(500)==0){

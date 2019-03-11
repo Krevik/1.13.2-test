@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 import mod.krevik.kathairis.Kathairis;
@@ -15,13 +14,9 @@ import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
-import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.biome.provider.OverworldBiomeProvider;
-import net.minecraft.world.biome.provider.OverworldBiomeProviderSettings;
-import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.LayerUtil;
 import net.minecraft.world.storage.WorldInfo;
 
 public class KatharianBiomeProvider extends OverworldBiomeProvider {
@@ -32,7 +27,8 @@ public class KatharianBiomeProvider extends OverworldBiomeProvider {
 
     public KatharianBiomeProvider(KatharianBiomeProviderSettings p_i48971_1_) {
         super(p_i48971_1_);
-        this.biomes = new Biome[]{Kathairis.BIOME_KATHARIAN_RIVER,Kathairis.BIOME_MYSTIC_FOREST};
+        this.biomes = new Biome[]{Kathairis.BIOME_KATHARIAN_RIVER,Kathairis.BIOME_KATHARIAN_FOREST, Kathairis.BIOME_KATHARIAN_DESERT,
+        Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS};
         WorldInfo lvt_2_1_ = p_i48971_1_.getWorldInfo();
         KatharianGenSettings lvt_3_1_ = p_i48971_1_.getGeneratorSettings();
         GenLayer[] lvt_4_1_ = KatharianLayerUtil.buildOverworldProcedure(lvt_2_1_.getSeed(), lvt_2_1_.getTerrainType(), lvt_3_1_);

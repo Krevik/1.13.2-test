@@ -8,6 +8,7 @@ import mod.krevik.kathairis.util.KatharianLootTables;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -22,6 +23,7 @@ import javax.annotation.Nullable;
 
 public class EntityButterfly extends EntityBasicButterfly
 {
+
     private BlockPos spawnPosition;
     public BlockPos butterflyFlowerPos=null;
 
@@ -33,67 +35,43 @@ public class EntityButterfly extends EntityBasicButterfly
         this.experienceValue=1;
     }
 
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 2;
     }
+
+    @Override
     protected void registerData()
     {
         super.registerData();
     }
 
-    protected float getSoundVolume()
-    {
-        return 1F;
-    }
-
-    protected float getSoundPitch()
-    {
-        return super.getSoundPitch() * 0.95F;
-    }
-
-    @Nullable
-    public SoundEvent getAmbientSound()
-    {
-    	return null;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
-    /**
-     * Returns true if this entity should push and be pushed by other entities when colliding.
-     */
+    @Override
     public boolean canBePushed()
     {
         return false;
     }
 
+    @Override
     protected void collideWithEntity(Entity entityIn)
     {
     }
 
+    @Override
     protected void collideWithNearbyEntities()
     {
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
-    @Override public void tick()
+    @Override
+    public void tick()
     {
         super.tick();
 
@@ -114,6 +92,7 @@ public class EntityButterfly extends EntityBasicButterfly
     }
 
     int ticker=0;
+    @Override
     protected void updateAITasks()
     {
         ticker++;
@@ -205,34 +184,31 @@ public class EntityButterfly extends EntityBasicButterfly
         }
     }
 
-    /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
-     */
+
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
+    @Override
     public void fall(float distance, float damageMultiplier)
     {
     }
 
+    @Override
     protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
     {
     }
 
-    /**
-     * Return whether this entity should NOT trigger a pressure plate or a tripwire.
-     */
+
+    @Override
     public boolean doesEntityNotTriggerPressurePlate()
     {
         return true;
     }
 
-    /**
-     * Called when the entity is attacked.
-     */
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (this.isInvulnerableTo(source))
@@ -250,28 +226,8 @@ public class EntityButterfly extends EntityBasicButterfly
         }
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    public void readAdditional(NBTTagCompound compound)
-    {
-        super.readAdditional(compound);
-    }
-
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
-    public void writeAdditional(NBTTagCompound compound)
-    {
-        super.writeAdditional(compound);
-    }
-
-    public float getEyeHeight()
-    {
-        return this.height / 2.0F;
-    }
-
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return KatharianLootTables.LOOT_BUTTERFLY;

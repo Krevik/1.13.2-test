@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.entities;
 
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.util.KatharianEntityTypes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -10,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -24,10 +26,7 @@ public class EntityStrangeWanderer extends EntityMob
         this.experienceValue=0;
     }
 
-    protected void initEntityAI()
-    {
-
-    }
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
             if(source.getTrueSource() instanceof EntityPlayer) {
@@ -40,11 +39,14 @@ public class EntityStrangeWanderer extends EntityMob
             }
         return false;
     }
+
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 1;
     }
 
+    @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
@@ -54,18 +56,14 @@ public class EntityStrangeWanderer extends EntityMob
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
-    protected void registerData()
-    {
-        super.registerData();
-    }
-
-
+    @Override
     public void notifyDataManagerChange(DataParameter<?> key)
     {
         super.notifyDataManagerChange(key);
     }
     
-    @Override public void tick() {
+    @Override
+    public void tick() {
     	super.tick();
     	EntityPlayer ep = this.world.getClosestPlayer(posX, posY, posZ, 15, true);
     	if(ep!=null) {
@@ -75,25 +73,10 @@ public class EntityStrangeWanderer extends EntityMob
     }
 
 
-    /*protected SoundEvent getAmbientSound()
+    protected SoundEvent getAmbientSound()
     {
-        return KCore.proxy.oldman_ambient;
+        return Kathairis.oldman_ambient;
     }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return null;
-    }
-
-    protected SoundEvent getStepSound()
-    {
-        return null;
-    }*/
 
    /*int month = Calendar.getInstance().get(Calendar.MONTH);
     EntityPlayer lastTalker;
@@ -137,14 +120,16 @@ public class EntityStrangeWanderer extends EntityMob
         }
         return is;
     }*/
-    
 
+
+    @Override
     public CreatureAttribute getCreatureAttribute()
     {
         return CreatureAttribute.UNDEFINED;
     }
 
     @Nullable
+    @Override
     protected ResourceLocation getLootTable()
     {
         return null;
