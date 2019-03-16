@@ -1,13 +1,11 @@
 package mod.krevik.kathairis.world.dimension.biome.gen_layers;
 
 import mod.krevik.kathairis.Kathairis;
-import mod.krevik.kathairis.world.dimension.biome.KatharianLayerUtil;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.gen.IContext;
 import net.minecraft.world.gen.area.AreaDimension;
 import net.minecraft.world.gen.area.IArea;
-import net.minecraft.world.gen.layer.LayerUtil;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer2;
 import net.minecraft.world.gen.layer.traits.IDimOffset0Transformer;
 

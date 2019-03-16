@@ -5,12 +5,9 @@ import mod.krevik.kathairis.client.sound.SoundHandlerBase;
 import mod.krevik.kathairis.client.sound.SoundHelper;
 import mod.krevik.kathairis.util.FunctionHelper;
 import mod.krevik.kathairis.world.dimension.*;
-import mod.krevik.kathairis.world.dimension.biome.biomes.BiomeKatharianDesert;
-import mod.krevik.kathairis.world.dimension.biome.biomes.BiomeKatharianForest;
+import mod.krevik.kathairis.world.dimension.biome.biomes.*;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
-import mod.krevik.kathairis.world.dimension.biome.biomes.BiomeKatharianPlainFields;
-import mod.krevik.kathairis.world.dimension.biome.biomes.BiomeKatharianRiver;
 import net.minecraft.block.SoundType;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
@@ -98,12 +95,15 @@ public class Kathairis {
     public static Biome BIOME_KATHARIAN_RIVER;
     public static Biome BIOME_KATHARIAN_DESERT;
     public static Biome BIOME_KATHARIAN_PLAIN_FIELDS;
+    public static Biome BIOME_KATHARIAN_DESERT_EDGE;
 
     private static void initBiomes(){
         BIOME_KATHARIAN_FOREST = new BiomeKatharianForest().setRegistryName(Kathairis.MODID,"katharian_forest");
         BIOME_KATHARIAN_RIVER = new BiomeKatharianRiver().setRegistryName(Kathairis.MODID,"katharian_river");
         BIOME_KATHARIAN_DESERT = new BiomeKatharianDesert().setRegistryName(Kathairis.MODID,"katharian_desert");
         BIOME_KATHARIAN_PLAIN_FIELDS = new BiomeKatharianPlainFields().setRegistryName(Kathairis.MODID,"katharian_plain_fields");
+        BIOME_KATHARIAN_DESERT_EDGE = new BiomeKatharianDesertEdge().setRegistryName(Kathairis.MODID,"katharian_desert_edge");
+
     }
 
     public static SoundHelper bird = new SoundHelper("bird", "bird");

@@ -1,4 +1,4 @@
-package mod.krevik.kathairis.world.dimension.biome;
+package mod.krevik.kathairis.world.dimension.biome.gen_layers;
 
 import com.google.common.collect.ImmutableList;
 import mod.krevik.kathairis.Kathairis;

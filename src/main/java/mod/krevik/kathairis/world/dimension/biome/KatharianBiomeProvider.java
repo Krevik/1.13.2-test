@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.world.dimension.KatharianGenSettings;
+import mod.krevik.kathairis.world.dimension.biome.gen_layers.KatharianLayerUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;

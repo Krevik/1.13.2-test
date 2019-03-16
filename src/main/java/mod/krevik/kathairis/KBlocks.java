@@ -145,7 +145,7 @@ public class KBlocks {
         GOOSEBERRY_BUSH = new BlockGooseberry("gooseberry_bush",Material.LEAVES,1f,1f,SoundType.PLANT,KathairisItemGroups.kathairis_plants).addToBlockRegistryList();
         KATHARIAN_SUCCULENT = new BlockKatharianSucculent("katharian_succulent").addToBlockAndItemBlockRegistryList();
         STEPPED_SUCCULENT = new BlockSteppedSucculent("stepped_succulent").addToBlockAndItemBlockRegistryList();
-        VILYRIA = new BlockKatharianPlant("vilyria").addToBlockAndItemBlockRegistryList();
+        VILYRIA = new BlockKatharianPlant("vilyria",Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0).needsRandomTick().doesNotBlockMovement().lightValue(5)).addToBlockAndItemBlockRegistryList();
         GLOWVINES = new BlockGlowVines("glowvines").addToBlockAndItemBlockRegistryList();
         JADE_VINES = new BlockJadeVines("jade_vines").addToBlockAndItemBlockRegistryList();
         KATHARIAN_DEAD_GRASS = new BlockKatharianDeadGrass("katharian_dead_grass").addToBlockAndItemBlockRegistryList();

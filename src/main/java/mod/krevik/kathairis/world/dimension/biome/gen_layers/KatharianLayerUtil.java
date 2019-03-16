@@ -1,15 +1,14 @@
-package mod.krevik.kathairis.world.dimension.biome;
+package mod.krevik.kathairis.world.dimension.biome.gen_layers;
 
 import com.google.common.collect.ImmutableList;
 import java.util.function.LongFunction;
 
+import mod.krevik.kathairis.world.dimension.biome.gen_layers.GenLayerKatharianBiome;
 import mod.krevik.kathairis.world.dimension.biome.gen_layers.GenLayerKatharianRiver;
 import mod.krevik.kathairis.world.dimension.biome.gen_layers.GenLayerKatharianRiverMix;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BadlandsPlateauBiome;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.IContextExtended;
 import net.minecraft.world.gen.LazyAreaLayerContext;
 import net.minecraft.world.gen.OverworldGenSettings;
@@ -55,14 +54,16 @@ public class KatharianLayerUtil {
         iareafactory = GenLayerZoom.NORMAL.apply(contextFactory.apply(2002L), iareafactory);
         iareafactory = GenLayerAddIsland.INSTANCE.apply(contextFactory.apply(4L), iareafactory);
         iareafactory = GenLayerDeepOcean.INSTANCE.apply(contextFactory.apply(4L), iareafactory);
+        //iareafactory = GenLayerEdge.HeatIce.INSTANCE.apply(contextFactory.apply(2L), iareafactory);
         iareafactory = repeat(1000L, GenLayerZoom.NORMAL, iareafactory, 0, contextFactory);
+
         int i = 4;
         int j = i;
         if (settings != null) {
             j = settings.getRiverSize();
         }
 
-        i = 4;
+        i = 2;
 
 
         IAreaFactory<T> lvt_7_1_ = repeat(1000L, GenLayerZoom.NORMAL, iareafactory, 0, contextFactory);

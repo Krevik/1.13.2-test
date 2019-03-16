@@ -98,29 +98,30 @@ public class KatharianEntityTypes {
     }
 
     public static void registerEggs(final RegistryEvent.Register<Item> event){
-        event.getRegistry().register(makeSpawnEgg(BASIC_BUTTERFLY1,0,0,"basic_butterfly1"));
-        event.getRegistry().register(makeSpawnEgg(BASIC_BUTTERFLY2,0,0,"basic_butterfly2"));
-        event.getRegistry().register(makeSpawnEgg(CLOUD_SHIMMER,0,0,"cloud_shimmer"));
-        event.getRegistry().register(makeSpawnEgg(ILLUKINI,0,0,"illukini"));
-        event.getRegistry().register(makeSpawnEgg(RUBY_SILE,0,0,"ruby_sile"));
-        event.getRegistry().register(makeSpawnEgg(SKYLIGHT,0,0,"skylight"));
-        event.getRegistry().register(makeSpawnEgg(BISON,0,0,"bison"));
-        event.getRegistry().register(makeSpawnEgg(CACTI_SPORE,0,0,"cacti_spore"));
-        event.getRegistry().register(makeSpawnEgg(CAMEL,0,0,"camel"));
-        event.getRegistry().register(makeSpawnEgg(CLOUD_OISTER,0,0,"cloud_oister"));
-        event.getRegistry().register(makeSpawnEgg(CLOUDY_SLIME,0,0,"cloudy_slime"));
-        event.getRegistry().register(makeSpawnEgg(FLYING_SQUID,0,0,"flying_squid"));
-        event.getRegistry().register(makeSpawnEgg(FUNGITE,0,0,"fungite"));
-        event.getRegistry().register(makeSpawnEgg(GAZNOWEL,0,0,"gaznowel"));
-        event.getRegistry().register(makeSpawnEgg(GECKO,0,0,"gecko"));
-        event.getRegistry().register(makeSpawnEgg(HOWLER,0,0,"howler"));
-        event.getRegistry().register(makeSpawnEgg(JELLY_FISH,0,0,"jelly_fish"));
-        event.getRegistry().register(makeSpawnEgg(LIVING_FLOWER,0,0,"living_flower"));
-        event.getRegistry().register(makeSpawnEgg(MYSTIC_BIRD,0,0,"mystic_bird"));
-        event.getRegistry().register(makeSpawnEgg(PHASM,0,0,"phasm"));
-        event.getRegistry().register(makeSpawnEgg(POISONOUS_SCORPION,0,0,"poisonous_scorpion"));
-        event.getRegistry().register(makeSpawnEgg(SKYRAY,0,0,"skyray"));
-        event.getRegistry().register(makeSpawnEgg(STRANGE_WANDERER,0,0,"strange_wanderer"));
+        event.getRegistry().register(makeSpawnEgg(BASIC_BUTTERFLY1,0xffffff, 0xff66e2,"basic_butterfly1"));
+        event.getRegistry().register(makeSpawnEgg(BASIC_BUTTERFLY2,0xffffff, 0x00c3ff,"basic_butterfly2"));
+        event.getRegistry().register(makeSpawnEgg(CLOUD_SHIMMER,0x996600, 0x00ff00,"cloud_shimmer"));
+        event.getRegistry().register(makeSpawnEgg(ILLUKINI,0x996600, 0x00ff00,"illukini"));
+        event.getRegistry().register(makeSpawnEgg(RUBY_SILE,0x996600, 0x00ff00,"ruby_sile"));
+        event.getRegistry().register(makeSpawnEgg(SKYLIGHT,0xffe62d, 0xffffff,"skylight"));
+        event.getRegistry().register(makeSpawnEgg(BIG_TURTLE,0xa87001, 0x21b6d,"big_turtle"));
+        event.getRegistry().register(makeSpawnEgg(BISON,0xa87801, 0x2d2400,"bison"));
+        event.getRegistry().register(makeSpawnEgg(CACTI_SPORE,0x996600, 0x00ff00,"cacti_spore"));
+        event.getRegistry().register(makeSpawnEgg(CAMEL,0xffd36b, 0xf9c039,"camel"));
+        event.getRegistry().register(makeSpawnEgg(CLOUD_OISTER,0xffffff, 0xff93f0,"cloud_oister"));
+        event.getRegistry().register(makeSpawnEgg(CLOUDY_SLIME,0xffffff, 0x9ef3ff,"cloudy_slime"));
+        event.getRegistry().register(makeSpawnEgg(FLYING_SQUID,0x996600, 0x00ff00,"flying_squid"));
+        event.getRegistry().register(makeSpawnEgg(FUNGITE,0x03204f, 0xb51405,"fungite"));
+        event.getRegistry().register(makeSpawnEgg(GAZNOWEL,0x996600, 0x00ff00,"gaznowel"));
+        event.getRegistry().register(makeSpawnEgg(GECKO,0x996600, 0x00ff00,"gecko"));
+        event.getRegistry().register(makeSpawnEgg(HOWLER,0x07003a, 0x4f0000,"howler"));
+        event.getRegistry().register(makeSpawnEgg(JELLY_FISH,0x5e0059, 0xff00f1,"jelly_fish"));
+        event.getRegistry().register(makeSpawnEgg(LIVING_FLOWER,0x00ff15, 0xff0000,"living_flower"));
+        event.getRegistry().register(makeSpawnEgg(MYSTIC_BIRD,0xDFCE9B, 0xff0000,"mystic_bird"));
+        event.getRegistry().register(makeSpawnEgg(PHASM,0x996600, 0x00ff00,"phasm"));
+        event.getRegistry().register(makeSpawnEgg(POISONOUS_SCORPION,0x030b2b, 0x0fc625,"poisonous_scorpion"));
+        event.getRegistry().register(makeSpawnEgg(SKYRAY,0x996600, 0x00ff00,"skyray"));
+        event.getRegistry().register(makeSpawnEgg(STRANGE_WANDERER,0xffdfa0, 0xffffff,"strange_wanderer"));
 
     }
 

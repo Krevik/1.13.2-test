@@ -53,6 +53,7 @@ public class RegistryHelper {
         registry.register(Kathairis.BIOME_KATHARIAN_RIVER);
         registry.register(Kathairis.BIOME_KATHARIAN_DESERT);
         registry.register(Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS);
+        registry.register(Kathairis.BIOME_KATHARIAN_DESERT_EDGE);
     }
 
     @SubscribeEvent
