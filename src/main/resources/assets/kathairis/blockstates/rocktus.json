@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "kathairis:block/rocktus", "y": 90  },
+      { "model": "kathairis:block/rocktus", "y": 180  },
+      { "model": "kathairis:block/rocktus", "y": 270 },
+      { "model": "kathairis:block/rocktus", "y": 360 }
+    ]
+  }
+}

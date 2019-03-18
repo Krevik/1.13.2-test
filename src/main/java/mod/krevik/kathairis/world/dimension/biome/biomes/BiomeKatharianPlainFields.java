@@ -2,9 +2,13 @@ package mod.krevik.kathairis.world.dimension.biome.biomes;
 
 import com.google.common.collect.Lists;
 import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.world.dimension.feature.KatharianFeatureList;
 import mod.krevik.kathairis.world.dimension.feature.KatharianMinableConfig;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Fluids;
 import net.minecraft.world.biome.Biome;
@@ -16,7 +20,6 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class BiomeKatharianPlainFields extends BiomeKatharianBiomeBase {
     public static final SurfaceBuilderConfig KATHARIAN_GRASS_DIRT_GRAVEL_SURFACE = new SurfaceBuilderConfig(KBlocks.KATHARIAN_GRASS.getDefaultState(), KBlocks.KATHARIAN_DIRT.getDefaultState(), GRAVEL);
-
     public BiomeKatharianPlainFields() {
         super((new BiomeBuilder()).surfaceBuilder(new CompositeSurfaceBuilder(DEFAULT_SURFACE_BUILDER, KATHARIAN_GRASS_DIRT_GRAVEL_SURFACE)).precipitation(RainType.RAIN).category(Category.PLAINS).depth(0.1F).scale(0.0F).temperature(0.7F).downfall(0.8F).waterColor(4159204).waterFogColor(329011).parent((String)null));
         this.addCarver(GenerationStage.Carving.AIR, createWorldCarverWrapper(KatharianFeatureList.KATHARIAN_CAVE_WORLD_CARVER, new ProbabilityConfig(0.14285715F)));
@@ -48,6 +51,11 @@ public class BiomeKatharianPlainFields extends BiomeKatharianBiomeBase {
         this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(KatharianFeatureList.KATHARIAN_PLAIN_FIELDS, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(4, 0, 0, 128)));
         this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
         this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD_MINI_ISLAND, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.MYSTIC_BIRD, 12, 1, 3));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.JELLY_FISH, 10, 1, 2));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.BISON, 8, 2, 4));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.BASIC_BUTTERFLY1, 10, 1, 1));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.BASIC_BUTTERFLY2, 10, 1, 1));
 
     }
 }

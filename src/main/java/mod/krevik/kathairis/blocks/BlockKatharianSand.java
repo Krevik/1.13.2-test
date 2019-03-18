@@ -1,18 +1,25 @@
 package mod.krevik.kathairis.blocks;
 
+import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFalling;
+import net.minecraft.block.BlockSand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Particles;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,15 +27,22 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-public class BlockKatharianSand extends BaseBlock {
+public class BlockKatharianSand extends BlockFalling {
     public static boolean fallInstantly=false;
     public BlockKatharianSand(String Name) {
-        super(Name, Block.Properties.create(Material.SAND).needsRandomTick().hardnessAndResistance(0.75f).sound(SoundType.SAND), KathairisItemGroups.kathairis_building_blocks);
+        super(Block.Properties.create(Material.SAND).needsRandomTick().hardnessAndResistance(0.75f).sound(SoundType.SAND));
+        setRegistryName(Kathairis.MODID,Name);
     }
 
     @Override
     public void onBlockAdded(IBlockState state, World worldIn, BlockPos pos, IBlockState oldState) {
         worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+    }
+
+    public BlockKatharianSand addToBlockAndItemBlockRegistryList(){
+        KBlocks.blockRegistryList.add(this);
+        KBlocks.itemBlocksRegistryList.add(new ItemBlock(this,new Item.Properties().group(KathairisItemGroups.kathairis_building_blocks)));
+        return this;
     }
 
     @Override

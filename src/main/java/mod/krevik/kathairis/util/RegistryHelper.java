@@ -47,6 +47,11 @@ public class RegistryHelper {
     }
 
     @SubscribeEvent
+    public static void registerEntityTypes(final RegistryEvent.Register<EntityType<?>> event){
+        EntityRegistry.registerEntities(event);
+    }
+
+    @SubscribeEvent
     public static void registerKatharianBiomes(final RegistryEvent.Register<Biome> event){
         final IForgeRegistry<Biome> registry = event.getRegistry();
         registry.register(Kathairis.BIOME_KATHARIAN_FOREST);
@@ -56,10 +61,7 @@ public class RegistryHelper {
         registry.register(Kathairis.BIOME_KATHARIAN_DESERT_EDGE);
     }
 
-    @SubscribeEvent
-    public static void registerEntityTypes(final RegistryEvent.Register<EntityType<?>> event){
-        EntityRegistry.registerEntities(event);
-    }
+
 
 
     @SubscribeEvent

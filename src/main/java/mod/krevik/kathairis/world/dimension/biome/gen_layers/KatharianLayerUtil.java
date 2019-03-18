@@ -19,6 +19,7 @@ import net.minecraft.world.gen.layer.*;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer1;
 
 public class KatharianLayerUtil {
+
     protected static final int WARM_OCEAN = IRegistry.field_212624_m.getId(Biomes.WARM_OCEAN);
     protected static final int LUKEWARM_OCEAN = IRegistry.field_212624_m.getId(Biomes.LUKEWARM_OCEAN);
     protected static final int OCEAN = IRegistry.field_212624_m.getId(Biomes.OCEAN);
@@ -64,7 +65,6 @@ public class KatharianLayerUtil {
         }
 
         i = 2;
-
 
         IAreaFactory<T> lvt_7_1_ = repeat(1000L, GenLayerZoom.NORMAL, iareafactory, 0, contextFactory);
         lvt_7_1_ = GenLayerRiverInit.INSTANCE.apply((IContextExtended)contextFactory.apply(100L), lvt_7_1_);

@@ -40,7 +40,7 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block p_189540_4_, BlockPos p_189540_5_) {
         super.neighborChanged(state, world, pos, p_189540_4_, p_189540_5_);
-        if(!isValidPosition(state,world,pos)){
+        if(!isValidPosition(state,world,pos)||!world.isAirBlock(pos.up())){
             world.removeBlock(pos);
         }
     }
@@ -53,7 +53,7 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
     @Override
     public boolean isValidPosition(IBlockState state, IWorldReaderBase worldIn, BlockPos pos) {
         BlockPos blockpos = pos.down();
-        return this.isValidGround(worldIn.getBlockState(blockpos), worldIn, blockpos);
+        return this.isValidGround(worldIn.getBlockState(blockpos), worldIn, blockpos)&&worldIn.isAirBlock(pos.up());
     }
 
     protected boolean isValidGround(IBlockState state, IBlockReader worldIn, BlockPos pos) {

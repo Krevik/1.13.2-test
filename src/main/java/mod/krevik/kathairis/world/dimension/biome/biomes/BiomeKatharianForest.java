@@ -3,9 +3,11 @@ package mod.krevik.kathairis.world.dimension.biome.biomes;
 import jdk.nashorn.internal.objects.NativeInt16Array;
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
+import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.world.dimension.feature.KatharianFeatureList;
 import mod.krevik.kathairis.world.dimension.feature.KatharianMinableConfig;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -92,8 +94,17 @@ public final class BiomeKatharianForest extends BiomeKatharianBiomeBase {
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.KATHARIAN_FUNGI), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.KATHARIAN_NIGHT_FLOWER), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.VILYRIA), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
+        this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.FOREST_CANDLE), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
+        this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(KatharianFeatureList.STEPPED_SUCCULENT, IFeatureConfig.NO_FEATURE_CONFIG, TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
+
         this.addFeature(Decoration.UNDERGROUND_DECORATION, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD_MINI_ISLAND, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.MYSTIC_BIRD, 12, 1, 2));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.GECKO, 4, 1, 1));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.LIVING_FLOWER, 8, 1, 1));
+        //this.addSpawn(EnumCreatureType.MONSTER, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.HOWLER, 5, 1, 1));
+        //this.addSpawn(EnumCreatureType.MONSTER, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.FUNGITE, 2, 1, 1));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.CACTI_SPORE, 4, 1, 1));
     }
 
     /*@Override

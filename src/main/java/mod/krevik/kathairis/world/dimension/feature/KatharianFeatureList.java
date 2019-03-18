@@ -1,7 +1,10 @@
 package mod.krevik.kathairis.world.dimension.feature;
 
 import mod.krevik.kathairis.world.dimension.feature.desert.FeatureKatharianCactus;
+import mod.krevik.kathairis.world.dimension.feature.desert.FeatureKatharianRocktus;
+import mod.krevik.kathairis.world.dimension.feature.desert.FeatureDesertSandLayers;
 import mod.krevik.kathairis.world.dimension.feature.desert.FeatureRockMushrooms;
+import mod.krevik.kathairis.world.dimension.feature.forest.FeatureSteppedSucculent;
 import mod.krevik.kathairis.world.dimension.feature.plainfields.FeaturePlainFields;
 import mod.krevik.kathairis.world.dimension.feature.tree.*;
 import mod.krevik.kathairis.world.dimension.feature.tree.KatharianTreeFeature;
@@ -25,5 +28,8 @@ public class KatharianFeatureList {
     public static final Feature<NoFeatureConfig> KATHARIAN_PLAIN_FIELDS = new FeaturePlainFields();
     public static final Feature<NoFeatureConfig> KATHARIAN_CLOUD_MINI_ISLAND = new FeatureKatharianFloatingMiniIsland();
     public static final Feature<NoFeatureConfig> KATHARIAN_CRYSTAL_CHAMBER = new FeatureCrystalChamber();
+    public static final Feature<NoFeatureConfig> KATHARIAN_ROCKTUS = new FeatureKatharianRocktus();
+    public static final Feature<NoFeatureConfig> SAND_LAYERS = new FeatureDesertSandLayers();
+    public static final Feature<NoFeatureConfig> STEPPED_SUCCULENT = new FeatureSteppedSucculent();
 
 }

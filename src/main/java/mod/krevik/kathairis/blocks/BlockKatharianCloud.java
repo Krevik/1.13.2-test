@@ -2,6 +2,7 @@ package mod.krevik.kathairis.blocks;
 
 import mod.krevik.kathairis.KItems;
 import mod.krevik.kathairis.blocks.helpers.BaseBlock;
+import mod.krevik.kathairis.blocks.plants.BlockGlowVines;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
@@ -37,12 +38,6 @@ public class BlockKatharianCloud extends BaseBlock {
         return true;
     }
 
-    @Override
-    public boolean isVariableOpacity() {
-        return true;
-    }
-
-
 
     @Override
     public void onEntityCollision(IBlockState state, World worldIn, BlockPos pos, Entity entityIn) {
@@ -51,7 +46,7 @@ public class BlockKatharianCloud extends BaseBlock {
 
     @Override
     public int getOpacity(IBlockState state, IBlockReader worldIn, BlockPos pos) {
-        return 1;
+        return 0;
     }
 
     @Override

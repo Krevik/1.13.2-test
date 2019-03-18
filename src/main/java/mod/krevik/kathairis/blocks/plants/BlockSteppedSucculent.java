@@ -1,9 +1,11 @@
 package mod.krevik.kathairis.blocks.plants;
 
 import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.blocks.BlockKatharianGrass;
 import mod.krevik.kathairis.blocks.BlockKatharianSand;
 import mod.krevik.kathairis.blocks.BlockSoftSand;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockGrass;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -29,7 +31,7 @@ public class BlockSteppedSucculent extends BlockKatharianPlant {
     protected boolean isValidGround(IBlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
         boolean can=false;
-        can = block instanceof BlockSand || block instanceof BlockSoftSand || block instanceof BlockKatharianSand ||
+        can = block instanceof BlockKatharianGrass || block==KBlocks.KATHARIAN_DIRT || block instanceof BlockGrass ||
                 block==KBlocks.STEPPED_SUCCULENT;
         return can;
     }
