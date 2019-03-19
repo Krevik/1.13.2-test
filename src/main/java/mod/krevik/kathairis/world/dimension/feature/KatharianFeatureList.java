@@ -6,11 +6,14 @@ import mod.krevik.kathairis.world.dimension.feature.desert.FeatureDesertSandLaye
 import mod.krevik.kathairis.world.dimension.feature.desert.FeatureRockMushrooms;
 import mod.krevik.kathairis.world.dimension.feature.forest.FeatureSteppedSucculent;
 import mod.krevik.kathairis.world.dimension.feature.plainfields.FeaturePlainFields;
-import mod.krevik.kathairis.world.dimension.feature.swamp.FeatureSwampFlatener;
 import mod.krevik.kathairis.world.dimension.feature.tree.*;
 import mod.krevik.kathairis.world.dimension.feature.tree.KatharianTreeFeature;
+import mod.krevik.kathairis.world.dimension.surface_builders.KatharianSwampSurfaceBuilder;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraft.world.gen.surfacebuilders.SwampSurfaceBuilder;
 
 public class KatharianFeatureList {
 
@@ -32,6 +35,8 @@ public class KatharianFeatureList {
     public static final Feature<NoFeatureConfig> KATHARIAN_ROCKTUS = new FeatureKatharianRocktus();
     public static final Feature<NoFeatureConfig> SAND_LAYERS = new FeatureDesertSandLayers();
     public static final Feature<NoFeatureConfig> STEPPED_SUCCULENT = new FeatureSteppedSucculent();
-    public static final Feature<NoFeatureConfig> SWAMP_FLATENER = new FeatureSwampFlatener();
+    public static final AbstractTreeFeature<NoFeatureConfig> KATHARIAN_SWAMP_TALL_TREE_1 = new FeatureKatharianSwampTallTree1();
+
+    public static final ISurfaceBuilder<SurfaceBuilderConfig> KATHARIAN_SWAMP_SURFACE_BUILDER = new KatharianSwampSurfaceBuilder();
 
 }

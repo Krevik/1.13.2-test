@@ -102,13 +102,21 @@ public class BlockGlowVines extends BlockKatharianPlant {
 
     public void handleFacing(World world,BlockPos pos,IBlockState state){
         if (!world.isAirBlock(pos.east())&&!(world.getBlockState(pos.east()).getBlock() instanceof BlockGlowVines)) {
-            world.setBlockState(pos, state.with(FACING, EnumFacing.NORTH));
+            if(world.getBlockState(pos).has(FACING)) {
+                world.setBlockState(pos, state.with(FACING, EnumFacing.NORTH));
+            }
         } else if (!world.isAirBlock(pos.west())&&!(world.getBlockState(pos.west()).getBlock() instanceof BlockGlowVines)) {
-            world.setBlockState(pos, state.with(FACING, EnumFacing.SOUTH));
+            if(world.getBlockState(pos).has(FACING)){
+                world.setBlockState(pos, state.with(FACING, EnumFacing.SOUTH));
+            }
         } else if (!world.isAirBlock(pos.south())&&!(world.getBlockState(pos.south()).getBlock() instanceof BlockGlowVines)) {
-            world.setBlockState(pos, state.with(FACING, EnumFacing.EAST));
+            if(world.getBlockState(pos).has(FACING)) {
+                world.setBlockState(pos, state.with(FACING, EnumFacing.EAST));
+            }
         } else if (!world.isAirBlock(pos.north())&&!(world.getBlockState(pos.north()).getBlock() instanceof BlockGlowVines)) {
-            world.setBlockState(pos, state.with(FACING, EnumFacing.WEST));
+            if(world.getBlockState(pos).has(FACING)) {
+                world.setBlockState(pos, state.with(FACING, EnumFacing.WEST));
+            }
         }
     }
 

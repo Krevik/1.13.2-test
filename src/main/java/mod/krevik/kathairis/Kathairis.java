@@ -9,6 +9,7 @@ import mod.krevik.kathairis.world.dimension.biome.biomes.*;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
 import net.minecraft.block.SoundType;
+import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -29,6 +30,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.omg.DynamicAny.DynEnumHelper;
 
 @Mod("kathairis")
 public class Kathairis {
@@ -140,7 +142,9 @@ public class Kathairis {
     SoundEvent music_disc_jazzy = new SoundHelper("music_disc.jazzy");
     SoundEvent music_disc_8bit = new SoundHelper("music_disc.8bit");
 
-    SoundType CLOUDGLASS = new SoundType(1.0F, 1.0F, cloud_glass_break, SoundEvents.BLOCK_GLASS_STEP, SoundEvents.BLOCK_GLASS_PLACE, SoundEvents.BLOCK_GLASS_HIT, SoundEvents.BLOCK_GLASS_FALL);
+    public static SoundType CLOUDGLASS = new SoundType(1.0F, 1.0F, cloud_glass_break, SoundEvents.BLOCK_GLASS_STEP, SoundEvents.BLOCK_GLASS_PLACE, SoundEvents.BLOCK_GLASS_HIT, SoundEvents.BLOCK_GLASS_FALL);
 
+    //public static final MusicTicker.MusicType kathMusicTicker = new MusicTicker.MusicType(ketherMusicDaySound,500,5000);
+    //public static final MusicTicker.MusicType kathMusicType = DynEnumHelper.insert(KATH(),MusicTicker.MusicType.class);
 
 }

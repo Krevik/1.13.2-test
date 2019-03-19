@@ -11,11 +11,14 @@ import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.audio.MusicTicker;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
@@ -61,6 +64,21 @@ public class DimensionKathairis extends OverworldDimension {
     @Nullable
     @Override
     public IRenderHandler getCloudRenderer() {
+        return null;
+    }
+
+    @Override
+    public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
+        int R=200;
+        int G=190;
+        int B=40;
+        //return new Vec3d(R/100,G/100,B/100);
+        return super.getSkyColor(cameraEntity,partialTicks);
+    }
+
+    @Nullable
+    @Override
+    public MusicTicker.MusicType getMusicType() {
         return null;
     }
 }

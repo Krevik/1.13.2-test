@@ -1,5 +1,6 @@
 package mod.krevik.kathairis.items.tools;
 
+import mod.krevik.kathairis.Kathairis;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -11,10 +12,7 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -153,7 +151,7 @@ public class ItemCrystalPickaxe extends ItemKathairisPickaxe {
                 }
                 if (worldIn.isRemote) {
                     playerIn.sendMessage(new TextComponentString("Mythical power is OFF"));
-                    //worldIn.playSound(playerIn, playerIn.getPosition(), /*TODO sound OFF here*/null, SoundCategory.PLAYERS, 1F, 1F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), Kathairis.pickaxe_turn, SoundCategory.PLAYERS, 1F, 1F);
                 }
             } else {
                 if(!worldIn.isRemote) {
@@ -161,7 +159,7 @@ public class ItemCrystalPickaxe extends ItemKathairisPickaxe {
                 }
                 if (worldIn.isRemote) {
                     playerIn.sendMessage(new TextComponentString("Mythical power is ON"));
-                    //worldIn.playSound(playerIn, playerIn.getPosition(), /*TODO sound ON here*/null, SoundCategory.PLAYERS, 1F, 1F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), Kathairis.pickaxe_turn, SoundCategory.PLAYERS, 1F, 1F);
                 }
             }
             return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
