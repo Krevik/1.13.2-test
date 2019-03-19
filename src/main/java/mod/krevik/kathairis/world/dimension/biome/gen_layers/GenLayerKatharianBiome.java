@@ -17,6 +17,7 @@ public class GenLayerKatharianBiome implements IC0Transformer {
         list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_FOREST,10));
         list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_DESERT,10));
         list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS,10));
+        list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_SWAMPS,10));
 
         return ImmutableList.copyOf(list);
     }

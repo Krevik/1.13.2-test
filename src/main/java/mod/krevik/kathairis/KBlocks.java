@@ -126,6 +126,7 @@ public class KBlocks {
         MYSTIC_WOOD_SLAB = new BlockKatharianSlab("mystic_wood_slab",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
         SHINY_WOOD_SLAB = new BlockKatharianSlab("shiny_wood_slab",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
         SOUL_WOOD_SLAB = new BlockKatharianSlab("soul_wood_slab",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();
+
         BLUE_CRYSTAL = new BlockCrystal("blue_crystal").addToBlockAndItemBlockRegistryList();
         YELLOW_CRYSTAL = new BlockCrystal("yellow_crystal").addToBlockAndItemBlockRegistryList();
         VIOLET_CRYSTAL = new BlockCrystal("violet_crystal").addToBlockAndItemBlockRegistryList();

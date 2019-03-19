@@ -96,6 +96,7 @@ public class Kathairis {
     public static Biome BIOME_KATHARIAN_DESERT;
     public static Biome BIOME_KATHARIAN_PLAIN_FIELDS;
     public static Biome BIOME_KATHARIAN_DESERT_EDGE;
+    public static Biome BIOME_KATHARIAN_SWAMPS;
 
     private static void initBiomes(){
         BIOME_KATHARIAN_FOREST = new BiomeKatharianForest().setRegistryName(Kathairis.MODID,"katharian_forest");
@@ -103,7 +104,7 @@ public class Kathairis {
         BIOME_KATHARIAN_DESERT = new BiomeKatharianDesert().setRegistryName(Kathairis.MODID,"katharian_desert");
         BIOME_KATHARIAN_PLAIN_FIELDS = new BiomeKatharianPlainFields().setRegistryName(Kathairis.MODID,"katharian_plain_fields");
         BIOME_KATHARIAN_DESERT_EDGE = new BiomeKatharianDesertEdge().setRegistryName(Kathairis.MODID,"katharian_desert_edge");
-
+        BIOME_KATHARIAN_SWAMPS = new BiomeKatharianSwamps().setRegistryName(Kathairis.MODID,"katharian_swamps");
     }
 
     public static SoundHelper bird = new SoundHelper("bird", "bird");

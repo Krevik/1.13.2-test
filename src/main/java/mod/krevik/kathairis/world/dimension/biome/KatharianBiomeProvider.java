@@ -29,7 +29,7 @@ public class KatharianBiomeProvider extends OverworldBiomeProvider {
     public KatharianBiomeProvider(KatharianBiomeProviderSettings p_i48971_1_) {
         super(p_i48971_1_);
         this.biomes = new Biome[]{Kathairis.BIOME_KATHARIAN_RIVER,Kathairis.BIOME_KATHARIAN_FOREST, Kathairis.BIOME_KATHARIAN_DESERT,
-        Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS};
+        Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS,Kathairis.BIOME_KATHARIAN_SWAMPS};
         WorldInfo lvt_2_1_ = p_i48971_1_.getWorldInfo();
         KatharianGenSettings lvt_3_1_ = p_i48971_1_.getGeneratorSettings();
         GenLayer[] lvt_4_1_ = KatharianLayerUtil.buildOverworldProcedure(lvt_2_1_.getSeed(), lvt_2_1_.getTerrainType(), lvt_3_1_);

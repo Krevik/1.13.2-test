@@ -6,6 +6,7 @@ import mod.krevik.kathairis.world.dimension.feature.desert.FeatureDesertSandLaye
 import mod.krevik.kathairis.world.dimension.feature.desert.FeatureRockMushrooms;
 import mod.krevik.kathairis.world.dimension.feature.forest.FeatureSteppedSucculent;
 import mod.krevik.kathairis.world.dimension.feature.plainfields.FeaturePlainFields;
+import mod.krevik.kathairis.world.dimension.feature.swamp.FeatureSwampFlatener;
 import mod.krevik.kathairis.world.dimension.feature.tree.*;
 import mod.krevik.kathairis.world.dimension.feature.tree.KatharianTreeFeature;
 import net.minecraft.world.gen.carver.WorldCarver;
@@ -31,5 +32,6 @@ public class KatharianFeatureList {
     public static final Feature<NoFeatureConfig> KATHARIAN_ROCKTUS = new FeatureKatharianRocktus();
     public static final Feature<NoFeatureConfig> SAND_LAYERS = new FeatureDesertSandLayers();
     public static final Feature<NoFeatureConfig> STEPPED_SUCCULENT = new FeatureSteppedSucculent();
+    public static final Feature<NoFeatureConfig> SWAMP_FLATENER = new FeatureSwampFlatener();
 
 }
