@@ -1,5 +1,7 @@
 package mod.krevik.kathairis;
 
+import ca.weblite.objc.Client;
+import mod.krevik.kathairis.client.ClientEventSubscriber;
 import mod.krevik.kathairis.client.EntityRenderingRegistry;
 import mod.krevik.kathairis.client.sound.SoundHandlerBase;
 import mod.krevik.kathairis.client.sound.SoundHelper;
@@ -10,6 +12,7 @@ import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
 import net.minecraft.block.SoundType;
 import net.minecraft.client.audio.MusicTicker;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -55,6 +58,7 @@ public class Kathairis {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(EventSubscriber.class);
+        MinecraftForge.EVENT_BUS.register(ClientEventSubscriber.class);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

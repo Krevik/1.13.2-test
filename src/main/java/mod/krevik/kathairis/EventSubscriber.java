@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -45,6 +46,7 @@ public class EventSubscriber {
             }
         }
     }
+
 
     @SubscribeEvent
     public static void blockBreakEvent(BlockEvent.HarvestDropsEvent event) {

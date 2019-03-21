@@ -38,7 +38,7 @@ public class KBlocks {
     MYSTIC_WOOD_TRAPDOOR, SHINY_WOOD_TRAPDOOR, SOUL_WOOD_TRAPDOOR, KATHARIAN_FUNGI, GOOSEBERRY_BUSH, KATHARIAN_SUCCULENT,
     STEPPED_SUCCULENT, VILYRIA, GLOWVINES, JADE_VINES, KATHARIAN_DEAD_GRASS, MYSTIC_GEM_BLOCK, MAGIC_BEANS,
     BAURBLE, BUTTERFLY_FLOWER, SOLIS_CRYSTALS, BLUE_CLOUD_FLOWER, YELLOW_CLOUD_FLOWER, SNOWDROP_CYPREPEDIUM,
-    FLUO_FUNGI, LAYERED_SAND, KATHARIAN_SANDSTONE, FOREST_CANDLE, ROCKTUS;
+    FLUO_FUNGI, LAYERED_SAND, KATHARIAN_SANDSTONE, FOREST_CANDLE, ROCKTUS, ELDERWILLOW_LOG, ELDERWILLOW_LEAVES;
 
     public static void initBlocks(){
         KATHARIAN_STONE = new BlockKatharianStone("katharian_stone").addToBlockAndItemBlockRegistryList();
@@ -85,6 +85,9 @@ public class KBlocks {
         SOLIS_CRYSTALS = new BlockSolisCrystals("solis_crystals").addToBlockAndItemBlockRegistryList();
         LAYERED_SAND = new BlockLayeredSand("layered_sand").addToBlockAndItemBlockRegistryList();
         KATHARIAN_SANDSTONE = new BaseBlock("katharian_sandstone",Material.ROCK,1.5f,1.5f,SoundType.STONE,KathairisItemGroups.kathairis_building_blocks).addToBlockAndItemBlockRegistryList();
+        ELDERWILLOW_LOG = new BlockKatharianLog("elderwillow_log").addToBlockAndItemBlockRegistryList();
+        ELDERWILLOW_LEAVES = new BlockKatharianLeaves("elderwillow_leaves").addToBlockAndItemBlockRegistryList();
+
 
         //fences and gates
         MYSTIC_WOOD_FENCE = new BlockKatharianFence("mystic_wood_fence",Material.WOOD,3f,SoundType.WOOD).addToBlockAndItemBlockRegistryList();

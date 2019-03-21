@@ -13,10 +13,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.Heightmap;
 
 public class FeatureKatharianSwampTallTree1 extends AbstractKatharianTreeFeature {
-    private static final IBlockState LOG = Blocks.OAK_LOG.getDefaultState();
-    private static final IBlockState LEAF = Blocks.OAK_LEAVES.getDefaultState();
+    private static final IBlockState LOG = KBlocks.ELDERWILLOW_LOG.getDefaultState();
+    private static final IBlockState LEAF = KBlocks.ELDERWILLOW_LEAVES.getDefaultState();
 
     public FeatureKatharianSwampTallTree1() {
         super(true);
@@ -31,6 +32,7 @@ public class FeatureKatharianSwampTallTree1 extends AbstractKatharianTreeFeature
             int posX=position.getX();
             int posY=position.getY();
             int posZ=position.getZ();
+            ArrayList<BlockPos> availablePosesForRoots = new ArrayList<>();
             BlockPos tmp;
             //let's do thick base
             for(int x=-1;x<=1;x++){
@@ -38,6 +40,9 @@ public class FeatureKatharianSwampTallTree1 extends AbstractKatharianTreeFeature
                     for(int y=0;y<=thickTrunkHeight;y++){
                         tmp=new BlockPos(posX+x,posY+y,posZ+z);
                         if(worldIn.isBlockLoaded(tmp)) {
+                            if(y>1){
+                                availablePosesForRoots.add(tmp);
+                            }
                             if (y == thickTrunkHeight) {
                                 if (rand.nextInt(2) == 0) {
                                     setBlocks(changedBlocks,worldIn,tmp,LOG);
@@ -70,6 +75,104 @@ public class FeatureKatharianSwampTallTree1 extends AbstractKatharianTreeFeature
                     }
                 }
             }
+            //well, let's make the fucking constant roots......
+            BlockPos rootPos1 = new BlockPos(posX+1,posY+2+rand.nextInt(3),posZ+1);
+            BlockPos rootPos2 = new BlockPos(posX-1,posY+2+rand.nextInt(3),posZ-1);
+            BlockPos rootPos3 = new BlockPos(posX-1,posY+2+rand.nextInt(3),posZ+1);
+            BlockPos rootPos4 = new BlockPos(posX+1,posY+2+rand.nextInt(3),posZ-1);
+            for(int rootsNumber=0;rootsNumber<4;rootsNumber++) {
+                int length=2+rand.nextInt(4);
+                if(rootsNumber==0) {
+                    for(int c=1;c<=length;c++){
+                        int shiftX=c;
+                        int shiftZ=c;
+                        int shiftY=c;
+                        BlockPos rootPiecePos=new BlockPos(rootPos1.getX()+shiftX,rootPos1.getY()-c,rootPos1.getZ()+shiftZ);
+                        int dist=0;
+                        for(int y=0;y<=9;y++){
+                            dist=y;
+                            if(!worldIn.isAirBlock(rootPiecePos.down(y))){
+                                break;
+                            }
+                        }
+                        if(dist<8) {
+                            for (int cc = 0; cc <= dist; cc++) {
+                                setBlocks(changedBlocks, worldIn, rootPiecePos.down(cc), LOG);
+                            }
+                        }else{
+                            break;
+                        }
+                    }
+                }
+                if(rootsNumber==1) {
+                    for(int c=1;c<=length;c++){
+                        int shiftX=-c;
+                        int shiftZ=-c;
+                        int shiftY=c;
+                        BlockPos rootPiecePos=new BlockPos(rootPos2.getX()+shiftX,rootPos2.getY()-c,rootPos2.getZ()+shiftZ);
+                        int dist=0;
+                        for(int y=0;y<=7;y++){
+                            dist=y;
+                            if(!worldIn.isAirBlock(rootPiecePos.down(y))){
+                                break;
+                            }
+                        }
+                        if(dist<8) {
+                            for(int cc=0;cc<=dist;cc++){
+                                setBlocks(changedBlocks,worldIn,rootPiecePos.down(cc),LOG);
+                            }
+                        }else{
+                            break;
+                        }
+                    }
+                }
+                if(rootsNumber==2) {
+                    for(int c=1;c<=length;c++){
+                        int shiftX=-c;
+                        int shiftZ=c;
+                        int shiftY=c;
+                        BlockPos rootPiecePos=new BlockPos(rootPos3.getX()+shiftX,rootPos3.getY()-c,rootPos3.getZ()+shiftZ);
+                        int dist=0;
+                        for(int y=0;y<=7;y++){
+                            dist=y;
+                            if(!worldIn.isAirBlock(rootPiecePos.down(y))){
+                                break;
+                            }
+                        }
+                        if(dist<8) {
+                            for(int cc=0;cc<=dist;cc++){
+                                setBlocks(changedBlocks,worldIn,rootPiecePos.down(cc),LOG);
+                            }
+                        }else{
+                            break;
+                        }
+                    }
+                }
+                if(rootsNumber==3) {
+                    for(int c=1;c<=length;c++){
+                        int shiftX=c;
+                        int shiftZ=-c;
+                        int shiftY=c;
+                        BlockPos rootPiecePos=new BlockPos(rootPos4.getX()+shiftX,rootPos4.getY()-c,rootPos4.getZ()+shiftZ);
+                        int dist=0;
+                        for(int y=0;y<=7;y++){
+                            dist=y;
+                            if(!worldIn.isAirBlock(rootPiecePos.down(y))){
+                                break;
+                            }
+                        }
+                        if(dist<8) {
+                            for(int cc=0;cc<=dist;cc++){
+                                setBlocks(changedBlocks,worldIn,rootPiecePos.down(cc),LOG);
+                            }
+                        }else{
+                            break;
+                        }
+                    }
+                }
+            }
+
+
             //branches and crowns :O
             int branchesNumber=4+rand.nextInt(5);
             for(int c=0;c<branchesNumber;c++){

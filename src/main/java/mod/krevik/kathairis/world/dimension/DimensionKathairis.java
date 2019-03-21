@@ -11,8 +11,12 @@ import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MusicTicker;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTDynamicOps;
@@ -26,8 +30,13 @@ import net.minecraft.world.biome.provider.*;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.OverworldDimension;
 import net.minecraft.world.gen.*;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.common.DimensionManager;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL45;
+import org.lwjgl.opengl.GL46;
 
 import javax.annotation.Nullable;
 
@@ -74,6 +83,21 @@ public class DimensionKathairis extends OverworldDimension {
         int B=40;
         //return new Vec3d(R/100,G/100,B/100);
         return super.getSkyColor(cameraEntity,partialTicks);
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public Vec3d getFogColor(float float1, float float2) {
+        EntityPlayer player=Minecraft.getInstance().player;
+        if(player.world.getBiome(player.getPosition())==Kathairis.BIOME_KATHARIAN_SWAMPS){
+            int R=12;
+            int G=45;
+            int B=7;
+            return new Vec3d(R/45,G/45,B/45);
+        }else {
+
+            return super.getFogColor(float1, float2);
+        }
     }
 
     @Nullable
