@@ -4,7 +4,6 @@ import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.BlockCrystal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemSpawnEgg;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -17,18 +16,21 @@ import java.util.Random;
 
 public class FeatureCrystalChamber extends Feature<NoFeatureConfig> {
     @Override
-    public boolean func_212245_a(IWorld world, IChunkGenerator<? extends IChunkGenSettings> c, Random rand, BlockPos pos, NoFeatureConfig p_212245_5_) {
-        if(rand.nextInt(10)==0) {
+    public boolean place(IWorld world, IChunkGenerator<? extends IChunkGenSettings> c, Random rand, BlockPos pos, NoFeatureConfig p_212245_5_) {
             int height = 10 + rand.nextInt(10) + rand.nextInt(10) + rand.nextInt(10) + rand.nextInt(10) + rand.nextInt(10);
             int posX = pos.getX();
             int posZ = pos.getZ();
             int diameter = 3 + rand.nextInt(6);
             boolean shouldContinue = true;
-            for (int x = -diameter / 2; x <= diameter / 2; x++) {
-                if (shouldContinue) {
-                    for (int y = -diameter / 2; y <= diameter / 2; y++) {
-                        for (int z = -diameter / 2; z <= diameter / 2; z++) {
-                            if ((x * x) + (y * y) + (z * z) <= ((diameter / 2 * diameter / 2) + 1)) {
+
+            float radiusX = 7-rand.nextInt(8);
+            float radiusZ = 7-rand.nextInt(8);
+
+            for (float x = -8; x <= 8; x++) {
+                for (float z = -8; z <= 8; z++) {
+                    for (float y = -8; y <= 8; y++) {
+                        if (shouldContinue) {
+                            if ((x * x) + (y * y) + (z * z) <= (radiusX * radiusX) + (radiusZ * radiusZ) + (float)(4 * y * Math.sin(x)) - (float)(4 * x * Math.sin(y))) {
                                 BlockPos tmp = new BlockPos(posX + x, height + y, posZ + z);
                                 if (world.isBlockLoaded(tmp)) {
                                     world.setBlockState(tmp, Blocks.CAVE_AIR.getDefaultState(), 2);
@@ -41,34 +43,24 @@ public class FeatureCrystalChamber extends Feature<NoFeatureConfig> {
                     }
                 }
             }
-            shouldContinue = true;
-            for (int x = -diameter / 2; x <= diameter / 2; x++) {
-                if (shouldContinue) {
-                    for (int y = -diameter / 2; y <= diameter / 2; y++) {
-                        for (int z = -diameter / 2; z <= diameter / 2; z++) {
-                            if ((x * x) + (y * y) + (z * z) >= ((diameter / 2 * diameter / 2))-3) {
+
+            for (float x = -8; x <= 8; x++) {
+                for (float z = -8; z <= 8; z++) {
+                    for (float y = -8; y <= 8; y++) {
                                 BlockPos tmp = new BlockPos(posX + x, height + y, posZ + z);
                                 if (world.isBlockLoaded(tmp)) {
-                                    IBlockState crystalState = pickupRandomCrystal(rand);
                                     EnumFacing facing = getRandomFacing(rand);
-                                    if (world.isAirBlock(tmp)&&crystalState.isValidPosition(world, tmp)) {
-                                        if(isStoneAround(world,tmp)) {
-                                            world.setBlockState(tmp, crystalState.with(BlockCrystal.FACING, facing), 2);
-                                        }
+                                    IBlockState crystal = pickupRandomCrystal(rand);
+                                    IBlockState finalCrystal = crystal.with(BlockCrystal.FACING,facing);
+                                    if(BlockCrystal.isValidPosition1(finalCrystal,world,tmp)&&isStoneAround(world,tmp)&&world.isAirBlock(tmp)){
+                                        world.setBlockState(tmp, finalCrystal, 2);
                                     }
-                                } else {
-                                    shouldContinue = false;
-                                    break;
                                 }
-                            }
-                        }
                     }
                 }
             }
-            return true;
-        }
+        return true;
 
-        return false;
     }
 
     private boolean isStoneAround(IWorld world,BlockPos pos){
@@ -94,19 +86,23 @@ public class FeatureCrystalChamber extends Feature<NoFeatureConfig> {
     private EnumFacing getRandomFacing(Random random){
         EnumFacing facing=random.nextInt(2)==0?EnumFacing.DOWN:EnumFacing.UP;
         int k = random.nextInt(6);
-        switch(k){
-            case 0:
-                facing=EnumFacing.NORTH;
-            case 1:
-                facing=EnumFacing.SOUTH;
-            case 2:
-                facing=EnumFacing.EAST;
-            case 3:
-                facing=EnumFacing.WEST;
-            case 5:
-                facing=EnumFacing.UP;
-            case 6:
-                facing=EnumFacing.DOWN;
+        if(k==0){
+            facing=EnumFacing.DOWN;
+        }
+        if(k==1){
+            facing=EnumFacing.UP;
+        }
+        if(k==2){
+            facing=EnumFacing.EAST;
+        }
+        if(k==3){
+            facing=EnumFacing.WEST;
+        }
+        if(k==4){
+            facing=EnumFacing.SOUTH;
+        }
+        if(k==5){
+            facing=EnumFacing.NORTH;
         }
         return facing;
     }

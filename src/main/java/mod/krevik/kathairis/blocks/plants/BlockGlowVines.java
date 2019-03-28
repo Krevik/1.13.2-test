@@ -32,7 +32,7 @@ public class BlockGlowVines extends BlockKatharianPlant {
     public static final DirectionProperty FACING = BlockHorizontal.HORIZONTAL_FACING;
 
     public BlockGlowVines(String Name) {
-        super(Name, Block.Properties.create(Material.PLANTS).hardnessAndResistance(0).sound(SoundType.PLANT).needsRandomTick().doesNotBlockMovement().lightValue(5));
+        super(Name, Block.Properties.create(Material.PLANTS).hardnessAndResistance(0).sound(SoundType.PLANT).tickRandomly().doesNotBlockMovement().lightValue(5));
         setDefaultState(getDefaultState().with(VARIANT, EnumType.TOP).with(FACING, EnumFacing.EAST));
     }
 

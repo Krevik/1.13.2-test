@@ -16,10 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
@@ -168,8 +165,8 @@ public class EntityCloudOister extends EntityAmbientCreature
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setInt("timeUntilNextPearl", this.timeUntilNextPearl());
-        compound.setBoolean("panic", panic());
+        compound.putInt("timeUntilNextPearl", this.timeUntilNextPearl());
+        compound.putBoolean("panic", panic());
     }
 
     @Override

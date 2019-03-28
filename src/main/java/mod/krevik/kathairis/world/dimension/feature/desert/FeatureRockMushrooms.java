@@ -1,26 +1,20 @@
 package mod.krevik.kathairis.world.dimension.feature.desert;
 
 import mod.krevik.kathairis.KBlocks;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.FrequencyConfig;
-import net.minecraft.world.gen.placement.NoPlacementConfig;
 
 import java.util.Random;
 
 public class FeatureRockMushrooms extends Feature<NoFeatureConfig> {
 
     @Override
-    public boolean func_212245_a(IWorld world, IChunkGenerator<? extends IChunkGenSettings> p_212245_2_, Random random, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(IWorld world, IChunkGenerator<? extends IChunkGenSettings> p_212245_2_, Random random, BlockPos pos, NoFeatureConfig config) {
             if(world.getBlockState(pos.down()).getBlock()==KBlocks.SOFT_SAND || world.getBlockState(pos.down()).getBlock()==KBlocks.KATHARIAN_SAND){
                 int radius = 2+random.nextInt(5);
                 int mushroomHeight = 4+random.nextInt(radius)+random.nextInt(4);

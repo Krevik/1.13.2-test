@@ -4,11 +4,8 @@ import mod.krevik.kathairis.client.renderers.*;
 import mod.krevik.kathairis.client.renderers.butterfly.*;
 import mod.krevik.kathairis.entities.*;
 import mod.krevik.kathairis.entities.butterfly.*;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 @OnlyIn(Dist.CLIENT)

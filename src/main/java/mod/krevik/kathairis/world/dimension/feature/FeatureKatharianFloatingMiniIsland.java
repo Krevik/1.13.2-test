@@ -11,7 +11,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IcebergFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.Random;
 
 public class FeatureKatharianFloatingMiniIsland extends Feature<NoFeatureConfig> {
     @Override
-    public boolean func_212245_a(IWorld world, IChunkGenerator<? extends IChunkGenSettings> c, Random rand, BlockPos pos, NoFeatureConfig p_212245_5_) {
+    public boolean place(IWorld world, IChunkGenerator<? extends IChunkGenSettings> c, Random rand, BlockPos pos, NoFeatureConfig p_212245_5_) {
       if(rand.nextInt(200)==0) {
           IBlockState cloudState = rand.nextInt(2) == 0 ? KBlocks.YELLOW_CLOUD.getDefaultState() : KBlocks.BLUE_CLOUD.getDefaultState();
           int height = 150 + rand.nextInt(25) + rand.nextInt(25) + rand.nextInt(25) + rand.nextInt(25);

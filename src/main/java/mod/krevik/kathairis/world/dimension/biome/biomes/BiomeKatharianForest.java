@@ -1,65 +1,19 @@
 package mod.krevik.kathairis.world.dimension.biome.biomes;
 
-import jdk.nashorn.internal.objects.NativeInt16Array;
 import mod.krevik.kathairis.KBlocks;
-import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.world.dimension.feature.KatharianFeatureList;
 import mod.krevik.kathairis.world.dimension.feature.KatharianMinableConfig;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.init.Biomes;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.ForestBiome;
-import net.minecraft.world.biome.NetherBiome;
-import net.minecraft.world.biome.PlainsBiome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.BiomeManager;
-
-import com.google.common.collect.Lists;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Fluids;
-import net.minecraft.world.biome.Biome.BiomeBuilder;
-import net.minecraft.world.biome.Biome.Category;
-import net.minecraft.world.biome.Biome.RainType;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.GenerationStage.Carving;
 import net.minecraft.world.gen.GenerationStage.Decoration;
-import net.minecraft.world.gen.feature.BushConfig;
-import net.minecraft.world.gen.feature.DoublePlantConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.LakesConfig;
-import net.minecraft.world.gen.feature.LiquidsConfig;
-import net.minecraft.world.gen.feature.MinableConfig;
-import net.minecraft.world.gen.feature.ProbabilityConfig;
-import net.minecraft.world.gen.feature.RandomDefaultFeatureListConfig;
-import net.minecraft.world.gen.feature.RandomFeatureListConfig;
-import net.minecraft.world.gen.feature.SphereReplaceConfig;
-import net.minecraft.world.gen.feature.TallGrassConfig;
-import net.minecraft.world.gen.feature.structure.MineshaftConfig;
-import net.minecraft.world.gen.feature.structure.StrongholdConfig;
-import net.minecraft.world.gen.feature.structure.MineshaftStructure.Type;
-import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraft.world.gen.placement.DepthAverageConfig;
-import net.minecraft.world.gen.placement.DungeonRoomConfig;
-import net.minecraft.world.gen.placement.FrequencyConfig;
-import net.minecraft.world.gen.placement.IPlacementConfig;
-import net.minecraft.world.gen.placement.LakeChanceConfig;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.CompositeSurfaceBuilder;
-
-import java.awt.*;
-import java.util.ArrayList;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public final class BiomeKatharianForest extends BiomeKatharianBiomeBase {
     public static final SurfaceBuilderConfig KATHARIAN_GRASS_DIRT_GRAVEL_SURFACE = new SurfaceBuilderConfig(KBlocks.KATHARIAN_GRASS.getDefaultState(), KBlocks.KATHARIAN_DIRT.getDefaultState(), GRAVEL);
@@ -94,17 +48,18 @@ public final class BiomeKatharianForest extends BiomeKatharianBiomeBase {
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.KATHARIAN_FUNGI), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.KATHARIAN_NIGHT_FLOWER), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.VILYRIA), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
-        this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(Feature.BUSH, new BushConfig(KBlocks.FOREST_CANDLE), TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
+        this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(KatharianFeatureList.KATHARIAN_FOREST_CANDLE_BUSH, new BushConfig(KBlocks.FOREST_CANDLE), AT_SURFACE_WITH_CHANCE, new ChanceConfig(6)));
         this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(KatharianFeatureList.STEPPED_SUCCULENT, IFeatureConfig.NO_FEATURE_CONFIG, TWICE_SURFACE_WITH_CHANCE, new ChanceConfig(2)));
+        this.addFeature(Decoration.VEGETAL_DECORATION, createCompositeFeature(KatharianFeatureList.KATHARIAN_FOREST_BUSH, IFeatureConfig.NO_FEATURE_CONFIG, AT_SURFACE, new FrequencyConfig(1)));
 
         this.addFeature(Decoration.UNDERGROUND_DECORATION, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, createCompositeFeature(KatharianFeatureList.KATHARIAN_CLOUD_MINI_ISLAND, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
-        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.MYSTIC_BIRD, 12, 1, 2));
-        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.GECKO, 4, 1, 1));
-        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.LIVING_FLOWER, 8, 1, 1));
-        //this.addSpawn(EnumCreatureType.MONSTER, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.HOWLER, 5, 1, 1));
-        //this.addSpawn(EnumCreatureType.MONSTER, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.FUNGITE, 2, 1, 1));
-        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry((EntityType<? extends EntityLiving>) KatharianEntityTypes.CACTI_SPORE, 4, 1, 1));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry(KatharianEntityTypes.MYSTIC_BIRD, 12, 1, 2));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry(KatharianEntityTypes.GECKO, 4, 1, 1));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry(KatharianEntityTypes.LIVING_FLOWER, 8, 1, 1));
+        //this.addSpawn(EnumCreatureType.MONSTER, new SpawnListEntry(KatharianEntityTypes.HOWLER, 5, 1, 1));
+        //this.addSpawn(EnumCreatureType.MONSTER, new SpawnListEntry(KatharianEntityTypes.FUNGITE, 2, 1, 1));
+        //this.addSpawn(EnumCreatureType.CREATURE, new SpawnListEntry(KatharianEntityTypes.CACTI_SPORE, 4, 1, 1));
     }
 
     /*@Override

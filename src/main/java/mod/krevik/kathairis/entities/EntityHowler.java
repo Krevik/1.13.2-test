@@ -204,7 +204,7 @@ public class EntityHowler extends EntityMob
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setFloat("animTimer",getAnimTimer());
+        compound.putFloat("animTimer",getAnimTimer());
     }
 
     @Override

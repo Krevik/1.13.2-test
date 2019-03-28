@@ -17,9 +17,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateClimber;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -146,8 +144,8 @@ public class EntityGecko extends EntityAnimal {
     @Override
     public void writeAdditional(NBTTagCompound compound) {
         super.writeAdditional(compound);
-        compound.setInt("climbingSide", climbingSide().ordinal());
-        compound.setInt("Variant", getVariant());
+        compound.putInt("climbingSide", climbingSide().ordinal());
+        compound.putInt("Variant", getVariant());
 
     }
 

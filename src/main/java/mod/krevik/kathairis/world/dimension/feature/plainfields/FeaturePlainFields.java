@@ -5,7 +5,6 @@ import net.minecraft.block.BlockGravel;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.IChunkGenSettings;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -16,7 +15,7 @@ import java.util.Random;
 
 public class FeaturePlainFields extends Feature<NoFeatureConfig> {
     @Override
-    public boolean func_212245_a(IWorld world, IChunkGenerator<? extends IChunkGenSettings> chunkGenerator, Random rand, BlockPos pos, NoFeatureConfig p_212245_5_) {
+    public boolean place(IWorld world, IChunkGenerator<? extends IChunkGenSettings> chunkGenerator, Random rand, BlockPos pos, NoFeatureConfig p_212245_5_) {
             int shiftX=0;
             int shiftZ=0;
             int direction = rand.nextInt(2)==0?rand.nextInt(2):1+rand.nextInt(3);

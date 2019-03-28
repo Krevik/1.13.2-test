@@ -1,6 +1,5 @@
 package mod.krevik.kathairis;
 
-import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -9,9 +8,7 @@ import net.minecraft.init.Particles;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.EnumHand;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -40,7 +37,7 @@ public class EventSubscriber {
                         double d0 = event.getEntityPlayer().getRNG().nextGaussian() * 0.02D;
                         double d1 = event.getEntityPlayer().getRNG().nextGaussian() * 0.02D;
                         double d2 = event.getEntityPlayer().getRNG().nextGaussian() * 0.02D;
-                        event.getWorld().spawnParticle(particle, animal.posX + (double)(event.getEntityPlayer().getRNG().nextFloat() * animal.width * 2.0F) - (double)animal.width, animal.posY + 0.5D + (double)(event.getEntityPlayer().getRNG().nextFloat() * animal.height), animal.posZ + (double)(event.getEntityPlayer().getRNG().nextFloat() * animal.width * 2.0F) - (double)animal.width, d0, d1, d2);
+                        event.getWorld().addParticle(particle, animal.posX + (double)(event.getEntityPlayer().getRNG().nextFloat() * animal.width * 2.0F) - (double)animal.width, animal.posY + 0.5D + (double)(event.getEntityPlayer().getRNG().nextFloat() * animal.height), animal.posZ + (double)(event.getEntityPlayer().getRNG().nextFloat() * animal.width * 2.0F) - (double)animal.width, d0, d1, d2);
                     }
                 }
             }

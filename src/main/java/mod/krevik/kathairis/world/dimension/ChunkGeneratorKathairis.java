@@ -1,17 +1,12 @@
 package mod.krevik.kathairis.world.dimension;
 
-import java.util.List;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.PhantomSpawner;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEntitySpawner;
-import net.minecraft.world.WorldType;
+import net.minecraft.world.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.ChunkStatus;
@@ -21,6 +16,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.SwampHutStructure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 public class ChunkGeneratorKathairis extends AbstractChunkGenerator<OverworldGenSettings> {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -39,7 +36,7 @@ public class ChunkGeneratorKathairis extends AbstractChunkGenerator<OverworldGen
 
     public ChunkGeneratorKathairis(IWorld worldIn, BiomeProvider provider, OverworldGenSettings settingsIn) {
         super(worldIn, provider);
-        this.terrainType = worldIn.getWorldInfo().getTerrainType();
+        this.terrainType = worldIn.getWorldInfo().getGenerator();
         SharedSeedRandom sharedseedrandom = new SharedSeedRandom(this.seed);
         this.minLimitPerlinNoise = new NoiseGeneratorOctaves(sharedseedrandom, 16);
         this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(sharedseedrandom, 16);

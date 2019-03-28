@@ -1,14 +1,11 @@
 package mod.krevik.kathairis.world.dimension.biome.gen_layers;
 
 import com.google.common.collect.ImmutableList;
-import java.util.function.LongFunction;
-
-import mod.krevik.kathairis.world.dimension.biome.gen_layers.GenLayerKatharianBiome;
-import mod.krevik.kathairis.world.dimension.biome.gen_layers.GenLayerKatharianRiver;
-import mod.krevik.kathairis.world.dimension.biome.gen_layers.GenLayerKatharianRiverMix;
+import mod.krevik.kathairis.Kathairis;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.IContextExtended;
 import net.minecraft.world.gen.LazyAreaLayerContext;
 import net.minecraft.world.gen.OverworldGenSettings;
@@ -18,18 +15,20 @@ import net.minecraft.world.gen.area.LazyArea;
 import net.minecraft.world.gen.layer.*;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer1;
 
+import java.util.function.LongFunction;
+
 public class KatharianLayerUtil {
 
-    protected static final int WARM_OCEAN = IRegistry.field_212624_m.getId(Biomes.WARM_OCEAN);
-    protected static final int LUKEWARM_OCEAN = IRegistry.field_212624_m.getId(Biomes.LUKEWARM_OCEAN);
-    protected static final int OCEAN = IRegistry.field_212624_m.getId(Biomes.OCEAN);
-    protected static final int COLD_OCEAN = IRegistry.field_212624_m.getId(Biomes.COLD_OCEAN);
-    protected static final int FROZEN_OCEAN = IRegistry.field_212624_m.getId(Biomes.FROZEN_OCEAN);
-    protected static final int DEEP_WARM_OCEAN = IRegistry.field_212624_m.getId(Biomes.DEEP_WARM_OCEAN);
-    protected static final int DEEP_LUKEWARM_OCEAN = IRegistry.field_212624_m.getId(Biomes.DEEP_LUKEWARM_OCEAN);
-    protected static final int DEEP_OCEAN = IRegistry.field_212624_m.getId(Biomes.DEEP_OCEAN);
-    protected static final int DEEP_COLD_OCEAN = IRegistry.field_212624_m.getId(Biomes.DEEP_COLD_OCEAN);
-    protected static final int DEEP_FROZEN_OCEAN = IRegistry.field_212624_m.getId(Biomes.DEEP_FROZEN_OCEAN);
+    protected static final int WARM_OCEAN = IRegistry.BIOME.getId(Biomes.WARM_OCEAN);
+    protected static final int LUKEWARM_OCEAN = IRegistry.BIOME.getId(Biomes.LUKEWARM_OCEAN);
+    protected static final int OCEAN = IRegistry.BIOME.getId(Biomes.OCEAN);
+    protected static final int COLD_OCEAN = IRegistry.BIOME.getId(Biomes.COLD_OCEAN);
+    protected static final int FROZEN_OCEAN = IRegistry.BIOME.getId(Biomes.FROZEN_OCEAN);
+    protected static final int DEEP_WARM_OCEAN = IRegistry.BIOME.getId(Biomes.DEEP_WARM_OCEAN);
+    protected static final int DEEP_LUKEWARM_OCEAN = IRegistry.BIOME.getId(Biomes.DEEP_LUKEWARM_OCEAN);
+    protected static final int DEEP_OCEAN = IRegistry.BIOME.getId(Biomes.DEEP_OCEAN);
+    protected static final int DEEP_COLD_OCEAN = IRegistry.BIOME.getId(Biomes.DEEP_COLD_OCEAN);
+    protected static final int DEEP_FROZEN_OCEAN = IRegistry.BIOME.getId(Biomes.DEEP_FROZEN_OCEAN);
 
     public static <T extends IArea, C extends IContextExtended<T>> IAreaFactory<T> repeat(long seed, IAreaTransformer1 parent, IAreaFactory<T> p_202829_3_, int count, LongFunction<C> contextFactory) {
         IAreaFactory<T> iareafactory = p_202829_3_;
@@ -45,15 +44,9 @@ public class KatharianLayerUtil {
     public static <T extends IArea, C extends IContextExtended<T>> ImmutableList<IAreaFactory<T>> buildOverworldProcedure(WorldType worldTypeIn, OverworldGenSettings settings, LongFunction<C> contextFactory) {
         IAreaFactory<T> iareafactory = GenLayerIsland.INSTANCE.apply(contextFactory.apply(1L));
         iareafactory = GenLayerZoom.FUZZY.apply(contextFactory.apply(2000L), iareafactory);
-        iareafactory = GenLayerAddIsland.INSTANCE.apply(contextFactory.apply(1L), iareafactory);
         iareafactory = GenLayerZoom.NORMAL.apply(contextFactory.apply(2001L), iareafactory);
-        iareafactory = GenLayerAddIsland.INSTANCE.apply(contextFactory.apply(2L), iareafactory);
-        iareafactory = GenLayerAddIsland.INSTANCE.apply(contextFactory.apply(50L), iareafactory);
-        iareafactory = GenLayerAddIsland.INSTANCE.apply(contextFactory.apply(70L), iareafactory);
         iareafactory = GenLayerRemoveTooMuchOcean.INSTANCE.apply(contextFactory.apply(2L), iareafactory);
-        iareafactory = GenLayerAddIsland.INSTANCE.apply(contextFactory.apply(3L), iareafactory);
         iareafactory = GenLayerZoom.NORMAL.apply(contextFactory.apply(2002L), iareafactory);
-        iareafactory = GenLayerAddIsland.INSTANCE.apply(contextFactory.apply(4L), iareafactory);
         iareafactory = GenLayerDeepOcean.INSTANCE.apply(contextFactory.apply(4L), iareafactory);
         //iareafactory = GenLayerEdge.HeatIce.INSTANCE.apply(contextFactory.apply(2L), iareafactory);
         iareafactory = repeat(1000L, GenLayerZoom.NORMAL, iareafactory, 0, contextFactory);
@@ -64,7 +57,7 @@ public class KatharianLayerUtil {
             j = settings.getRiverSize();
         }
 
-        i = 4;
+        i = 3;
 
         IAreaFactory<T> lvt_7_1_ = repeat(1000L, GenLayerZoom.NORMAL, iareafactory, 0, contextFactory);
         lvt_7_1_ = GenLayerRiverInit.INSTANCE.apply((IContextExtended)contextFactory.apply(100L), lvt_7_1_);
@@ -73,16 +66,20 @@ public class KatharianLayerUtil {
         lvt_7_1_ = repeat(1000L, GenLayerZoom.NORMAL, lvt_7_1_, j, contextFactory);
         lvt_7_1_ = GenLayerKatharianRiver.INSTANCE.apply((IContextExtended)contextFactory.apply(1L), lvt_7_1_);
         lvt_7_1_ = GenLayerSmooth.INSTANCE.apply((IContextExtended)contextFactory.apply(1000L), lvt_7_1_);
+        lvt_8_1_ = GenLayerDesertBiomeVariants.INSTANCE.apply((IContextExtended)contextFactory.apply(1000L), lvt_8_1_);
 
         for(int k = 0; k < i; ++k) {
             lvt_8_1_ = GenLayerZoom.NORMAL.apply((IContextExtended)contextFactory.apply((long)(1000 + k)), lvt_8_1_);
-            if (k == 0) {
-                lvt_8_1_ = GenLayerAddIsland.INSTANCE.apply((IContextExtended)contextFactory.apply(3L), lvt_8_1_);
+
+            if (k == 1 || i == 1) {
+                lvt_8_1_ = GenLayerKatharianBiomeEdge.INSTANCE.apply((IContextExtended)contextFactory.apply(1000L), lvt_8_1_);
+                lvt_8_1_ = GenLayerZoom.NORMAL.apply((IContextExtended)contextFactory.apply((long)(1000L)), lvt_8_1_);
             }
         }
 
         lvt_8_1_ = GenLayerSmooth.INSTANCE.apply((IContextExtended)contextFactory.apply(1000L), lvt_8_1_);
         lvt_8_1_ = GenLayerKatharianRiverMix.INSTANCE.apply((IContextExtended)contextFactory.apply(100L), lvt_8_1_, lvt_7_1_);
+        lvt_8_1_ = GenLayerDeleteRiverNearDesert.INSTANCE.apply((IContextExtended)contextFactory.apply(100L), lvt_8_1_);
         IAreaFactory<T> iareafactory5 = GenLayerVoronoiZoom.INSTANCE.apply(contextFactory.apply(10L), lvt_8_1_);
         return ImmutableList.of(lvt_8_1_, iareafactory5, lvt_8_1_);
     }
@@ -111,6 +108,11 @@ public class KatharianLayerUtil {
 
     public static boolean isOcean(int biomeIn) {
         return biomeIn == WARM_OCEAN || biomeIn == LUKEWARM_OCEAN || biomeIn == OCEAN || biomeIn == COLD_OCEAN || biomeIn == FROZEN_OCEAN || biomeIn == DEEP_WARM_OCEAN || biomeIn == DEEP_LUKEWARM_OCEAN || biomeIn == DEEP_OCEAN || biomeIn == DEEP_COLD_OCEAN || biomeIn == DEEP_FROZEN_OCEAN;
+    }
+
+    public static boolean isKatharianDesertBiome(int biomeID){
+        Biome biome = IRegistry.BIOME.get(biomeID);
+        return biome== Kathairis.BIOME_KATHARIAN_DESERT_EDGE||biome==Kathairis.BIOME_SOFT_SAND_LAKES||biome==Kathairis.BIOME_KATHARIAN_DESERT;
     }
 
 

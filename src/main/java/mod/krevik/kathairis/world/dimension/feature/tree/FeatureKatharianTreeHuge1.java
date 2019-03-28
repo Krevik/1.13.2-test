@@ -1,8 +1,5 @@
 package mod.krevik.kathairis.world.dimension.feature.tree;
 
-import java.util.Random;
-import java.util.Set;
-
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.plants.BlockGlowVines;
 import net.minecraft.block.Block;
@@ -12,9 +9,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.BirchTreeFeature;
+
+import java.util.Random;
+import java.util.Set;
 
 public class FeatureKatharianTreeHuge1 extends AbstractKatharianTreeFeature {
     private static final IBlockState LOG = KBlocks.MYSTIC_LOG.getDefaultState();

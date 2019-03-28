@@ -3,14 +3,13 @@ package mod.krevik.kathairis.util;
 import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.entities.*;
 import mod.krevik.kathairis.entities.butterfly.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemSpawnEgg;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 
-import javax.naming.Name;
 import java.util.ArrayList;
 
 
@@ -63,6 +62,12 @@ public class KatharianEntityTypes {
     public static EntityType<?> SKYRAY = EntityType.Builder.create(EntitySkyray.class, EntitySkyray::new).tracker(200, 1, true).build("skyray").setRegistryName(Kathairis.MODID,"skyray");
     //public static final EntityType<EntityStrangeWanderer> STRANGE_WANDERER = EntityType.register("strange_wanderer", EntityType.Builder.create(EntityStrangeWanderer.class, EntityStrangeWanderer::new));
     public static EntityType<?> STRANGE_WANDERER = EntityType.Builder.create(EntityStrangeWanderer.class, EntityStrangeWanderer::new).tracker(200, 1, true).build("strange_wanderer").setRegistryName(Kathairis.MODID,"strange_wanderer");
+
+
+    public static <T extends Entity> EntityType<T> registerNewEntityWithEgg(String Name, EntityType.Builder<T> builder){
+        EntityType<T> entitytype = (EntityType<T>) builder.build(Name).setRegistryName(Kathairis.MODID,Name);
+        return entitytype;
+    }
 
     public static void registerEntityTypes(final RegistryEvent.Register<EntityType<?>> event){
         ArrayList<EntityType<?>> listOfTypes = new ArrayList<>();

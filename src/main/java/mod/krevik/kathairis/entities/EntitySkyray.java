@@ -24,8 +24,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -131,8 +129,8 @@ public class EntitySkyray extends EntityFlying
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setInt("timeUntilNextFeather", this.timeUntilNextFeather());
-        compound.setInt("Adult", this.getAdult());
+        compound.putInt("timeUntilNextFeather", this.timeUntilNextFeather());
+        compound.putInt("Adult", this.getAdult());
     }
 
     @Override

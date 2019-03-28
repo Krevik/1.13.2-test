@@ -1,17 +1,15 @@
 package mod.krevik.kathairis.world.dimension.feature.tree;
 
-import java.util.Random;
-import java.util.Set;
-
 import mod.krevik.kathairis.KBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+
+import java.util.Random;
+import java.util.Set;
 
 public class FeatureKatharianTallTree1 extends AbstractKatharianTreeFeature {
     private static final IBlockState LOG = KBlocks.MYSTIC_LOG.getDefaultState();

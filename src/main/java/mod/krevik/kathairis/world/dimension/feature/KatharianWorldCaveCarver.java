@@ -1,20 +1,19 @@
 package mod.krevik.kathairis.world.dimension.feature;
 
-import java.util.BitSet;
-import java.util.Random;
-
 import com.google.common.collect.ImmutableSet;
 import mod.krevik.kathairis.KBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.carver.CaveWorldCarver;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
+
+import java.util.BitSet;
+import java.util.Random;
 
 public class KatharianWorldCaveCarver extends WorldCarver<ProbabilityConfig> {
     public KatharianWorldCaveCarver() {
@@ -22,7 +21,8 @@ public class KatharianWorldCaveCarver extends WorldCarver<ProbabilityConfig> {
                 KBlocks.SOFT_SAND,KBlocks.KATHARIAN_SANDSTONE,Blocks.STONE,Blocks.DIRT,Blocks.ANDESITE,Blocks.DIORITE,Blocks.GRAVEL);
     }
 
-    public boolean func_212246_a(IBlockReader p_212246_1_, Random p_212246_2_, int p_212246_3_, int p_212246_4_, ProbabilityConfig p_212246_5_) {
+
+    public boolean shouldCarve(IBlockReader p_212246_1_, Random p_212246_2_, int p_212246_3_, int p_212246_4_, ProbabilityConfig p_212246_5_) {
         return p_212246_2_.nextFloat() <= p_212246_5_.probability;
     }
 
@@ -153,7 +153,7 @@ public class KatharianWorldCaveCarver extends WorldCarver<ProbabilityConfig> {
                                                 if (lvt_39_1_) {
                                                     lvt_30_1_.setPos(lvt_28_1_).move(EnumFacing.DOWN);
                                                     if (p_202516_1_.getBlockState(lvt_30_1_).getBlock() == KBlocks.KATHARIAN_DIRT) {
-                                                        IBlockState lvt_46_1_ = p_202516_1_.getBiome(lvt_28_1_).getSurfaceBuilderConfig().getTop();
+                                                        IBlockState lvt_46_1_ = p_202516_1_.getBiome(lvt_28_1_).getSurfaceBuilderConfig().getTopMaterial();
                                                         p_202516_1_.setBlockState(lvt_30_1_, lvt_46_1_, 2);
                                                     }
                                                 }

@@ -60,6 +60,7 @@ public class RegistryHelper {
         registry.register(Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS);
         registry.register(Kathairis.BIOME_KATHARIAN_DESERT_EDGE);
         registry.register(Kathairis.BIOME_KATHARIAN_SWAMPS);
+        registry.register(Kathairis.BIOME_SOFT_SAND_LAKES);
     }
 
 

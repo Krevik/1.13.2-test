@@ -251,8 +251,8 @@ public class EntityMysticBird extends EntityAmbientCreature
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setByte("BatFlags", this.getDataManager().get(SITTING).byteValue());
-        compound.setInt("Variant", this.getVariant());
+        compound.putByte("BatFlags", this.getDataManager().get(SITTING).byteValue());
+        compound.putInt("Variant", this.getVariant());
 
     }
 

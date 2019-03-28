@@ -14,7 +14,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -236,8 +235,8 @@ public class EntityBasicButterfly extends EntityAmbientCreature
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setByte("BatFlags", this.getDataManager().get(SITTING).byteValue());
-        compound.setInt("Variant", this.getVariant());
+        compound.putByte("BatFlags", this.getDataManager().get(SITTING).byteValue());
+        compound.putInt("Variant", this.getVariant());
 
     }
     @Nullable

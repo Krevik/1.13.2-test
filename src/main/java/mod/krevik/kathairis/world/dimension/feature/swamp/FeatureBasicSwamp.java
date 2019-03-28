@@ -4,7 +4,6 @@ import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.IChunkGenSettings;
@@ -15,7 +14,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import java.util.Random;
 
 public class FeatureBasicSwamp extends Feature<NoFeatureConfig> {
-    public boolean func_212245_a(IWorld world, IChunkGenerator<? extends IChunkGenSettings> c123, Random random, BlockPos pos, NoFeatureConfig p_212245_5_) {
+    public boolean place(IWorld world, IChunkGenerator<? extends IChunkGenSettings> c123, Random random, BlockPos pos, NoFeatureConfig p_212245_5_) {
 
         IBlockState iblockstate1 = getRandomBlockState(random);
 

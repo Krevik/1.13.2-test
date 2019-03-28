@@ -2,8 +2,9 @@ package mod.krevik.kathairis.blocks;
 
 import com.google.common.cache.LoadingCache;
 import mod.krevik.kathairis.KBlocks;
+import mod.krevik.kathairis.Kathairis;
+import mod.krevik.kathairis.entities.EntityStrangeWanderer;
 import mod.krevik.kathairis.world.dimension.KathairisTeleportManager;
-import mod.krevik.kathairis.world.dimension.TeleporterKathairis;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.SoundType;
@@ -22,6 +23,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -30,6 +32,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class BlockKathairisPortal extends BlockPortal
@@ -42,7 +45,7 @@ public class BlockKathairisPortal extends BlockPortal
 
     public BlockKathairisPortal(String Name,ItemGroup group)
     {
-        super(Block.Properties.create(Material.PORTAL).needsRandomTick().hardnessAndResistance(-1,-1).doesNotBlockMovement().lightValue(1).sound(SoundType.GLASS));
+        super(Block.Properties.create(Material.PORTAL).tickRandomly().hardnessAndResistance(-1,-1).doesNotBlockMovement().lightValue(1).sound(SoundType.GLASS));
         this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, EnumFacing.Axis.X));
         this.setRegistryName(Name);
         itemGroup=group;
@@ -62,7 +65,7 @@ public class BlockKathairisPortal extends BlockPortal
     {
         super.tick(state,worldIn,pos,rand);
 
-        /*if(worldIn.dimension.getDimension()==KCore.DIMENSION_ID) {
+        if(worldIn.dimension.getDimension().getType().getId()== Kathairis.kath_DIM_ID) {
             List<EntityStrangeWanderer> e = worldIn.getEntitiesWithinAABB(EntityStrangeWanderer.class, new AxisAlignedBB(pos.getX() - 15, pos.getY() - 15, pos.getZ() - 15, pos.getX()  + 15, pos.getY() + 15, pos.getZ() + 15));
             if(e.size()==0) {
                 if(!worldIn.isRemote) {
@@ -78,6 +81,7 @@ public class BlockKathairisPortal extends BlockPortal
                 }
             }
         }
+        /*
         if(ModConfig.shouldBlocksSpreadAroundPortal) {
             for (int x = 0; x < 1 + rand.nextInt(4); x++) {
                 updateBlocksAroundPortal(worldIn, pos, state, rand);

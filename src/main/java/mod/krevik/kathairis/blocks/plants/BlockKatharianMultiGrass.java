@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class BlockKatharianMultiGrass extends BlockKatharianPlant {
     public BlockKatharianMultiGrass(String Name) {
-        super(Name, Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0f).doesNotBlockMovement().needsRandomTick());
+        super(Name, Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0f).doesNotBlockMovement().tickRandomly());
     }
 
     @Override

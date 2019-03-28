@@ -1,12 +1,6 @@
 package mod.krevik.kathairis.world.dimension.biome;
 
 import com.google.common.collect.Sets;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import javax.annotation.Nullable;
-
 import mod.krevik.kathairis.Kathairis;
 import mod.krevik.kathairis.world.dimension.KatharianGenSettings;
 import mod.krevik.kathairis.world.dimension.biome.gen_layers.KatharianLayerUtil;
@@ -20,6 +14,12 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.storage.WorldInfo;
 
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
 public class KatharianBiomeProvider extends OverworldBiomeProvider {
     private final BiomeCache cache = new BiomeCache(this);
     private final GenLayer genBiomes;
@@ -32,7 +32,7 @@ public class KatharianBiomeProvider extends OverworldBiomeProvider {
         Kathairis.BIOME_KATHARIAN_PLAIN_FIELDS,Kathairis.BIOME_KATHARIAN_SWAMPS};
         WorldInfo lvt_2_1_ = p_i48971_1_.getWorldInfo();
         KatharianGenSettings lvt_3_1_ = p_i48971_1_.getGeneratorSettings();
-        GenLayer[] lvt_4_1_ = KatharianLayerUtil.buildOverworldProcedure(lvt_2_1_.getSeed(), lvt_2_1_.getTerrainType(), lvt_3_1_);
+        GenLayer[] lvt_4_1_ = KatharianLayerUtil.buildOverworldProcedure(lvt_2_1_.getSeed(), lvt_2_1_.getGenerator(), lvt_3_1_);
         this.genBiomes = lvt_4_1_[0];
         this.biomeFactoryLayer = lvt_4_1_[1];
     }
@@ -113,7 +113,7 @@ public class KatharianBiomeProvider extends OverworldBiomeProvider {
 
             for(int var3 = 0; var3 < var2; ++var3) {
                 Biome lvt_4_1_ = var1[var3];
-                this.topBlocksCache.add(lvt_4_1_.getSurfaceBuilderConfig().getTop());
+                this.topBlocksCache.add(lvt_4_1_.getSurfaceBuilderConfig().getTopMaterial());
             }
         }
 

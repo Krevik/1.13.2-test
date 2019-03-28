@@ -2,7 +2,6 @@ package mod.krevik.kathairis.blocks;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
-import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;

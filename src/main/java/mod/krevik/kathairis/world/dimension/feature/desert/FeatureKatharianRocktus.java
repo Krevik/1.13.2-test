@@ -1,11 +1,8 @@
 package mod.krevik.kathairis.world.dimension.feature.desert;
 
 import mod.krevik.kathairis.KBlocks;
-import mod.krevik.kathairis.blocks.plants.BlockKatharianDeadGrass;
 import mod.krevik.kathairis.blocks.plants.BlockKatharianRocktus;
-import net.minecraft.block.BlockDeadBush;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -19,7 +16,7 @@ import java.util.Random;
 public class FeatureKatharianRocktus extends Feature<NoFeatureConfig> {
     private static final BlockKatharianRocktus field_197166_a = (BlockKatharianRocktus) KBlocks.ROCKTUS;
 
-    public boolean func_212245_a(IWorld p_212245_1_, IChunkGenerator<? extends IChunkGenSettings> p_212245_2_, Random p_212245_3_, BlockPos p_212245_4_, NoFeatureConfig p_212245_5_) {
+    public boolean place(IWorld p_212245_1_, IChunkGenerator<? extends IChunkGenSettings> p_212245_2_, Random p_212245_3_, BlockPos p_212245_4_, NoFeatureConfig p_212245_5_) {
         for(IBlockState iblockstate = p_212245_1_.getBlockState(p_212245_4_); (iblockstate.isAir(p_212245_1_, p_212245_4_) || iblockstate.isIn(BlockTags.LEAVES)) && p_212245_4_.getY() > 0; iblockstate = p_212245_1_.getBlockState(p_212245_4_)) {
             p_212245_4_ = p_212245_4_.down();
         }

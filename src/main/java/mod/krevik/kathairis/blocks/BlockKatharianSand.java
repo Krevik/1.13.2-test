@@ -2,11 +2,9 @@ package mod.krevik.kathairis.blocks;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.Kathairis;
-import mod.krevik.kathairis.blocks.helpers.BaseBlock;
 import mod.krevik.kathairis.util.KathairisItemGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
-import net.minecraft.block.BlockSand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +17,6 @@ import net.minecraft.particles.BlockParticleData;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -30,7 +27,7 @@ import java.util.Random;
 public class BlockKatharianSand extends BlockFalling {
     public static boolean fallInstantly=false;
     public BlockKatharianSand(String Name) {
-        super(Block.Properties.create(Material.SAND).needsRandomTick().hardnessAndResistance(0.75f).sound(SoundType.SAND));
+        super(Block.Properties.create(Material.SAND).tickRandomly().hardnessAndResistance(0.75f).sound(SoundType.SAND));
         setRegistryName(Kathairis.MODID,Name);
     }
 
@@ -118,7 +115,7 @@ public class BlockKatharianSand extends BlockFalling {
                 double d0 = (double)((float)pos.getX() + rand.nextFloat());
                 double d1 = (double)pos.getY() - 0.05D;
                 double d2 = (double)((float)pos.getZ() + rand.nextFloat());
-                worldIn.spawnParticle(new BlockParticleData(Particles.FALLING_DUST, stateIn), d0, d1, d2, 0.0D, 0.0D, 0.0D);
+                worldIn.addParticle(new BlockParticleData(Particles.FALLING_DUST, stateIn), d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
         }
 

@@ -2,11 +2,8 @@ package mod.krevik.kathairis.blocks.plants;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.BlockKatharianGrass;
-import mod.krevik.kathairis.blocks.BlockKatharianSand;
-import mod.krevik.kathairis.blocks.BlockSoftSand;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGrass;
-import net.minecraft.block.BlockSand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +16,7 @@ import java.util.Random;
 
 public class BlockSteppedSucculent extends BlockKatharianPlant {
     public BlockSteppedSucculent(String Name) {
-        super(Name, Block.Properties.create(Material.PLANTS).needsRandomTick().hardnessAndResistance(0.5f).sound(SoundType.PLANT));
+        super(Name, Block.Properties.create(Material.PLANTS).tickRandomly().hardnessAndResistance(0.5f).sound(SoundType.PLANT));
     }
 
     @Override

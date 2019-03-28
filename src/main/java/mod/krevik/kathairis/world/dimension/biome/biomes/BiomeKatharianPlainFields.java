@@ -1,20 +1,15 @@
 package mod.krevik.kathairis.world.dimension.biome.biomes;
 
-import com.google.common.collect.Lists;
 import mod.krevik.kathairis.KBlocks;
-import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.world.dimension.feature.KatharianFeatureList;
 import mod.krevik.kathairis.world.dimension.feature.KatharianMinableConfig;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Fluids;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placement.*;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.CountRangeConfig;
+import net.minecraft.world.gen.placement.FrequencyConfig;
+import net.minecraft.world.gen.placement.LakeChanceConfig;
 import net.minecraft.world.gen.surfacebuilders.CompositeSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 

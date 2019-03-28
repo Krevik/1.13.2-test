@@ -2,7 +2,6 @@ package mod.krevik.kathairis.items;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.BlockKathairisPortal;
-import net.minecraft.block.BlockFire;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

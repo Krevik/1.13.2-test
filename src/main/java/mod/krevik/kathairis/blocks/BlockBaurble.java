@@ -26,7 +26,7 @@ public class BlockBaurble extends BaseBlock {
     protected static final AxisAlignedBB BAURBLE_AABB = new AxisAlignedBB(0.2D, 0.4D, 0.2D, 0.8D, 1D, 0.8D);
 
     public BlockBaurble(String Name) {
-        super(Name, Block.Properties.create(Material.GLASS).needsRandomTick().hardnessAndResistance(0f).sound(SoundType.GLASS).lightValue(10), KathairisItemGroups.kathairis_building_blocks);
+        super(Name, Block.Properties.create(Material.GLASS).tickRandomly().hardnessAndResistance(0f).sound(SoundType.GLASS).lightValue(10), KathairisItemGroups.kathairis_building_blocks);
     }
 
     @Override

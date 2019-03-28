@@ -14,7 +14,7 @@ public class FeatureSteppedSucculent extends Feature<NoFeatureConfig> {
     public FeatureSteppedSucculent() {
     }
 
-    public boolean func_212245_a(IWorld p_212245_1_, IChunkGenerator<? extends IChunkGenSettings> p_212245_2_, Random p_212245_3_, BlockPos p_212245_4_, NoFeatureConfig p_212245_5_) {
+    public boolean place(IWorld p_212245_1_, IChunkGenerator<? extends IChunkGenSettings> p_212245_2_, Random p_212245_3_, BlockPos p_212245_4_, NoFeatureConfig p_212245_5_) {
         for(int lvt_6_1_ = 0; lvt_6_1_ < 10; ++lvt_6_1_) {
             BlockPos lvt_7_1_ = p_212245_4_.add(p_212245_3_.nextInt(8) - p_212245_3_.nextInt(8), p_212245_3_.nextInt(4) - p_212245_3_.nextInt(4), p_212245_3_.nextInt(8) - p_212245_3_.nextInt(8));
             if (p_212245_1_.isAirBlock(lvt_7_1_)) {

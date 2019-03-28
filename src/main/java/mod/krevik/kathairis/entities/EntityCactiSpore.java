@@ -16,10 +16,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -137,7 +134,7 @@ public class EntityCactiSpore extends EntityMob
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setBoolean("canDespawn",this.getDataManager().get(canDespawn));
+        compound.putBoolean("canDespawn",this.getDataManager().get(canDespawn));
     }
 
     @Override

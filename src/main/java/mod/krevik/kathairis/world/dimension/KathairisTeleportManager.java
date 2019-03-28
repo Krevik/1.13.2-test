@@ -7,13 +7,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.storage.DimensionSavedDataManager;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.fml.loading.FMLCommonLaunchHandler;
 import org.apache.commons.lang3.Validate;
 
 public class KathairisTeleportManager extends TileEntity
@@ -60,13 +57,13 @@ public class KathairisTeleportManager extends TileEntity
     public NBTTagCompound write(NBTTagCompound nbt)
     {
         super.write(nbt);
-        nbt.setDouble(S_PLAYER_X, prevX);
-        nbt.setDouble(S_PLAYER_Y, prevY);
-        nbt.setDouble(S_PLAYER_Z, prevZ);
-        nbt.setDouble(S_PLAYER_X2, prevX2);
-        nbt.setDouble(S_PLAYER_Y2, prevY2);
-        nbt.setDouble(S_PLAYER_Z2, prevZ2);
-        nbt.setInt(dme, Kathairis.kath_DIM_ID);
+        nbt.putDouble(S_PLAYER_X, prevX);
+        nbt.putDouble(S_PLAYER_Y, prevY);
+        nbt.putDouble(S_PLAYER_Z, prevZ);
+        nbt.putDouble(S_PLAYER_X2, prevX2);
+        nbt.putDouble(S_PLAYER_Y2, prevY2);
+        nbt.putDouble(S_PLAYER_Z2, prevZ2);
+        nbt.putInt(dme, Kathairis.kath_DIM_ID);
 
         return nbt;
     }

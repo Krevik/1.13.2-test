@@ -1,8 +1,5 @@
 package mod.krevik.kathairis.world.dimension.feature.tree;
 
-import java.util.Random;
-import java.util.Set;
-
 import mod.krevik.kathairis.KBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
@@ -15,6 +12,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+
+import java.util.Random;
+import java.util.Set;
 
 public class KatharianTreeFeature extends AbstractKatharianTreeFeature {
     private static final IBlockState DEFAULT_TRUNK = KBlocks.MYSTIC_LOG.getDefaultState();
@@ -103,7 +103,7 @@ public class KatharianTreeFeature extends AbstractKatharianTreeFeature {
                         IBlockState iblockstate1 = worldIn.getBlockState(position.up(j3));
                         Material material1 = iblockstate1.getMaterial();
                         if (iblockstate1.canBeReplacedByLeaves(worldIn, position.up(j3)) || material1 == Material.VINE) {
-                            this.func_208520_a(changedBlocks, worldIn, position.up(j3), this.metaWood);
+                            this.setLogState(changedBlocks, worldIn, position.up(j3), this.metaWood);
                             if (this.vinesGrow && j3 > 0) {
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(-1, j3, 0))) {
                                     this.addVine(worldIn, position.add(-1, j3, 0), BlockVine.EAST);

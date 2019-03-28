@@ -9,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -29,8 +30,9 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
 
     public BlockKatharianPlant(String Name)
     {
-        super(Name,Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0).needsRandomTick().doesNotBlockMovement(), KathairisItemGroups.kathairis_plants);
+        super(Name,Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0).tickRandomly().doesNotBlockMovement(), KathairisItemGroups.kathairis_plants);
     }
+
 
     public BlockKatharianPlant(String Name, Block.Properties properties)
     {
@@ -40,7 +42,7 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block p_189540_4_, BlockPos p_189540_5_) {
         super.neighborChanged(state, world, pos, p_189540_4_, p_189540_5_);
-        if(!isValidPosition(state,world,pos)||!world.isAirBlock(pos.up())){
+        if(!isValidPosition(state,world,pos)){
             world.removeBlock(pos);
         }
     }
@@ -53,7 +55,7 @@ public class BlockKatharianPlant extends BaseBlock implements net.minecraftforge
     @Override
     public boolean isValidPosition(IBlockState state, IWorldReaderBase worldIn, BlockPos pos) {
         BlockPos blockpos = pos.down();
-        return this.isValidGround(worldIn.getBlockState(blockpos), worldIn, blockpos)&&worldIn.isAirBlock(pos.up());
+        return this.isValidGround(worldIn.getBlockState(blockpos), worldIn, blockpos);
     }
 
     protected boolean isValidGround(IBlockState state, IBlockReader worldIn, BlockPos pos) {

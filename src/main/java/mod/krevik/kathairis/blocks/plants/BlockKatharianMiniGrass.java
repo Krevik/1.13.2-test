@@ -4,6 +4,7 @@ import mod.krevik.kathairis.KBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IItemProvider;
@@ -27,6 +28,11 @@ public class BlockKatharianMiniGrass extends BlockKatharianPlant {
     @Override
     public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune) {
         return null;
+    }
+
+    @Override
+    public boolean isReplaceable(IBlockState p_196253_1_, BlockItemUseContext p_196253_2_) {
+        return true;
     }
 
     @Override

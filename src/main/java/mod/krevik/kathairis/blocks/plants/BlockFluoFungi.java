@@ -28,7 +28,7 @@ import java.util.Random;
 public class BlockFluoFungi extends BlockKatharianPlant {
     public static final DirectionProperty FACING = BlockHorizontal.HORIZONTAL_FACING;
     public BlockFluoFungi(String Name) {
-        super(Name, Block.Properties.create(Material.PLANTS).lightValue(10).doesNotBlockMovement().needsRandomTick().hardnessAndResistance(0).sound(SoundType.PLANT));
+        super(Name, Block.Properties.create(Material.PLANTS).lightValue(10).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT));
     }
 
     @Override

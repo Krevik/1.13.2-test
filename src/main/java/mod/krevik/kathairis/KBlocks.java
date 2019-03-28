@@ -38,7 +38,7 @@ public class KBlocks {
     MYSTIC_WOOD_TRAPDOOR, SHINY_WOOD_TRAPDOOR, SOUL_WOOD_TRAPDOOR, KATHARIAN_FUNGI, GOOSEBERRY_BUSH, KATHARIAN_SUCCULENT,
     STEPPED_SUCCULENT, VILYRIA, GLOWVINES, JADE_VINES, KATHARIAN_DEAD_GRASS, MYSTIC_GEM_BLOCK, MAGIC_BEANS,
     BAURBLE, BUTTERFLY_FLOWER, SOLIS_CRYSTALS, BLUE_CLOUD_FLOWER, YELLOW_CLOUD_FLOWER, SNOWDROP_CYPREPEDIUM,
-    FLUO_FUNGI, LAYERED_SAND, KATHARIAN_SANDSTONE, FOREST_CANDLE, ROCKTUS, ELDERWILLOW_LOG, ELDERWILLOW_LEAVES;
+    FLUO_FUNGI, LAYERED_SAND, KATHARIAN_SANDSTONE, FOREST_CANDLE, ROCKTUS, ELDERWILLOW_LOG, ELDERWILLOW_LEAVES, PURPLE_PALM;
 
     public static void initBlocks(){
         KATHARIAN_STONE = new BlockKatharianStone("katharian_stone").addToBlockAndItemBlockRegistryList();
@@ -149,7 +149,7 @@ public class KBlocks {
         GOOSEBERRY_BUSH = new BlockGooseberry("gooseberry_bush",Material.LEAVES,1f,1f,SoundType.PLANT,KathairisItemGroups.kathairis_plants).addToBlockRegistryList();
         KATHARIAN_SUCCULENT = new BlockKatharianSucculent("katharian_succulent").addToBlockAndItemBlockRegistryList();
         STEPPED_SUCCULENT = new BlockSteppedSucculent("stepped_succulent").addToBlockAndItemBlockRegistryList();
-        VILYRIA = new BlockKatharianPlant("vilyria",Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0).needsRandomTick().doesNotBlockMovement().lightValue(5)).addToBlockAndItemBlockRegistryList();
+        VILYRIA = new BlockKatharianPlant("vilyria",Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0).tickRandomly().doesNotBlockMovement().lightValue(5)).addToBlockAndItemBlockRegistryList();
         GLOWVINES = new BlockGlowVines("glowvines").addToBlockAndItemBlockRegistryList();
         JADE_VINES = new BlockJadeVines("jade_vines").addToBlockAndItemBlockRegistryList();
         KATHARIAN_DEAD_GRASS = new BlockKatharianDeadGrass("katharian_dead_grass").addToBlockAndItemBlockRegistryList();
@@ -159,8 +159,9 @@ public class KBlocks {
         BLUE_CLOUD_FLOWER = new BlockCloudFlower("blue_cloud_flower").addToBlockAndItemBlockRegistryList();
         SNOWDROP_CYPREPEDIUM = new BlockSnowdropCyprepedium("snowdrop_cyprepedium").addToBlockAndItemBlockRegistryList();
         FLUO_FUNGI = new BlockFluoFungi("fluo_fungi").addToBlockAndItemBlockRegistryList();
-        FOREST_CANDLE = new BlockKatharianPlant("forest_candle", Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0).needsRandomTick().doesNotBlockMovement().lightValue(12)).addToBlockAndItemBlockRegistryList();
+        FOREST_CANDLE = new BlockForestCandle("forest_candle", Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0).tickRandomly().doesNotBlockMovement().lightValue(12)).addToBlockAndItemBlockRegistryList();
         ROCKTUS = new BlockKatharianRocktus("rocktus").addToBlockAndItemBlockRegistryList();
+        PURPLE_PALM = new BlockPurplePalm("purple_palm").addToBlockAndItemBlockRegistryList();
 
         //doors and trapdoors
         MYSTIC_WOOD_DOORS = new BlockKatharianDoors("mystic_wood_doors",Material.WOOD,SoundType.WOOD,3f).addToBlockAndItemBlockRegistryList();

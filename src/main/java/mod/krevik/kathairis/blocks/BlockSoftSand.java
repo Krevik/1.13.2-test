@@ -29,7 +29,7 @@ import java.util.Random;
 public class BlockSoftSand extends BaseBlock {
     public static boolean fallInstantly=false;
     public BlockSoftSand(String Name) {
-        super(Name, Block.Properties.create(Material.SAND).needsRandomTick().hardnessAndResistance(0.3f).sound(SoundType.SAND), KathairisItemGroups.kathairis_building_blocks);
+        super(Name, Block.Properties.create(Material.SAND).tickRandomly().hardnessAndResistance(0.3f).sound(SoundType.SAND), KathairisItemGroups.kathairis_building_blocks);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class BlockSoftSand extends BaseBlock {
                 double d0 = (double)((float)pos.getX() + rand.nextFloat());
                 double d1 = (double)pos.getY() - 0.05D;
                 double d2 = (double)((float)pos.getZ() + rand.nextFloat());
-                worldIn.spawnParticle(new BlockParticleData(Particles.FALLING_DUST, stateIn), d0, d1, d2, 0.0D, 0.0D, 0.0D);
+                worldIn.addParticle(new BlockParticleData(Particles.FALLING_DUST, stateIn), d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
         }
 

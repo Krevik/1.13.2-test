@@ -1,6 +1,5 @@
 package mod.krevik.kathairis.blocks.plants;
 
-import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.BlockKatharianSand;
 import mod.krevik.kathairis.blocks.BlockSoftSand;
 import net.minecraft.block.Block;

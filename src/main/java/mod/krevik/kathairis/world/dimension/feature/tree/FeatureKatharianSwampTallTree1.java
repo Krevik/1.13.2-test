@@ -1,19 +1,16 @@
 package mod.krevik.kathairis.world.dimension.feature.tree;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Set;
-
 import mod.krevik.kathairis.KBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.Heightmap;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Set;
 
 public class FeatureKatharianSwampTallTree1 extends AbstractKatharianTreeFeature {
     private static final IBlockState LOG = KBlocks.ELDERWILLOW_LOG.getDefaultState();
@@ -174,7 +171,7 @@ public class FeatureKatharianSwampTallTree1 extends AbstractKatharianTreeFeature
 
 
             //branches and crowns :O
-            int branchesNumber=4+rand.nextInt(5);
+            int branchesNumber=6+rand.nextInt(7);
             for(int c=0;c<branchesNumber;c++){
                 int shiftX=0;
                 int shiftZ=0;

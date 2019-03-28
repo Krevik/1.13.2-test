@@ -1,7 +1,6 @@
 package mod.krevik.kathairis.world.dimension.biome.gen_layers;
 
 import mod.krevik.kathairis.Kathairis;
-import net.minecraft.init.Biomes;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.gen.IContext;
 import net.minecraft.world.gen.layer.traits.ICastleTransformer;
@@ -9,7 +8,7 @@ import net.minecraft.world.gen.layer.traits.ICastleTransformer;
 public enum GenLayerKatharianRiver implements ICastleTransformer {
     INSTANCE;
 
-    public static final int RIVER = IRegistry.field_212624_m.getId(Kathairis.BIOME_KATHARIAN_RIVER);
+    public static final int RIVER = IRegistry.BIOME.getId(Kathairis.BIOME_KATHARIAN_RIVER);
     private GenLayerKatharianRiver() {
 
     }

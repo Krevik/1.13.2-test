@@ -12,11 +12,11 @@ import net.minecraft.world.gen.layer.traits.IDimOffset0Transformer;
 public enum GenLayerKatharianRiverMix implements IAreaTransformer2, IDimOffset0Transformer {
     INSTANCE;
 
-    private static final int FROZEN_RIVER = IRegistry.field_212624_m.getId(Biomes.FROZEN_RIVER);
-    private static final int SNOWY_TUNDRA = IRegistry.field_212624_m.getId(Biomes.SNOWY_TUNDRA);
-    private static final int MUSHROOM_FIELDS = IRegistry.field_212624_m.getId(Biomes.MUSHROOM_FIELDS);
-    private static final int MUSHROOM_FIELD_SHORE = IRegistry.field_212624_m.getId(Biomes.MUSHROOM_FIELD_SHORE);
-    private static final int RIVER = IRegistry.field_212624_m.getId(Kathairis.BIOME_KATHARIAN_RIVER);
+    private static final int FROZEN_RIVER = IRegistry.BIOME.getId(Biomes.FROZEN_RIVER);
+    private static final int SNOWY_TUNDRA = IRegistry.BIOME.getId(Biomes.SNOWY_TUNDRA);
+    private static final int MUSHROOM_FIELDS = IRegistry.BIOME.getId(Biomes.MUSHROOM_FIELDS);
+    private static final int MUSHROOM_FIELD_SHORE = IRegistry.BIOME.getId(Biomes.MUSHROOM_FIELD_SHORE);
+    private static final int RIVER = IRegistry.BIOME.getId(Kathairis.BIOME_KATHARIAN_RIVER);
 
     private GenLayerKatharianRiverMix() {
     }

@@ -113,6 +113,28 @@ public class BlockCrystal extends BaseBlock {
         }
     }
 
+    public static boolean isValidPosition1(IBlockState state, IWorldReaderBase worldIn, BlockPos pos) {
+        EnumFacing facing = state.get(FACING);
+        if(facing == EnumFacing.UP) return isValidGround1(worldIn.getBlockState(pos.down()));
+        else if(facing == EnumFacing.DOWN) return isValidGround1(worldIn.getBlockState(pos.up()));
+        else if(facing == EnumFacing.EAST) return isValidGround1(worldIn.getBlockState(pos.west()));
+        else if(facing == EnumFacing.WEST) return isValidGround1(worldIn.getBlockState(pos.east()));
+        else if(facing == EnumFacing.SOUTH) return isValidGround1(worldIn.getBlockState(pos.north()));
+        else if(facing == EnumFacing.NORTH) return isValidGround1(worldIn.getBlockState(pos.south()));
+        else{
+            return false;
+        }
+    }
+
+    public static boolean isValidGround1(IBlockState state){
+        boolean is=false;
+        Block groundBlock = state.getBlock();
+        if(groundBlock.isFullCube(state) && groundBlock.isTopSolid(state)){
+            is=true;
+        }
+        return is;
+    }
+
     public boolean isValidGround(IBlockState state){
         boolean is=false;
         Block groundBlock = state.getBlock();

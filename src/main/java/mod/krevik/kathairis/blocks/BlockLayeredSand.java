@@ -38,7 +38,7 @@ public class BlockLayeredSand extends BaseBlock {
     protected static final AxisAlignedBB[] SAND_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
 
     public BlockLayeredSand(String Name) {
-        super(Name, Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1f).needsRandomTick(), KathairisItemGroups.kathairis_building_blocks);
+        super(Name, Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1f).tickRandomly(), KathairisItemGroups.kathairis_building_blocks);
         this.setDefaultState(this.stateContainer.getBaseState().with(LAYERS, Integer.valueOf(1)));
     }
 

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class GenLayerKatharianBiome implements IC0Transformer {
 
+
     public static ImmutableList<BiomeManager.BiomeEntry> getBiomesToGeneration(){
         ArrayList<BiomeManager.BiomeEntry> list = new ArrayList<>();
         list.add(new BiomeManager.BiomeEntry(Kathairis.BIOME_KATHARIAN_FOREST,10));
@@ -50,7 +51,7 @@ public class GenLayerKatharianBiome implements IC0Transformer {
         if (this.settings != null && this.settings.func_202199_l() >= 0) {
             return this.settings.func_202199_l();
         } else {
-            return IRegistry.field_212624_m.getId(getWeightedBiomeEntry(net.minecraftforge.common.BiomeManager.BiomeType.COOL, context).biome);
+            return IRegistry.BIOME.getId(getWeightedBiomeEntry(net.minecraftforge.common.BiomeManager.BiomeType.COOL, context).biome);
         }
     }
 

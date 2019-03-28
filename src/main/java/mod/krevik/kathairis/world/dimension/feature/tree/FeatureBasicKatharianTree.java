@@ -1,8 +1,5 @@
 package mod.krevik.kathairis.world.dimension.feature.tree;
 
-import java.util.Random;
-import java.util.Set;
-
 import mod.krevik.kathairis.KBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -10,6 +7,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+
+import java.util.Random;
+import java.util.Set;
 
 public class FeatureBasicKatharianTree extends AbstractKatharianTreeFeature {
     private static final IBlockState LOG = KBlocks.MYSTIC_LOG.getDefaultState();
@@ -84,7 +84,7 @@ public class FeatureBasicKatharianTree extends AbstractKatharianTreeFeature {
                     for(int j2 = 0; j2 < i; ++j2) {
                         IBlockState iblockstate1 = worldIn.getBlockState(position.up(j2));
                         if (iblockstate1.isAir(worldIn, position.up(j2)) || iblockstate1.isIn(BlockTags.LEAVES)) {
-                            this.func_208520_a(changedBlocks, worldIn, position.up(j2), LOG);
+                            this.setLogState(changedBlocks, worldIn, position.up(j2), LOG);
                         }
                     }
 

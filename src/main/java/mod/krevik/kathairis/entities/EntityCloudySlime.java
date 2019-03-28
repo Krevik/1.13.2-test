@@ -19,7 +19,9 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -27,7 +29,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 import java.util.Set;
 public class EntityCloudySlime extends EntityTameable
 {
@@ -305,7 +306,7 @@ public class EntityCloudySlime extends EntityTameable
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setInt("Variant", this.getVariant());
+        compound.putInt("Variant", this.getVariant());
     }
 
     @Override

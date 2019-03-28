@@ -27,8 +27,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -213,9 +211,9 @@ public class EntityBison extends EntityAnimal
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setBoolean("shouldAnimTail",getShouldAnimTail());
-        compound.setFloat("animTimer",getAnimTimer());
-        compound.setFloat("hapiness",getHapiness());
+        compound.putBoolean("shouldAnimTail",getShouldAnimTail());
+        compound.putFloat("animTimer",getAnimTimer());
+        compound.putFloat("hapiness",getHapiness());
 
     }
 

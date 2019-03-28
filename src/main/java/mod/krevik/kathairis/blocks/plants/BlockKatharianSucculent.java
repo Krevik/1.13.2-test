@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class BlockKatharianSucculent extends BlockKatharianPlant {
     public BlockKatharianSucculent(String Name) {
-        super(Name, Block.Properties.create(Material.PLANTS).needsRandomTick().hardnessAndResistance(0.5f).sound(SoundType.PLANT));
+        super(Name, Block.Properties.create(Material.PLANTS).tickRandomly().hardnessAndResistance(0.5f).sound(SoundType.PLANT));
     }
 
     @Override

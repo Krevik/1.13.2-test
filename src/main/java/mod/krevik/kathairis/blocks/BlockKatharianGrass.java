@@ -2,10 +2,11 @@ package mod.krevik.kathairis.blocks;
 
 import mod.krevik.kathairis.KBlocks;
 import mod.krevik.kathairis.blocks.helpers.BaseBlock;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.state.BooleanProperty;
@@ -34,7 +35,7 @@ public class BlockKatharianGrass extends BaseBlock implements IGrowable
 
     public BlockKatharianGrass(String Name, float hardness, float resistance, ItemGroup group)
     {
-        super(Name,Block.Properties.create(Material.GRASS).hardnessAndResistance(hardness,resistance).needsRandomTick().sound(SoundType.PLANT),group);
+        super(Name,Block.Properties.create(Material.GRASS).hardnessAndResistance(hardness,resistance).tickRandomly().sound(SoundType.PLANT),group);
         this.setDefaultState(this.stateContainer.getBaseState().with(SNOWY, Boolean.valueOf(false)).with(FLOWER, Boolean.valueOf(false)));
     }
 

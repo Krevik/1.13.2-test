@@ -1,17 +1,13 @@
 package mod.krevik.kathairis.world.dimension.biome.biomes;
 
-import mod.krevik.kathairis.util.KatharianEntityTypes;
 import mod.krevik.kathairis.world.dimension.feature.KatharianFeatureList;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.PlainsBiome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -23,7 +19,7 @@ public class BiomeKatharianBiomeBase extends Biome {
     public Color baseGrassColor =new Color(66,244,238);
     protected BiomeKatharianBiomeBase(BiomeBuilder p_i48975_1_) {
         super(p_i48975_1_);
-        //this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(KatharianFeatureList.KATHARIAN_CRYSTAL_CHAMBER, IFeatureConfig.NO_FEATURE_CONFIG, COUNT_RANGE, new CountRangeConfig(1, 0, 0, 128)));
+        this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, createCompositeFeature(KatharianFeatureList.KATHARIAN_CRYSTAL_CHAMBER, IFeatureConfig.NO_FEATURE_CONFIG, WITH_CHANCE, new ChanceConfig(128)));
     }
 
 

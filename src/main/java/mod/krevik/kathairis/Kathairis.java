@@ -1,26 +1,24 @@
 package mod.krevik.kathairis;
 
-import ca.weblite.objc.Client;
 import mod.krevik.kathairis.client.ClientEventSubscriber;
 import mod.krevik.kathairis.client.EntityRenderingRegistry;
-import mod.krevik.kathairis.client.sound.SoundHandlerBase;
 import mod.krevik.kathairis.client.sound.SoundHelper;
 import mod.krevik.kathairis.util.FunctionHelper;
-import mod.krevik.kathairis.world.dimension.*;
-import mod.krevik.kathairis.world.dimension.biome.biomes.*;
+import mod.krevik.kathairis.world.dimension.DimensionKathairis;
+import mod.krevik.kathairis.world.dimension.ModDimensionKathairis;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProvider;
 import mod.krevik.kathairis.world.dimension.biome.KatharianBiomeProviderSettings;
+import mod.krevik.kathairis.world.dimension.biome.biomes.*;
 import net.minecraft.block.SoundType;
-import net.minecraft.client.audio.MusicTicker;
-import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.*;
+import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -46,7 +44,7 @@ public class Kathairis {
     public static final int kath_DIM_ID = 3;
     public static final ModDimension kath_Mod_Dim = new ModDimensionKathairis();
     public static DimensionType kath_Dim_type = new DimensionType(kath_DIM_ID , Kathairis.MODID, Kathairis.MODID, DimensionKathairis::new).setRegistryName(Kathairis.MODID,"kathairis");
-    public static final BiomeProviderType<KatharianBiomeProviderSettings, KatharianBiomeProvider> KATHARIAN_BIOME_PROVIDER_TYPE = BiomeProviderType.func_212581_a("katharian_biome_provider_type", KatharianBiomeProvider::new, KatharianBiomeProviderSettings::new);
+    public static final BiomeProviderType<KatharianBiomeProviderSettings, KatharianBiomeProvider> KATHARIAN_BIOME_PROVIDER_TYPE = BiomeProviderType.register("katharian_biome_provider_type", KatharianBiomeProvider::new, KatharianBiomeProviderSettings::new);
 
     public Kathairis() {
         KBlocks.initBlocks();
@@ -103,15 +101,23 @@ public class Kathairis {
     public static Biome BIOME_KATHARIAN_PLAIN_FIELDS;
     public static Biome BIOME_KATHARIAN_DESERT_EDGE;
     public static Biome BIOME_KATHARIAN_SWAMPS;
+    public static Biome BIOME_SOFT_SAND_LAKES;
 
     private static void initBiomes(){
-        BIOME_KATHARIAN_FOREST = new BiomeKatharianForest().setRegistryName(Kathairis.MODID,"katharian_forest");
-        BIOME_KATHARIAN_RIVER = new BiomeKatharianRiver().setRegistryName(Kathairis.MODID,"katharian_river");
+        //desert
         BIOME_KATHARIAN_DESERT = new BiomeKatharianDesert().setRegistryName(Kathairis.MODID,"katharian_desert");
-        BIOME_KATHARIAN_PLAIN_FIELDS = new BiomeKatharianPlainFields().setRegistryName(Kathairis.MODID,"katharian_plain_fields");
         BIOME_KATHARIAN_DESERT_EDGE = new BiomeKatharianDesertEdge().setRegistryName(Kathairis.MODID,"katharian_desert_edge");
+        BIOME_SOFT_SAND_LAKES = new BiomeKatharianSoftSandLakes().setRegistryName(Kathairis.MODID,"katharian_soft_sand_lakes");
+        //forest
+        BIOME_KATHARIAN_FOREST = new BiomeKatharianForest().setRegistryName(Kathairis.MODID,"katharian_forest");
+        //river
+        BIOME_KATHARIAN_RIVER = new BiomeKatharianRiver().setRegistryName(Kathairis.MODID,"katharian_river");
+        //plain fields
+        BIOME_KATHARIAN_PLAIN_FIELDS = new BiomeKatharianPlainFields().setRegistryName(Kathairis.MODID,"katharian_plain_fields");
+        //swamps
         BIOME_KATHARIAN_SWAMPS = new BiomeKatharianSwamps().setRegistryName(Kathairis.MODID,"katharian_swamps");
     }
+
 
     public static SoundHelper bird = new SoundHelper("bird", "bird");
     public static SoundHelper Howler_living = new SoundHelper("howler", "living");

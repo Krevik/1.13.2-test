@@ -1,7 +1,6 @@
 package mod.krevik.kathairis.world.dimension;
 
 
-import net.minecraft.world.gen.ChunkGenSettings;
 import net.minecraft.world.gen.OverworldGenSettings;
 
 public class KatharianGenSettings extends OverworldGenSettings {

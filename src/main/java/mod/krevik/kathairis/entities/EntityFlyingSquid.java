@@ -20,8 +20,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
@@ -88,9 +86,9 @@ public class EntityFlyingSquid extends EntityFlying
     public void writeAdditional(NBTTagCompound compound)
     {
         super.writeAdditional(compound);
-        compound.setBoolean("isHoldingPlayer", this.isHoldingPlayer());
-        compound.setBoolean("isDiving", this.isDiving());
-        compound.setBoolean("canHoldPlayer", this.canHoldPlayer());
+        compound.putBoolean("isHoldingPlayer", this.isHoldingPlayer());
+        compound.putBoolean("isDiving", this.isDiving());
+        compound.putBoolean("canHoldPlayer", this.canHoldPlayer());
 
     }
 
